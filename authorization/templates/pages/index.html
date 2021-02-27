@@ -6,7 +6,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
-
     <title>Main page</title>
 
     <style>
@@ -23,6 +22,29 @@
                 font-size: 3.5rem;
             }
         }
+
+        input[type=text], input[type=password]{
+            background: #ffffff;
+            border: none;
+            color: #1f1a0c;
+            transition: all 300ms;
+            border-radius: 10px;
+            border-bottom: 1px solid #ffff64;
+            margin: 0 20px 0 30px;
+        }
+
+        input[type=text]:focus, input[type=password]:focus{
+            border-bottom: 3px solid #aa9638;
+            outline: none;
+        }
+
+        .default-link{
+            background: none;
+            border: none;
+            text-decoration: underline;
+            color: #1f1a0c;
+        }
+
     </style>
     <link href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/sticky-footer-navbar.css"
           rel="stylesheet">
@@ -30,7 +52,7 @@
 <body class="d-flex flex-column h-100">
 <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #F5F50E;">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #ffff64;">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Fixed navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -40,10 +62,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0"></ul>
                 {% if request.user.is_authenticated %}
-                    <span class="navbar-text">Username: {{ user }}</span>
+                    <span class="navbar-text">{{ user }}</span>
                     <form method="POST" action="/" class="d-flex">
                         {% csrf_token %}
-                        <input type="submit" name="logout" value="Logout" class="btn btn-light" style="background-color: #EAC407;">
+                        <input type="submit" name="logout" value="Logout" class="default-link" style="">
                     </form>
                 {% else %}
                     <form method="POST" action="/" class="d-flex">
