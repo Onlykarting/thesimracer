@@ -9,7 +9,15 @@ from authorization.forms import LoggingInForm
 def index(request):
     content = dict()
     content['user'] = request.user
-    print(f'Вы: {request.user}')
+    if request.method == "POST":
+        post = request.POST
+        if 'logout' in post:
+            logout(request)
+    return render(request, 'pages/index.html', content)
+
+def log_in(request):
+    content = dict()
+    content['user'] = request.user
     if request.method == "POST":
         form = LoggingInForm(request.POST)
         post = request.POST
@@ -24,8 +32,8 @@ def index(request):
                 content['user'] = user
         content['request'] = request
         content['form'] = form
-        return render(request, 'pages/index.html', content)
+        return render(request, 'pages/login.html', content)
     elif request.method == "GET":
         content['form'] = LoggingInForm()
         content['request'] = request
-        return render(request, 'pages/index.html', content)
+        return render(request, 'pages/login.html', content)

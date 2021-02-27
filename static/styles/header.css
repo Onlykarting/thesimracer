@@ -1,0 +1,72 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.dropdown-menu{
+    list-style-type: none;
+}
+
+.login-input {
+    background: #ffffff;
+    border: none;
+    color: #1f1a0c;
+    transition: all 300ms;
+    width: 125px;
+    height: 35px;
+    border-radius: 10px;
+    border-bottom: 1px solid #ffff64;
+    margin: 5px 10px 0 10px;
+}
+
+.login-btn {
+    border: none;
+}
+
+.login-btn:focus {
+    border-bottom: 3px solid #aa9638;
+    outline: none;
+}
+
+.login-list-elements{
+    background: #F4B913;
+}
+
+.dropdown-item{
+    color: #1f1a0c;
+}
+
+.dropdown-item:hover {
+    border-bottom: 3px solid #ffff64;
+    outline: none;
+}
+
+.default-link {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: #1f1a0c;
+}
+
+.page-l{
+    text-decoration:none;
+    color: #1f1a0c;
+}
+
+.page-l:hover{
+    text-decoration: underline;
+    color: #1f1a0c;
+}
+
+.btn-sub{
+    margin: 10px 0 0 0;
+}

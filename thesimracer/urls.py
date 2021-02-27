@@ -20,5 +20,6 @@ from authorization import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index)
+    path('login/', views.log_in),
+    path('', views.index),
 ]
