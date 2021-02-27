@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import ForeignKey, IntegerField, CharField, BooleanField, FloatField, TextField, DateTimeField, OneToOneField
+from django.db.models import ForeignKey, IntegerField, CharField, BooleanField, FloatField, TextField, DateTimeField
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models import signals
@@ -115,6 +115,28 @@ class Event(models.Model):
     event_settings = ForeignKey(EventSettings, models.deletion.RESTRICT, null=True)
     event_rules = ForeignKey(EventRules, models.deletion.RESTRICT, null=True)
     # TODO: Дописать поля
+
+
+class ServerWorkerSettings(models.Model):
+
+    KILLED = "Killed"
+    TERMINATED = "Terminated"
+    RUNNING = "Running"
+    PLANNED = "Planned"
+    ZOMBIE = "Zombie"
+    STATUS_CHOICES = (
+        (KILLED, 'Killed'),
+        (TERMINATED, 'Terminated'),
+        (RUNNING, 'Running'),
+        (PLANNED, 'Planned'),
+        (ZOMBIE, 'Zombie')
+    )
+
+    id = IntegerField(primary_key=True)
+    pid = IntegerField(null=True)
+    event = ForeignKey(Event, on_delete=models.deletion.CASCADE)
+    status = CharField(max_length=30, choices=STATUS_CHOICES, default=PLANNED)
+    # TODO: Добавить ссылку на лидерборд
 
 
 @receiver(signals.pre_save, sender=Event)
