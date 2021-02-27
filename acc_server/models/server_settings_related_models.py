@@ -72,7 +72,7 @@ class ServerSettings(models.Model):
     id = IntegerField(primary_key=True)
     server_name = CharField(max_length=255)
     admin_password = CharField(max_length=255)
-    car_group = CharField(default="FreeForAll")
+    car_group = CharField(max_length=50, default="FreeForAll")
     track_medals_requirement = IntegerField(default=0)
     safety_rating_requirement = IntegerField(default=-1)
     password = CharField(max_length=255, default="")
@@ -99,7 +99,7 @@ class ServerConfig(models.Model):
 class Playlist(models.Model):
     id = IntegerField(primary_key=True)
     creator = ForeignKey(User, models.deletion.CASCADE)
-    name = CharField()
+    name = CharField(max_length=255)
     # TODO: Дописать поля
 
 
