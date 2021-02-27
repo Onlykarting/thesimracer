@@ -102,6 +102,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Assetto Corsa Competizione servers' config
+
+ACC_SERVER_CONFIG = {
+    "ROOT_DIR": BASE_DIR / 'acc_servers',
+    "SERVER_INSTANCE_NAME_TEMPLATE": lambda uid=None, *args, **kwargs: f"server_{uid}",
+    "KILL_RUNNING_SERVERS_WHEN_MANAGER_SHUT_DOWN": True,
+    "OVERWRITE_EXISTING_DIRS": True
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
