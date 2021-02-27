@@ -3,7 +3,7 @@ from rest_framework.serializers import ModelSerializer
 
 
 class ServerConfigSerializer(ModelSerializer):
-    class Meta:ы
+    class Meta:
         model = ServerConfig
         exclude = ["id"]
         read_only = True
