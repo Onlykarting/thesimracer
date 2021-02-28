@@ -20,12 +20,12 @@
             {% else %}
                     {# {% load widget_tweaks %} #}
                 <div class="btn-group dropstart" >
-                  <button type="button" class="btn btn-secondary dropdown-toggle login-btn" style="background-color: #eac407; color: #1f1a0c;" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button type="button" id="login_btn" class="btn btn-secondary dropdown-toggle login-btn" data-bs-toggle="dropdown" aria-expanded="false">
                     Login
                   </button>
                   <ul class="dropdown-menu login-list-elements">
-                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li>
-                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/login#register">Register</a></li>
+                    <li><a class="dropdown-item" onmouseover="document.getElementById('login_btn').style.background = '#F4B913';" href="http://127.0.0.1:8000/login">Login</a></li>
+                    <li><a class="dropdown-item" onmouseover="document.getElementById('login_btn').style.background = '#F4B913';" href="http://127.0.0.1:8000/login#register">Register</a></li>
                   </ul>
                 </div>
             {% endif %}

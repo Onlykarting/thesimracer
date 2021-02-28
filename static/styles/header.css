@@ -30,6 +30,12 @@
 
 .login-btn {
     border: none;
+    background-color: #eac407;
+    color: #1f1a0c;
+}
+
+.login-btn:hover {
+    background-color: #eac407;
 }
 
 .login-btn:focus {
@@ -44,6 +50,7 @@
 .dropdown-item{
     color: #1f1a0c;
 }
+
 
 .dropdown-item:hover {
     border-bottom: 3px solid #ffff64;
@@ -67,6 +74,21 @@
     color: #1f1a0c;
 }
 
+.btn-sub:hover{
+    border: 2px #9f7407 solid;
+}
+
 .btn-sub{
     margin: 10px 0 0 0;
+    background: #d09a00;
+    border-radius: 10px;
+}
+
+.fields:hover{
+    font-size: 102%;
+}
+
+.messages{
+    font-size: 150%;
+    color: firebrick;
 }
