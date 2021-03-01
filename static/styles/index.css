@@ -1,0 +1,16 @@
+.background {
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+}
+
+.background img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+body{
+    background: #e8e8e8;
+}

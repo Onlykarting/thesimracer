@@ -10,6 +10,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
     {% load static %}
     <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
     <style>
         .login-btn {
             display: none;
@@ -120,6 +121,13 @@
     </div>
     </div>
 </main>
+
+<footer>
+    {% block footer %}
+    {% include 'pages/footer.html' %}
+    {% endblock %}
+</footer>
+
 <script>
 
     function started_login(duration) {
