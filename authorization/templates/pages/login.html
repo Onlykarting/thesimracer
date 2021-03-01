@@ -54,7 +54,13 @@
         {% if messages %}
             <ul class="messages text-center" style="padding-left: 0; ">
                 {% for message in messages %}
-                {% if message.tags == "warning"%} <li{% if message.tags %} class="{{ message.tags }}" id="messages" {% endif %} style="color: #d70c10; list-style-type: none; font-size: 90%;">{{ message }}</li> {% endif %}
+                    {% if message.tags == "warning" %}
+                        <li{% if message.tags %} class="{{ message.tags }} messages" id="messages" {% endif %}
+                                                 style="color: #d70c10; list-style-type: none; font-size: 90%;">{{ message }}</li>
+                        <div class="progress" style="height: 6px;">
+                                  <div class="progress-bar progress-login" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background: #dd9c61;"></div>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </ul>
         {% endif %}
@@ -68,47 +74,94 @@
             <div class="col-12">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        {% render_field register_form.first_name.label%}
+                        {% render_field register_form.first_name.label %}
                         {% render_field register_form.first_name|add_class:"form-control fields" type="text" placeholder="Ivan" style="margin-top: 10px;" %}
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        {% render_field register_form.last_name.label%}
+                        {% render_field register_form.last_name.label %}
                         {% render_field register_form.last_name|add_class:"form-control fields" type="text" placeholder="Ivanov" style="margin-top: 10px;" %}
                     </div>
                 </div>
                 <div class="col-12 mb-3">
-                    {% render_field register_form.username.label%}
+                    {% render_field register_form.username.label %}
                     {% render_field register_form.username|add_class:"form-control fields" type="text" placeholder="Username" style="margin-top: 10px;" %}
                 </div>
 
                 <div class="col-12 mb-3">
-                    {% render_field register_form.email.label%}
+                    {% render_field register_form.email.label %}
                     {% render_field register_form.email|add_class:"form-control fields" type="email" placeholder="email@example.com" style="margin-top: 10px;" %}
                 </div>
 
                 <div class="col-12 mb-3">
-                    {% render_field register_form.password.label%}
+                    {% render_field register_form.password.label %}
                     {% render_field register_form.password|add_class:"form-control fields" type="password" placeholder="Password" style="margin-top: 10px;" %}
                     {% render_field register_form.register|add_class:"form-control" style="display: none;" %}
                 </div>
                 {% if messages %}
-                    <ul class="messages text-center" style="padding-left: 0; ">
+                    <ul class="messages text-center" id="pass" style="padding-left: 0; ">
                         {% for message in messages %}
-                        {% if message.tags == "error"%} <li{% if message.tags %} class="{{ message.tags }}" id="messages" {% endif %} style="color: #d70c10; list-style-type: none; font-size: 90%;">{{ message }}</li> {% endif %}
+                            {% if message.tags == "error" %}
+                                <li{% if message.tags %} class="{{ message.tags }} messages" {% endif %}
+                                                         style="color: #d70c10; list-style-type: none; font-size: 90%;">{{ message }}</li>
+                                <div class="progress" style="height: 6px;">
+                                  <div class="progress-bar progress-register" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="background: #dd9c61;"></div>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </ul>
-                {% endif %}
-                <button class="w-100 btn btn-lg btn-sub" type="submit">Register</button>
 
-                <hr class="my-4">
+                {% endif %}
+
+                <button class="w-100 btn btn-lg btn-sub" type="submit">Register</button>
     </form>
+    <hr class="my-4">
+
     </div>
     </div>
 </main>
 <script>
-            function hider() {$('#messages').hide(600, function (){});}
-            setTimeout(hider, 2000)
+
+    function started_login(duration) {
+        var TotalSeconds = 40;
+        var start = Date.now();
+        var intervalSetted = null;
+
+        function timer() {
+            var diff = duration - (((Date.now() - start) / 44) | 0);
+            var seconds = (diff % 60) | 0;
+            seconds = seconds < 10 ? "0" + seconds : seconds ;
+            $('#timer').html("00:" + seconds);
+            var progresBarWidth = (seconds * 612 / TotalSeconds);
+
+            $('.progress-login').css({
+                width: progresBarWidth + 'px'
+            });
+
+            $('.progress-register').css({
+                width: progresBarWidth + 'px'
+            });
+            if (diff <= -20) {
+                clearInterval(intervalSetted);
+                $('.progress-login').remove();
+                $('.progress-register').remove();
+            }
+        }
+
+        timer();
+        intervalSetted = setInterval(timer, 1);
+    }
+
+    function hider() {
+        $('.messages').hide(600, function () {
+            $('.messages').remove();
+        });
+    }
+
+    setTimeout(hider, 2000)
+    started_login(40);
+
+
 </script>
 </body>
 </html>
