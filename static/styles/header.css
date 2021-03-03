@@ -63,32 +63,3 @@
     text-decoration: underline;
     color: #1f1a0c;
 }
-
-.page-l{
-    text-decoration:none;
-    color: #1f1a0c;
-}
-
-.page-l:hover{
-    text-decoration: underline;
-    color: #1f1a0c;
-}
-
-.btn-sub:hover{
-    border: 2px #9f7407 solid;
-}
-
-.btn-sub{
-    margin: 10px 0 0 0;
-    background: #d09a00;
-    border-radius: 10px;
-}
-
-.fields:hover{
-    font-size: 102%;
-}
-
-.messages{
-    font-size: 150%;
-    color: firebrick;
-}

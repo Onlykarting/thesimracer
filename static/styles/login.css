@@ -1,0 +1,56 @@
+.page-l{
+    text-decoration:none;
+    color: #1f1a0c;
+}
+
+.page-l:hover{
+    text-decoration: underline;
+    color: #1f1a0c;
+}
+
+.btn-sub:hover{
+    border: 2px #9f7407 solid;
+}
+
+.btn-sub{
+    margin: 10px 0 0 0;
+    background: #d09a00;
+    border-radius: 10px;
+}
+
+.fields:hover{
+    font-size: 102%;
+}
+
+#messages{
+    color: #d70c10;
+    list-style-type: none;
+    font-size: 90%;
+}
+
+.messages-block{
+    padding-left: 0;
+}
+
+.register-fields{
+    margin-top: 10px;
+}
+
+.progress-login{
+    background: #dd9c61;
+}
+
+.pro{
+    height: 6px;
+}
+
+.pro-col{
+    background: #dd9c61;
+}
+
+.main-block{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40em;
+}

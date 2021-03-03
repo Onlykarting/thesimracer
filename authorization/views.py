@@ -21,6 +21,11 @@ def index(request):
             logout(request)
     return render(request, 'pages/index.html', content)
 
+def check_Anonymous(user):
+    if not user.is_anonymous:
+        return user
+    else:
+        return None
 
 def log_in(request):
     content = dict()
@@ -37,7 +42,6 @@ def log_in(request):
             user = authenticate(username=form.data['username'], password=form.data['password'])
             if user is not None:
                 login(request, user)
-                messages.add_message(request, messages.WARNING, f'You logged in successfully {user}')
                 content['authorized'] = True
                 content['user'] = user
                 content['login_form'] = form
@@ -72,7 +76,9 @@ def log_in(request):
                     messages.add_message(request, messages.ERROR, f'The {field} field is not correct')
             content['register_form'] = form
         content['request'] = request
+        content['user'] = check_Anonymous(request.user)
         return render(request, 'pages/login.html', content)
     elif request.method == "GET":
         content['request'] = request
+        content['user'] = check_Anonymous(request.user)
         return render(request, 'pages/login.html', content)
