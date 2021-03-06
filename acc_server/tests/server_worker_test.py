@@ -21,12 +21,3 @@ class ServerWorkerInitCwdTest(TestCase):
         settings = ServerWorkerSettings.objects.get(event__playlist__creator=creator)
         sw = ServerWorker(settings)
         sw.init_cwd()
-
-
-
-
-
-
-
-
-
