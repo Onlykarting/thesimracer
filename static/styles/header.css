@@ -29,6 +29,8 @@
 }
 
 .login-btn {
+    display: inline-block;
+    vertical-align: middle;
     border: none;
     background-color: #eac407;
     color: #1f1a0c;
@@ -41,6 +43,10 @@
 .login-btn:focus {
     border-bottom: 3px solid #aa9638;
     outline: none;
+}
+
+.login-btn:visited{
+    background-color: #eac407;
 }
 
 .login-list-elements{
@@ -63,3 +69,4 @@
     text-decoration: underline;
     color: #1f1a0c;
 }
+

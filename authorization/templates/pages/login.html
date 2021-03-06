@@ -9,26 +9,15 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
     {% load static %}
-    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'styles/login.css' %}" rel="stylesheet" type="text/css">
-    <style>
-        .login-btn {
-            display: none;
-        }
-    </style>
+        <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'styles/login.css' %}" rel="stylesheet" type="text/css">
     <title>Login page</title>
-
     <link href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/sticky-footer-navbar.css"
           rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-<style>
-    .login-btn {
-        display: none;
-    }
-</style>
 <body class="d-flex flex-column h-100">
 
 <header>
@@ -38,11 +27,20 @@
 </header>
 
 <main>
-
     {% if user is None %}
     <div class="row g-3 main-block">
-    <h4 class="mb-3" id="login"><a href="#login" class="page-l">Login</a></h4>
-    <form method="post"> {% csrf_token %}
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-login-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Register</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <h4 class="mb-3" id="login"><a href="#login" class="page-l">Login</a></h4>
+          <form method="post"> {% csrf_token %}
         <div class="col-12 mb-3">
             <label for="login" class="form-label">Username</label>
             {% render_field login_form.username|add_class:"form-control fields" type="text" placeholder="Username" id="login" %}
@@ -54,70 +52,74 @@
             {% render_field login_form.logging|add_class:"form-control" style="display: none;" %}
         </div>
         {% if messages %}
-            <ul class="messages text-center" style="padding-left: 0; ">
+            <ul class="text-center messages-block" id="messages-block">
                 {% for message in messages %}
                     {% if message.tags == "warning" %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %} id="messages">{{ message }}</li>
-                        <div class="progress pro">
-                                  <div class="progress-login pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                        <li{% if message.tags %} class="{{ message.tags }} messages" {% else %} class="messages" {% endif %}>{{ message }}</li>
                     {% endif %}
                 {% endfor %}
+                <div class="progress pro">
+                    <div class="progress-login pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </ul>
         {% endif %}
         <button class="w-100 btn btn-lg btn-sub" type="submit">Login</button>
     </form>
 
     <hr class="my-4">
+      </div>
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <h4 class="mb-3" id="register"><a href="#register" class="page-l">Registration</a></h4>
+            <form class="needs-validation" method="post"> {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {% render_field register_form.first_name.label %}
+                                {% render_field register_form.first_name|add_class:"form-control fields register-fields" type="text" placeholder="Ivan" %}
+                            </div>
 
-    <h4 class="mb-3" id="register"><a href="#register" class="page-l">Registration</a></h4>
-    <form class="needs-validation" method="post"> {% csrf_token %}
-        <div class="row g-3">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        {% render_field register_form.first_name.label %}
-                        {% render_field register_form.first_name|add_class:"form-control fields register-fields" type="text" placeholder="Ivan" %}
-                    </div>
+                            <div class="col-md-6 mb-3">
+                                {% render_field register_form.last_name.label %}
+                                {% render_field register_form.last_name|add_class:"form-control fields register-fields" type="text" placeholder="Ivanov" %}
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            {% render_field register_form.username.label %}
+                            {% render_field register_form.username|add_class:"form-control fields register-fields" type="text" placeholder="Username" %}
+                        </div>
 
-                    <div class="col-md-6 mb-3">
-                        {% render_field register_form.last_name.label %}
-                        {% render_field register_form.last_name|add_class:"form-control fields register-fields" type="text" placeholder="Ivanov" %}
-                    </div>
-                </div>
-                <div class="col-12 mb-3">
-                    {% render_field register_form.username.label %}
-                    {% render_field register_form.username|add_class:"form-control fields register-fields" type="text" placeholder="Username" %}
-                </div>
+                        <div class="col-12 mb-3">
+                            {% render_field register_form.email.label %}
+                            {% render_field register_form.email|add_class:"form-control fields register-fields" type="email" placeholder="email@example.com" %}
+                        </div>
 
-                <div class="col-12 mb-3">
-                    {% render_field register_form.email.label %}
-                    {% render_field register_form.email|add_class:"form-control fields register-fields" type="email" placeholder="email@example.com" %}
-                </div>
-
-                <div class="col-12 mb-3">
-                    {% render_field register_form.password.label %}
-                    {% render_field register_form.password|add_class:"form-control fields register-fields" type="password" placeholder="Password" %}
-                    {% render_field register_form.register|add_class:"form-control" style="display: none;" %}
-                </div>
-                {% if messages %}
-                    <ul class="messages text-center messages-block" id="pass">
-                        {% for message in messages %}
-                            {% if message.tags == "error" %}
-                                <li{% if message.tags %} class="{{ message.tags }} messages" {% endif %} id="messages">{{ message }}</li>
-                                <div class="progress pro" style="height: 6px;">
-                                  <div class="progress-register pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="col-12 mb-3">
+                            {% render_field register_form.password.label %}
+                            {% render_field register_form.password|add_class:"form-control fields register-fields" type="password" placeholder="Password" %}
+                            {% render_field register_form.register|add_class:"form-control" style="display: none;" %}
+                        </div>
+                        {% if messages %}
+                            <ul class="text-center messages-block">
+                                {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <script>window.onload = function(){choose_tab('pills-register-tab')}</script>
+                                        <li{% if message.tags %} class="{{ message.tags }} messages" {% else %} class="messages" {% endif %}>{{ message }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                                <div class="progress pro">
+                                    <div class="progress-login pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
+                            </ul>
+                        {% endif %}
 
-                {% endif %}
+                        <button class="w-100 btn btn-lg btn-sub" type="submit">Register</button>
+                </div>
+            </form>
+        <hr class="my-4">
+      </div>
+    </div>
 
-                <button class="w-100 btn btn-lg btn-sub" type="submit">Register</button>
-        </div>
-    </form>
-    <hr class="my-4">
 
     </div>
     {% else %}
@@ -132,8 +134,12 @@
     {% include 'pages/footer.html' %}
     {% endblock %}
 </footer>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
+    window.onload = function(){hide_login_but()}
     {% block script %}
         {% include 'scripts/login.js' %}
     {% endblock %}
