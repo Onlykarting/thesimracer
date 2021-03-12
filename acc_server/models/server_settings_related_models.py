@@ -6,7 +6,7 @@ from django.db.models import signals
 
 
 class Track(models.Model):
-    id = IntegerField(primary_key=True)
+
     name = CharField(max_length=100, null=False, unique=True)
     unique_pit_boxes = IntegerField(null=False)
     private_server_slots = IntegerField(null=False)
@@ -14,7 +14,7 @@ class Track(models.Model):
 
 class EventSettings(models.Model):
 
-    id = IntegerField(primary_key=True)
+
     track = ForeignKey(Track, models.deletion.CASCADE, null=True)
     pre_race_waiting_time_seconds = IntegerField(default=60)
     session_over_time_seconds = IntegerField(default=120)
@@ -29,7 +29,7 @@ class EventSettings(models.Model):
 
 class Session(models.Model):
 
-    id = IntegerField(primary_key=True)
+
     hour_of_day = IntegerField(null=False, default=8)
     day_of_weekend = IntegerField(null=False, default=1)
     time_multiplier = IntegerField(null=False, default=0)
@@ -39,7 +39,7 @@ class Session(models.Model):
 
 class EventRules(models.Model):
 
-    id = IntegerField(primary_key=True)
+
     qualify_standing_type = IntegerField(null=False, default=-1)
     pit_window_length_sec = IntegerField(null=False, default=-1)
     driver_stint_time_sec = IntegerField(null=False, default=-1)
@@ -56,7 +56,7 @@ class EventRules(models.Model):
 
 class AssistRules(models.Model):
 
-    id = IntegerField(primary_key=True)
+
     stability_control_level_max = IntegerField(default=100)
     disable_autosteer = BooleanField(default=True)
     disable_auto_lights = BooleanField(default=False)
@@ -70,7 +70,7 @@ class AssistRules(models.Model):
 
 class ServerSettings(models.Model):
 
-    id = IntegerField(primary_key=True)
+
     server_name = CharField(max_length=255)
     admin_password = CharField(max_length=255)
     car_group = CharField(max_length=50, default="FreeForAll")
@@ -89,7 +89,7 @@ class ServerSettings(models.Model):
 
 
 class ServerConfig(models.Model):
-    id = IntegerField(primary_key=True)
+
     udp_port = IntegerField(default=0)
     tcp_port = IntegerField(default=0)
     max_connections = IntegerField(default=100)
@@ -98,14 +98,14 @@ class ServerConfig(models.Model):
 
 
 class Playlist(models.Model):
-    id = IntegerField(primary_key=True)
+
     creator = ForeignKey(User, models.deletion.CASCADE)
     name = CharField(max_length=255)
     # TODO: Дописать поля
 
 
 class Event(models.Model):
-    id = IntegerField(primary_key=True)
+
     name = CharField(max_length=255)
     starts_at = DateTimeField()
     playlist = ForeignKey(Playlist, models.deletion.CASCADE)
@@ -132,7 +132,6 @@ class ServerWorkerSettings(models.Model):
         (ZOMBIE, 'Zombie')
     )
 
-    id = IntegerField(primary_key=True)
     pid = IntegerField(null=True)
     event = ForeignKey(Event, on_delete=models.deletion.CASCADE)
     status = CharField(max_length=30, choices=STATUS_CHOICES, default=PLANNED)
