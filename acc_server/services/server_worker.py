@@ -1,15 +1,19 @@
 import os
 import shutil
+import subprocess
+from threading import Thread
 from pathlib import Path
+from typing import Optional, Callable, List
 from acc_server.models import ServerWorkerSettings
 from thesimracer.settings import ACC_SERVER_CONFIG
 from .dumpers import ServerConfigDumper, ServerSettingsDumper, AssistRulesDumper, \
     EventSettingsDumper, EventRulesDumper
 
 
-class ServerWorker:
+class ServerWorker(Thread):
 
     def __init__(self, settings: ServerWorkerSettings):
+        super(ServerWorker, self).__init__()
         self.settings = settings
         self.dumpers = [
             EventSettingsDumper(self),
@@ -18,6 +22,7 @@ class ServerWorker:
             ServerSettingsDumper(self),
             ServerConfigDumper(self),
         ]
+        self.process: Optional[subprocess.Popen] = None
 
     @property
     def deploy_path(self):
@@ -30,6 +35,13 @@ class ServerWorker:
     def config_path(self):
         return self.deploy_path / 'cfg'
 
+    @property
+    def run_command(self):
+        if ACC_SERVER_CONFIG.get("CUSTOM_RUN_COMMAND") is not None:
+            return ACC_SERVER_CONFIG["CUSTOM_RUN_COMMAND"]
+        else:
+            return ACC_SERVER_CONFIG["SERVER_EXECUTABLE_PATH"]
+
     def init_cwd(self):
         if not self.deploy_path.exists():
             os.mkdir(self.deploy_path)
@@ -41,3 +53,20 @@ class ServerWorker:
         os.mkdir(self.config_path)
         for dumper in self.dumpers:
             dumper.dump()
+
+    def run(self):
+        self.process = subprocess.Popen(self.run_command,
+                                        cwd=self.deploy_path,
+                                        stdout=subprocess.PIPE,
+                                        stderr=subprocess.PIPE)
+        with self.process as process:
+            print("stdout:", self.process.stdout.readline())
+            print("stderr:", self.process.stderr.readline())
+
+    def terminate(self):
+        self.process.terminate()
+        self.settings.status = self.settings.KILLED
+        self.settings.save()
+
+    def __del__(self):
+        self.terminate()

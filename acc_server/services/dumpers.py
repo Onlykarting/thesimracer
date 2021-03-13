@@ -14,6 +14,7 @@ class BaseConfigDumper:
     def dump(self):
         with open(self.file_path, 'w') as file:
             file.write(JsonResponse(self.serializer(self.query_set).data).content.decode('utf-8'))
+            # file.write(str(self.serializer(self.query_set).data))
 
 
 class ServerConfigDumper(BaseConfigDumper):
