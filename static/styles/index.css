@@ -1,14 +1,144 @@
+@font-face {
+    font-family: Phantom cyr-lat; /* Гарнитура шрифта */
+    src: url(/static/fonts/10351.ttf); /* Путь к файлу со шрифтом */
+}
+
 .background {
     min-width: 100%;
     min-height: 100%;
     position: relative;
+    margin: 7px 7px 7px 0;
 }
 
 .background img {
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.card-header-text{
+    text-decoration: none;
+    font-family: Phantom cyr-lat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    letter-spacing: 0.01em;
+}
+
+.table-elem-padding{
+    padding: 0 30px 0 30px;
+}
+
+.more-btn{
+    width: 125px;
+    height: 35px;
+    background: #D19A00;
+    border-radius: 15px;
+}
+
+.join-btn{
+    width: 125px;
+    height: 35px;
+    background: rgba(17, 148, 14, 0.65);
+    border-radius: 15px;
+}
+
+.more-btn-padding{
+    padding: 8px 0 8px 0;
+}
+
+.img-race{
+    height: 120px;
+    width: 90px;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 4px auto 4px auto;
+    border-radius: 2px;
+}
+
+.map-card{
+    padding: 0 6px 0 6px;
+}
+
+.map-card-title{
+    width: 120px;
+    margin: 0 auto 0 auto;
+}
+
+.more-btn-text{
+    text-decoration: none;
+    font-family: Phantom cyr-lat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    letter-spacing: 0.01em;
+    width: 125px;
+    height: 35px;
+}
+
+.join-btn-text{
+    text-decoration: none;
+    font-family: Phantom cyr-lat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    letter-spacing: 0.01em;
+    width: 125px;
+    height: 35px;
+}
+
+.main-card-hr{
+    border: 1px solid rgba(37, 37, 37, 0.5);
+    margin: 6px auto 6px auto;
+    width: 95%;
+}
+
+.card{
+    font-family: Arial;
+}
+
+.text-secondary{
+    color: rgba(37, 37, 37, 0.5);
+}
+
+.card-hr{
+    border: 1px solid rgba(37, 37, 37, 0.5);
+    margin: 1px auto 1px auto !important;
+    width: 95%;
+}
+
+.card-hr-secondary{
+    margin: 1px auto 1px auto !important;
+    width: 95%;
+}
+
+.bold{
+    font-weight: 550;
+}
+
+.names{
+    padding-left: 2px !important;
+}
+
+.card-content-card{
+    background: #E8E8E8;
+}
+
+.main-card{
+    border-radius: 10px;
+    border: 2px solid rgba(37, 37, 37, 0.5);
+}
+
+.back{
+    margin: 7px 7px 7px 0;
+    float: left;
+    height: 2%;
 }
 
 body{

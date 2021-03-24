@@ -13,27 +13,365 @@
     <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
     <title>Main page</title>
 
-    <link href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/sticky-footer-navbar.css"
+          rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
+            integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
+            integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
+            crossorigin="anonymous"></script>
+    <script>
+        $("#NavBarToggler").on("click", function () {
+            if ($("#NavBarToggler").attr("aria-expanded") == 'true') {
+                $('.mid-content').css({
+                    paddingLeft: 0
+                });
+            } else {
+                $('.mid-content').css({
+                    paddingLeft: 15
+                });
+            }
+        });
+
+        $("#next").click(function () {
+            $(".carousel").carousel({interval: 500});
+        });
+    </script>
 </head>
 <body class="d-flex flex-column h-100">
-<header>
-    {% block header %}
+
+{% block header %}
     {% include 'pages/header.html' %}
-    {% endblock %}
-</header>
+{% endblock %}
+
 <main>
-   <div class="background"><img style="float: left" alt="" class="back" src="{% static 'images/heder1.jpg'%}"></div>
+    <div class="background">
+        <img alt="" style="height: 450px" height="50%" class="back" src="{% static 'images/heder1.jpg' %}">
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card main-card">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="row text-center">
+                                <span class="card-header-text">Champ standings</span>
+                            </div>
+                            <hr class="main-card-hr">
+                            <div class="card-body">
+                                <div class="card" style="background: #E8E8E8;">
+                                    <div class="row">
+                                        <div class="col-8 bold">
+                                            <span class="table-elem-padding">Sprint Cup, Round 1</span>
+                                        </div>
+                                        <div class="col-4 bold">
+                                            <span class="float-end table-elem-padding">Nurburgring</span>
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr">
+                                    <div class="row">
+                                        <div class="col-3 text-center text-secondary">
+                                            <span>Position</span>
+                                        </div>
+                                        <div class="col-3 text-center text-secondary">
+                                            <span>Team</span>
+                                        </div>
+                                        <div class="col-6 text-secondary">
+                                            <span class="float-end table-elem-padding">Score</span>
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-3 text-center text-secondary">
+                                            <span>1</span>
+                                        </div>
+                                        <div class="col-3 text-center bold">
+                                            <span>Parovoz</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="float-end bold table-elem-padding">285</span>
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-3 text-center text-secondary">
+                                            <span>2</span>
+                                        </div>
+                                        <div class="col-3 text-center bold">
+                                            <span>Raketa</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="float-end bold table-elem-padding">283</span>
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row text-center more-btn-padding">
+                                    <span>
+                                        <button type="button"
+                                                class="btn more-btn more-btn-text">More
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6 text">
+                            <div class="row text-center">
+                                <span class="card-header-text">Last results</span>
+                            </div>
+                            <hr class="main-card-hr">
+                            <div class="card-body">
+                                <div class="card" style="background: #E8E8E8">
+                                    <div class="row">
+                                        <div class="bold text-center">Sprint Cup, Round 1</div>
+                                    </div>
+                                    <hr class="card-hr">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            Track
+                                        </div>
+                                        <div class="col-8 bold text-center">
+                                            Nurburgring
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            1
+                                        </div>
+                                        <div class="col-8 names bold text-left">
+                                            Anton Bersenev
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            2
+                                        </div>
+                                        <div class="col-8 names bold text-left">
+                                            Polina Aseeva
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            3
+                                        </div>
+                                        <div class="col-8 names bold text-left">
+                                            Sergey Orlov
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            4
+                                        </div>
+                                        <div class="col-8 names bold text-left">
+                                            Alexander Dudarev
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            5
+                                        </div>
+                                        <div class="col-8 names bold text-left">
+                                            Artem Burenin
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            6
+                                        </div>
+                                        <div class="col-8 names bold text-left">
+                                            Kirill Korolev
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row">
+                                        <div class="col-4 text-center text-secondary">
+                                            7
+                                        </div>
+                                        <div class="col-8 names bold text-left">
+                                            Ilya Tsepkalo
+                                        </div>
+                                    </div>
+                                    <hr class="card-hr-secondary">
+                                    <div class="row text-center more-btn-padding">
+                                        <span>
+                                            <button type="button"
+                                                    class="btn more-btn more-btn-text">More
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-6">
+                <div class="card main-card">
+                    <div class="card-body" style="padding-top: 0">
+                        <div class="row text-center">
+                            <span class="card-header-text">Upcoming events</span>
+                        </div>
+                        <hr class="main-card-hr">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4 col-md-4 map-card">
+                                    <div class="card" style="background: #E8E8E8;">
+                                        <div class="row">
+                                            <img class="img-race" src="{% static 'images/imola.jpg' %}" alt="">
+                                        </div>
+                                        <div class="row">
+                                            <span class="bold text-center map-card-title">Sprint Cup, Round 2</span>
+                                        </div>
+                                        <hr class="card-hr">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Track</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>Imola</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Date</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>28.02.21</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Time</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>18:30(+3)</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row text-center more-btn-padding">
+                                            <span>
+                                                <button type="button"
+                                                        class="btn join-btn join-btn-text">Join
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-4 map-card">
+                                    <div class="card" style="background: #E8E8E8;">
+                                        <div class="row">
+                                            <img class="img-race" src="{% static 'images/Kyalami.jpg' %}" alt="">
+                                        </div>
+                                        <div class="row">
+                                            <span class="bold text-center map-card-title">Old school, Round 1</span>
+                                        </div>
+                                        <hr class="card-hr">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Track</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>Kyalami</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Date</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>29.02.21</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Time</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>20:00(+3)</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row text-center more-btn-padding">
+                                            <span>
+                                                <button type="button"
+                                                        class="btn join-btn join-btn-text">Join
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-4 map-card">
+                                    <div class="card" style="background: #E8E8E8;">
+                                        <div class="row">
+                                            <img class="img-race" src="{% static 'images/Paul-Ricard.jpg' %}" alt="">
+                                        </div>
+                                        <div class="row">
+                                            <span class="bold text-center map-card-title">ST Cup, Round 8</span>
+                                        </div>
+                                        <hr class="card-hr">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Track</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>Paul Ricard</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Date</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>30.02.21</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row">
+                                            <div class="col-4 text-center text-secondary">
+                                                <span>Time</span>
+                                            </div>
+                                            <div class="col-8 text-center bold">
+                                                <span>23:30(+3)</span>
+                                            </div>
+                                        </div>
+                                        <hr class="card-hr-secondary">
+                                        <div class="row text-center more-btn-padding">
+                                            <span>
+                                                <button type="button"
+                                                        class="btn join-btn join-btn-text">Join
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
 </main>
 <footer>
     {% block footer %}
-    {% include 'pages/footer.html' %}
+        {% include 'pages/footer.html' %}
     {% endblock %}
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
-        integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
-        integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
-        crossorigin="anonymous"></script>
 </body>
 </html>

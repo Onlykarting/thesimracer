@@ -20,26 +20,28 @@
 </head>
 <body class="d-flex flex-column h-100">
 
-<header>
-    {% block header %}
-        {% include 'pages/header.html' %}
-    {% endblock %}
-</header>
+{% block header %}
+    {% include 'pages/header.html' %}
+{% endblock %}
 
 <main>
+    {% if register_page %}
+        <script>window.onload = function(){choose_tab('pills-register-tab');}</script>
+    {% endif %}
     {% if user is None %}
     <div class="row g-3 main-block">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="pills-login-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Login</a>
+        <a class="nav-link active" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Register</a>
+        <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <h4 class="mb-3" id="login"><a href="#login" class="page-l">Login</a></h4>
+      <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+        <h4 class="mb-3 headers-login" id="login">Login</h4>
+        <hr class="my-4">
           <form method="post"> {% csrf_token %}
         <div class="col-12 mb-3">
             <label for="login" class="form-label">Username</label>
@@ -56,20 +58,19 @@
                 {% for message in messages %}
                     {% if message.tags == "warning" %}
                         <li{% if message.tags %} class="{{ message.tags }} messages" {% else %} class="messages" {% endif %}>{{ message }}</li>
+                        <div class="progress pro">
+                            <div class="progress-login pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     {% endif %}
                 {% endfor %}
-                <div class="progress pro">
-                    <div class="progress-login pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
             </ul>
         {% endif %}
         <button class="w-100 btn btn-lg btn-sub" type="submit">Login</button>
     </form>
-
-    <hr class="my-4">
       </div>
-          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-              <h4 class="mb-3" id="register"><a href="#register" class="page-l">Registration</a></h4>
+          <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
+            <h4 class="mb-3 headers-login" id="register">Registration</h4>
+            <hr class="my-4">
             <form class="needs-validation" method="post"> {% csrf_token %}
                 <div class="row g-3">
                     <div class="col-12">
@@ -103,20 +104,20 @@
                             <ul class="text-center messages-block">
                                 {% for message in messages %}
                                     {% if message.tags == "error" %}
-                                        <script>window.onload = function(){choose_tab('pills-register-tab')}</script>
+                                        <script>window.onload = function(){choose_tab('pills-register-tab');}</script>
                                         <li{% if message.tags %} class="{{ message.tags }} messages" {% else %} class="messages" {% endif %}>{{ message }}</li>
+                                        <div class="progress pro">
+                                            <div class="progress-login pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                     {% endif %}
                                 {% endfor %}
-                                <div class="progress pro">
-                                    <div class="progress-login pro-col" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+
                             </ul>
                         {% endif %}
 
                         <button class="w-100 btn btn-lg btn-sub" type="submit">Register</button>
                 </div>
             </form>
-        <hr class="my-4">
       </div>
     </div>
 
@@ -139,7 +140,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-    window.onload = function(){hide_login_but()}
     {% block script %}
         {% include 'scripts/login.js' %}
     {% endblock %}

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Phantom cyr-lat; /* Гарнитура шрифта */
+    src: url(/static/fonts/10351.ttf); /* Путь к файлу со шрифтом */
+}
+
 .page-l{
     text-decoration:none;
     color: #1f1a0c;
@@ -18,7 +23,7 @@
     margin: 10px 0 0 0;
     background-color: #eac407;
     border-radius: 10px;
-    color: #1f1a0c
+    color: #fff;
 }
 
 .fields:hover{
@@ -52,9 +57,24 @@
     width: 40em;
 }
 
+.headers-login{
+    text-decoration: none;
+    font-family: Phantom cyr-lat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    letter-spacing: 0.01em;
+}
+
 .messages{
     margin-top: 3px;
     color: #d70c10;
     font-size: 150%;
     list-style-type: none;
+}
+
+#login-btn-group{
+    display: none;
 }

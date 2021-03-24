@@ -6,6 +6,11 @@
     user-select: none;
 }
 
+@font-face {
+    font-family: Phantom cyr-lat; /* Гарнитура шрифта */
+    src: url(/static/fonts/10351.ttf); /* Путь к файлу со шрифтом */
+}
+
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -14,6 +19,17 @@
 
 .dropdown-menu{
     list-style-type: none;
+}
+
+.username{
+    color: #f9b330;
+}
+
+.logout-but{
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: #E8E8E8;
 }
 
 .login-input {
@@ -30,7 +46,6 @@
 
 .login-btn {
     display: inline-block;
-    vertical-align: middle;
     border: none;
     background-color: #eac407;
     color: #1f1a0c;
@@ -70,3 +85,44 @@
     color: #1f1a0c;
 }
 
+.nav-item{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.text-block-head{
+    text-decoration: none;
+    font-family: Phantom cyr-lat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #e8e8e8;
+    letter-spacing: 0.01em;
+}
+
+.li-header{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.navbar-nav .nav-link{
+    color: #e8e8e8;
+}
+
+.foo-header{
+    padding: 8px 0 8px 0;
+}
+
+.foo-header-content{
+    height: 36px;
+}
+
+.foo-header-bounds-block{
+    width: 73px;
+}
+
+.mid-content{
+    padding-left: 15px;
+    padding-right: 15px;
+}

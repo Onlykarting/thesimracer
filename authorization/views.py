@@ -21,12 +21,13 @@ def index(request):
 
 
 def log_in(request):
-    content = {'login_form': LoggingInForm(), 'register_form': RegistrationForm(), 'user': request.user}
+    content = {'login_form': LoggingInForm(), 'register_form': RegistrationForm(), 'user': request.user, 'register_page': False}
     if request.method == "POST":
         post = request.POST
         if 'logout' in post:
             logout(request)
-
+        if 'register' in post:
+            content['register_page'] = True
         elif 'logging' in post:
             form = LoggingInForm(request.POST)
             user = authenticate(username=form.data['username'], password=form.data['password'])
