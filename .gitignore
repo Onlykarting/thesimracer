@@ -327,3 +327,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,venv,pycharm
+
+accserver.exe
+acc_servers
