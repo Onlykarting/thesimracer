@@ -1,4 +1,9 @@
 
+### AccServer ###
+
+acc_servers/
+accserver.exe
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,django,venv,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,django,venv,pycharm
 
@@ -328,5 +333,4 @@ pip-selfcheck.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,venv,pycharm
 
-accserver.exe
 acc_servers
