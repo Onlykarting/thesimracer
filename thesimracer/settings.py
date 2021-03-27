@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'authorization',
     'acc_server',
+    'playlists'
 ]
 
 MIDDLEWARE = [
