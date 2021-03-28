@@ -1,13 +1,5 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Скорые события</title>
-</head>
-<body>
+{% extends 'base-bootstrap.html' %}
+{% block body %}
     <table>
         <thead>
             <tr>
@@ -26,11 +18,10 @@
                         <a href="/events/{{ event.id }}">{{ event.name }}</a>
                     </td>
                     <td>{{ event.game_settings.event_settings.track }}</td>
-                    <td>{{  }}</td>
+                    <td></td>
                     <td></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}
