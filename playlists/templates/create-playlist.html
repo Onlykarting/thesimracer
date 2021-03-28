@@ -1,0 +1,44 @@
+{% extends 'page-with-header.html' %}
+{% load static %}
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/create-playlist-main.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container" style="margin-top: 57px;">
+        <div class="row">
+            <input type="file" id="thumbnail-input" onchange="loadImage(event)" style="display: none;">
+            <div class="playlist-thumbnail" id="thumbnail" style="">
+
+                <input type="text" class="playlist-name" placeholder="Название...">
+                <label for="thumbnail-input" class="playlist__add-thumbnail">
+                    <img src="{% static 'images/photo-camera.svg' %}" alt="">
+                </label>
+            </div>
+            <div class="playlist-information">
+                <div class="information-field">
+                    <label for="description" class="field-description">Описание</label>
+                    <textarea name="description" id="description" class="form-control" placeholder="Описание..."></textarea>
+                </div>
+                <div class="row">
+                    <div class="information-field justify-content-end" style="display: flex; margin-bottom: 0;">
+                    <input type="submit" class="submit-input" value="Сохранить">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block bottom-scripts %}
+<script>
+    function loadImage(event){
+	    let image = $("#thumbnail");
+	    console.log(image);
+	    let url = URL.createObjectURL(event.target.files[0]);
+	    console.log(url);
+	    image.css({
+            backgroundImage: "url(" + url + ")"
+	    });
+    }
+</script>
+{% endblock %}

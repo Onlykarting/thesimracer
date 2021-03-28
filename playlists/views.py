@@ -1,4 +1,4 @@
-from .services import get_recent_events, get_event_if_available
+from .services import get_recent_events, get_event_if_available, get_playlist_if_available
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.defaults import page_not_found
@@ -32,9 +32,12 @@ def event(request, event_id: int):
 
 
 def get_playlist(request, playlist_id: int):
-    pass
+    playlist = get_playlist_if_available(request.user, playlist_id)
 
 
 def get_playlists(request):
     pass
 
+
+def create_playlist(request):
+    return render(request, 'create-playlist.html', {})
