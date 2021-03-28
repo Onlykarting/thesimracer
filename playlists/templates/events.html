@@ -21,10 +21,12 @@
         <tbody>
             {% for event in events %}
                 <tr>
-                    <td>forloop.counter0 + offset</td>
-                    <td>event.name</td>
-                    <td>event.</td>
-                    <td></td>
+                    <td>{{ forloop.counter0 }}</td>
+                    <td>
+                        <a href="/events/{{ event.id }}">{{ event.name }}</a>
+                    </td>
+                    <td>{{ event.game_settings.event_settings.track }}</td>
+                    <td>{{  }}</td>
                     <td></td>
                 </tr>
             {% endfor %}
