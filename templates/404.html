@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Не найдено</title>
+</head>
+<body>
+    <div class="wrapper">
+        <img src="{% static "images/404-error.svg" %}" alt="">
+        <h2>Not found</h2>
+    </div>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .wrapper{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: #e8e8e8;
+    }
+    img {
+        width: 20%;
+        opacity: 0.65;
+    }
+    h2{
+        text-align: center;
+        color: #b3a88e;
+        font-family: "Comfortaa";
+        font-size: 3em;
+        opacity: 0.65;
+    }
+</style>
+</html>
