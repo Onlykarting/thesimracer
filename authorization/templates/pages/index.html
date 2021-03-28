@@ -22,23 +22,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
             integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
             crossorigin="anonymous"></script>
-    <script>
-        $("#NavBarToggler").on("click", function () {
-            if ($("#NavBarToggler").attr("aria-expanded") == 'true') {
-                $('.mid-content').css({
-                    paddingLeft: 0
-                });
-            } else {
-                $('.mid-content').css({
-                    paddingLeft: 15
-                });
-            }
-        });
 
-        $("#next").click(function () {
-            $(".carousel").carousel({interval: 500});
-        });
-    </script>
 </head>
 <body class="d-flex flex-column h-100">
 
@@ -364,7 +348,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 </main>
