@@ -8,8 +8,8 @@ class Playlist(models.Model):
 
     creator = ForeignKey(User, models.deletion.CASCADE)
     name = CharField(max_length=255)
-    description = TextField()
-    hidden = BooleanField()
+    description = TextField(default='')
+    hidden = BooleanField(default=True)
 
 
 class Event(models.Model):
