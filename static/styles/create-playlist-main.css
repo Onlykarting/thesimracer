@@ -16,6 +16,7 @@
     transition: 200ms margin-bottom;
     padding: 10px;
     margin-left: 30px;
+    word-wrap: break-word;
 }
 
 .playlist-name::placeholder {
@@ -46,12 +47,10 @@
 .playlist__add-thumbnail img {
     width: 25px;
     margin-top: -3px;
+    cursor: pointer;
 }
 
-.field-description {
-    display: block;
-    margin-bottom: 10px;
-}
+
 
 textarea {
     resize: vertical;
@@ -61,7 +60,6 @@ textarea {
     background: white;
     display: flex;
     flex-direction: column;
-
 }
 
 .submit-input {
@@ -84,4 +82,13 @@ textarea {
 
 .information-field {
     margin-bottom: 30px;
+}
+
+.block-description {
+    display: block;
+}
+
+.field-description {
+    margin-bottom: 10px;
+    display: inline;
 }
