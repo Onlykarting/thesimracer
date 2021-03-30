@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.log_in),
     path('', views.index),
-    path('events/', include('playlists.urls'))
+    path('', include('playlists.urls'))
 ]
