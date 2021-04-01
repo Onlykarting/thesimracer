@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 
-from authorization.serializers import RegisterSerializer
+from authorization.models import Stats
+from authorization.serializers import RegisterSerializer, StatsSerializer
 
 
 def check_anonymous(user):
@@ -30,3 +31,8 @@ def login_proj(user, request, content, form):
         messages.add_message(request, messages.WARNING, f'Incorrect username or password')
         content.update({'user': user, 'login_form': form})
     return content
+
+
+def set_stats(user):
+    stats = Stats(user=user)
+    stats.save()

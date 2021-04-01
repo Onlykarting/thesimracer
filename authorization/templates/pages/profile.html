@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    {% load static %}
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/profile.css' %}" rel="stylesheet" type="text/css">
+    <title>Profile</title>
+    <link href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/sticky-footer-navbar.css"
+          rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.0/examples/checkout/form-validation.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body class="body-default">
+{% block header %}
+    {% include 'pages/header.html' %}
+{% endblock %}
+<main>
+    {% if user is not None %}
+        <div class="card profile-body">
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="flex">
+                        <div class="block" style="width: 40%;">
+                            <div class="block-image-polygon" style="margin: 0 0 0 auto">
+                                <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}" style="transform: rotate(180deg)">
+                                <span class="text-image-polygon text-polygon-1">Races</span>
+                                <span class="text-image-polygon text-polygon-2">{{ stats.races }}</span>
+                                <span class="text-image-polygon text-polygon-3-1">BestLaps</span>
+                                <span class="text-image-polygon text-polygon-4">{{ stats.bestlaps }}</span>
+                            </div>
+                            <img class="avatar" src="/{{ stats.img }}" style="; box-shadow: 0 4px 10px 1px #252525; border-radius: 150px; height: 100%;">
+                            <div class="block-image-polygon" style="margin: 0 auto 0 0">
+                                <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}">
+                                <span class="text-image-polygon text-polygon-1">Wins</span>
+                                <span class="text-image-polygon text-polygon-2">{{ stats.wins }}</span>
+                                <span class="text-image-polygon text-polygon-3-2">Poles</span>
+                                <span class="text-image-polygon text-polygon-4">{{ stats.poles }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edition" style="width: 40px">
+                    <span class="edition-text">Edit</span>
+                    <hr class="edit-hr">
+                </div>
+                <div class="card rect-body">
+                    <div style="width: 33%; height: 50%; margin: 0 auto 0 auto; text-align: center">
+                        <span class="text-body">{{ first_name }} {{ last_name }}</span>
+                        <hr class="hr-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <script>
+            document.location.href = '/'
+        </script>
+    {% endif %}
+</main>
+{% block footer %}
+    {% include 'pages/footer.html' %}
+{% endblock %}
+</body>
+</html>

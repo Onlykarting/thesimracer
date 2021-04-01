@@ -8,6 +8,10 @@
     min-height: 100%;
     position: relative;
     margin: 7px 7px 7px 0;
+    background: url(/static/images/heder1.jpg);
+    height: 450px;
+    background-position: center;
+    filter: blur(2px) brightness(0.6);
 }
 
 .background img {

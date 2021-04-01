@@ -48,8 +48,7 @@
                             <ul class="dropdown-menu login-list-elements dropdown-menu-right">
                                 <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li>
                                 <li>
-                                    <form method="POST" action="http://127.0.0.1:8000/login/">
-                                        {% csrf_token %}
+                                    <form method="get" action="http://127.0.0.1:8000/login/">
                                         <input type="submit" name="register" value="Register" class="dropdown-item">
                                     </form>
                                 </li>

@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
     <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/index.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
@@ -40,16 +38,14 @@
         });
     </script>
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100 body-default">
 
 {% block header %}
     {% include 'pages/header.html' %}
 {% endblock %}
 
 <main>
-    <div class="background">
-        <img alt="" style="height: 450px" height="50%" class="back" src="{% static 'images/heder1.jpg' %}">
-    </div>
+    <div class="background"></div>
 
     <div class="container-fluid">
         <div class="row">
