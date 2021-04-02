@@ -1,6 +1,10 @@
+import json
+
+import requests
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 from authorization.models import Stats
 from authorization.serializers import RegisterSerializer, StatsSerializer
@@ -34,8 +38,12 @@ def login_proj(user, request, content, form):
     return content
 
 
-def set_stats(user):
-    stats = Stats(user=user)
+def set_stats(user, country_flag=None):
+    if country_flag is not None:
+        Stats.objects.filter(user=user).delete()
+        stats = Stats(user=user, country_flag=country_flag)
+    else:
+        stats = Stats(user=user)
     stats.save()
 
 
@@ -53,3 +61,17 @@ def check_names(form):
         return True
     else:
         return False
+
+
+def profile_load(request):
+    if request.user.is_authenticated:
+        username = request.user
+        user = User.objects.get(id=username.id)
+        first_name = user.first_name
+        last_name = user.last_name
+        stats = Stats.objects.get(user=username)
+        ip = request.META.get('REMOTE_ADDR')
+        response = requests.get('http://ipwhois.app/json/' + ip)
+        respose_dict = json.loads(response.content.decode("UTF-8"))
+        country_flag = respose_dict['country_flag']
+        return {'stats': stats, 'first_name': first_name, 'last_name': last_name, 'country_flag': country_flag}

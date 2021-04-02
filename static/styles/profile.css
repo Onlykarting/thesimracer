@@ -116,6 +116,13 @@
     border: #252525 !important;
 }
 
+.btn-sub{
+	padding: 0 0 0 0;
+    background-color: #eac407;
+    border-radius: 10px;
+    color: #fff;
+}
+
 .img-body{
 	border-radius: 10px;
 	height: 100%;

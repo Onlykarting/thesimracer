@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+
 from django.contrib.admin import register
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -9,9 +11,10 @@ from . import serializers
 # Create your views here.
 
 from authorization.forms import LoggingInForm, RegistrationForm
-from .account_features import check_anonymous, register_proj, login_proj, set_stats, check_names
+from .account_features import check_anonymous, register_proj, login_proj, set_stats, check_names, profile_load
 from .models import Stats
 import requests
+
 
 def index(request):
     content = dict()
@@ -41,7 +44,6 @@ def log_in(request):
                     username = form.data['username']
                     if register_proj(username, request, content, form):
                         set_stats(request.user)
-                        print(request.user)
                 else:
                     messages.add_message(request, messages.ERROR, 'First name or last name is not correct.')
             else:
@@ -51,7 +53,6 @@ def log_in(request):
                 for elem in form.data:
                     if len(form.data[elem]) == 0 and elem != 'register':
                         messages.add_message(request, messages.ERROR, f'The {elem} field is not correct')
-                        print(elem)
                     elif elem == 'email':
                         try:
                             validate_email(form.data[elem])
@@ -71,21 +72,28 @@ def log_in(request):
 
 
 def profile(request):
-    content = {'user': check_anonymous(request.user)}
+    content = {'user_check': check_anonymous(request.user), 'user': request.user}
     if request.method == "GET":
         if request.user.is_authenticated:
-            username = request.user
-            user = User.objects.get(id=username.id)
-            first_name = user.first_name
-            last_name = user.last_name
-            stats = Stats.objects.get(user=username)
-            ip = request.META.get('REMOTE_ADDR')
-            response = requests.get('http://ipwhois.app/json/' + ip)
-            respose_dict = json.loads(response.content.decode("UTF-8"))
-            country_flag = respose_dict['country_flag']
-            content.update({'stats': stats, 'first_name': first_name, 'last_name': last_name, 'country_flag': country_flag})
+            content.update(profile_load(request))
+        else:
+            return redirect('/')
     if request.method == "POST":
-        if 'logout' in request.POST:
+        post = request.POST
+        if 'logout' in post:
             logout(request)
             return redirect('/')
+        elif 'submit' in post:
+            if 'country-flag' in post:
+                country_flag = post['country-flag']
+                set_stats(request.user, country_flag=country_flag)
+        if request.user.is_authenticated:
+            content.update(profile_load(request))
+        else:
+            return redirect('/')
     return render(request, 'pages/profile.html', content)
+
+
+def events(request):
+    content = dict()
+    return render(request, 'pages/events.html', content)

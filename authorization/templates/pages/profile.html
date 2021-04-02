@@ -20,21 +20,23 @@
     {% include 'pages/header.html' %}
 {% endblock %}
 <main>
-    {% if user is not None %}
+    {% if user_check is not None %}
         <div class="card profile-body">
             <div class="card-body">
                 <div class="container-fluid">
                     <div class="flex">
                         <div class="block" style="width: 40%;">
                             <div class="block-image-polygon" style="margin: 0 0 0 auto">
-                                <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}" style="transform: rotate(180deg)">
+                                <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}"
+                                     style="transform: rotate(180deg)">
                                 <span class="text-image-polygon text-polygon-1">Races</span>
                                 <span class="text-image-polygon text-polygon-2">{{ stats.races }}</span>
                                 <span class="text-image-polygon text-polygon-3-1">BestLaps</span>
                                 <span class="text-image-polygon text-polygon-4">{{ stats.bestlaps }}</span>
-                                </div>
-                                <img class="avatar" src="{{ stats.img }}" style="; box-shadow: 0 4px 10px 1px #252525; border-radius: 150px; height: 100%;">
-                                <div class="block-image-polygon" style="margin: 0 auto 0 0">
+                            </div>
+                            <img class="avatar" src="{{ stats.img }}"
+                                 style="; box-shadow: 0 4px 10px 1px #252525; border-radius: 150px; height: 100%;">
+                            <div class="block-image-polygon" style="margin: 0 auto 0 0">
                                 <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}">
                                 <span class="text-image-polygon text-polygon-1">Wins</span>
                                 <span class="text-image-polygon text-polygon-2">{{ stats.wins }}</span>
@@ -51,26 +53,42 @@
                 <div class="card rect-body">
                     <div style="width: 33%; height: 50%; margin: 0 auto 0 auto; text-align: center">
                         {% if stats.tag == '0' %}
-                        <span class="text-body">{{ first_name }} {{ last_name }}</span>
+                            <span class="text-body">{{ first_name }} {{ last_name }}</span>
                         {% else %}
-                        <span class="text-body">{{ first_name }} {{ last_name }} [{{ stats.tag }}]</span>
+                            <span class="text-body">{{ first_name }} {{ last_name }} [{{ stats.tag }}]</span>
                         {% endif %}
                         <hr class="hr-body">
-                        <div style="height: 40px">
-                        <img class="img-body" style="width: 58px;" src="{% static 'images/AM-License.png' %}">
-                        {% if country_flag != 'https://cdn.ipwhois.io/flags/.svg' %}
-                        <img class="img-body" src="{{ country_flag }}">
-                        {% else %}
-                        <img class="img-body" src="{% static 'images/DefaultFlag.bmp' %}">
-                        {% endif %}
-                        <img class="img-body" style="width: 58px;" src="{% static 'images/steam_logo.png' %}">
-                        </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div style="height: 40px">
+                                <img class="img-body" style="width: 58px;" src="{% static 'images/AM-License.png' %}">
+                                {% if country_flag != 'https://cdn.ipwhois.io/flags/.svg' %}
+                                    {% if stats.country_flag == '0' %}
+                                    <img class="img-body" src="{{ country_flag }}">
+                                    <input style="display: none" name="country-flag" value="{{ country_flag }}">
+                                    {% else %}
+                                    <img class="img-body" src="{{ stats.country_flag }}">
+                                    {% endif %}
+                                {% else %}
+                                    {% if stats.country_flag == '0' %}
+                                    <img class="img-body" src="{% static 'images/DefaultFlag.bmp' %}">
+                                    <input style="display: none" name="country-flag" value="{% static 'images/DefaultFlag.bmp' %}">
+                                    {% else %}
+                                    <img class="img-body" src="{{ stats.country_flag }}">
+                                    {% endif %}
+                                {% endif %}
+                                <img class="img-body" style="width: 58px;" src="{% static 'images/steam_logo.png' %}">
+                            </div>
+                            {% if stats.country_flag == '0' %}
+                            <input name="submit" class="btn btn-lg btn-sub w-75" type="submit" value="Submit country">
+                            {% endif %}
+                        </form>
                         <hr class="hr-body">
                         <span class="text-body">DiscordTag:</span><br>
                         {% if stats.discord == '0' %}
-                        <span class="text-body">No discord tag</span>
+                            <span class="text-body">No discord tag</span>
                         {% else %}
-                        <span class="text-body">{{ stats.discord }}</span>
+                            <span class="text-body">{{ stats.discord }}</span>
                         {% endif %}
                         <hr class="hr-body">
                     </div>

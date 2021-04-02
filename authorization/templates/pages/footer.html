@@ -11,7 +11,9 @@
             <div class="row text-block-foot" style="width: 100%">
                 <div class="col mid-content-foot" ><a href="">About us</a></div>
                 <div class="col mid-content-foot" ><a href="">Support</a></div>
+                {% if user.is_authenticated %}
                 <div class="col mid-content-foot" ><a href="/profile">Profile</a></div>
+                {% endif %}
                 <div class="col mid-content-foot" ><a href="">Discord</a></div>
                 <div class="col mid-content-foot" ><a href="">Help us</a></div>
             </div>
