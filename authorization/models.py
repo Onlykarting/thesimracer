@@ -10,6 +10,5 @@ class Stats(models.Model):
     wins = models.IntegerField(default=0)
     poles = models.IntegerField(default=0)
     img = models.ImageField(upload_to='avatars', default='/static/images/Avatar.png')
-    country_flag = models.ImageField(upload_to='flags', default='/static/images/DefaultFlag.bmp')
     discord = models.CharField(default=0, max_length=20)
     tag = models.CharField(default=0, max_length=3)

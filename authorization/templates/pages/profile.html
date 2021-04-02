@@ -58,7 +58,11 @@
                         <hr class="hr-body">
                         <div style="height: 40px">
                         <img class="img-body" style="width: 58px;" src="{% static 'images/AM-License.png' %}">
-                        <img class="img-body" src="{{ stats.country_flag }}">
+                        {% if country_flag != 'https://cdn.ipwhois.io/flags/.svg' %}
+                        <img class="img-body" src="{{ country_flag }}">
+                        {% else %}
+                        <img class="img-body" src="{% static 'images/DefaultFlag.bmp' %}">
+                        {% endif %}
                         <img class="img-body" style="width: 58px;" src="{% static 'images/steam_logo.png' %}">
                         </div>
                         <hr class="hr-body">

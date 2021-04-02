@@ -1,3 +1,4 @@
+import json
 from django.contrib.admin import register
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -10,7 +11,7 @@ from . import serializers
 from authorization.forms import LoggingInForm, RegistrationForm
 from .account_features import check_anonymous, register_proj, login_proj, set_stats, check_names
 from .models import Stats
-
+import requests
 
 def index(request):
     content = dict()
@@ -78,7 +79,11 @@ def profile(request):
             first_name = user.first_name
             last_name = user.last_name
             stats = Stats.objects.get(user=username)
-            content.update({'stats': stats, 'first_name': first_name, 'last_name': last_name})
+            ip = request.META.get('REMOTE_ADDR')
+            response = requests.get('http://ipwhois.app/json/' + ip)
+            respose_dict = json.loads(response.content.decode("UTF-8"))
+            country_flag = respose_dict['country_flag']
+            content.update({'stats': stats, 'first_name': first_name, 'last_name': last_name, 'country_flag': country_flag})
     if request.method == "POST":
         if 'logout' in request.POST:
             logout(request)
