@@ -1,9 +1,11 @@
 from django import forms
 
+
 class LoggingInForm(forms.Form):
     username = forms.CharField(label='Login', required=True)
     password = forms.CharField(label='Password', required=True, widget=forms.PasswordInput())
     logging = forms.CharField(label='logging', required=False)
+
 
 class RegistrationForm(forms.Form):
     first_name = forms.CharField(label='First name', required=True)

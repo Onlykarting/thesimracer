@@ -8,7 +8,7 @@ from . import serializers
 # Create your views here.
 
 from authorization.forms import LoggingInForm, RegistrationForm
-from .login_features import check_anonymous, register_proj, login_proj, set_stats
+from .account_features import check_anonymous, register_proj, login_proj, set_stats, check_names
 from .models import Stats
 
 
@@ -36,10 +36,13 @@ def log_in(request):
             content['register_page'] = True
             form = RegistrationForm(request.POST)
             if form.is_valid():
-                username = form.data['username']
-                register_proj(username, request, content, form)
-                set_stats(request.user)
-                print(request.user)
+                if check_names(form.data):
+                    username = form.data['username']
+                    if register_proj(username, request, content, form):
+                        set_stats(request.user)
+                        print(request.user)
+                else:
+                    messages.add_message(request, messages.ERROR, 'First name or last name is not correct.')
             else:
                 output_fields = list()
                 for a in RegistrationForm().base_fields:
@@ -48,7 +51,6 @@ def log_in(request):
                     if len(form.data[elem]) == 0 and elem != 'register':
                         messages.add_message(request, messages.ERROR, f'The {elem} field is not correct')
                         print(elem)
-
                     elif elem == 'email':
                         try:
                             validate_email(form.data[elem])

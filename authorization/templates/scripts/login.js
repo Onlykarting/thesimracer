@@ -1,5 +1,5 @@
 var progressBarValue = 100;
-var progressBarsTime = setInterval(progressBars, 15 * document.getElementsByClassName('messages').length);
+var progressBarsTime = setInterval(progressBars, 25 * document.getElementsByClassName('messages').length);
 
 function progressBars() {
     if (progressBarValue < 0) {

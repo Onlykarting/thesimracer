@@ -32,9 +32,9 @@
                                 <span class="text-image-polygon text-polygon-2">{{ stats.races }}</span>
                                 <span class="text-image-polygon text-polygon-3-1">BestLaps</span>
                                 <span class="text-image-polygon text-polygon-4">{{ stats.bestlaps }}</span>
-                            </div>
-                            <img class="avatar" src="/{{ stats.img }}" style="; box-shadow: 0 4px 10px 1px #252525; border-radius: 150px; height: 100%;">
-                            <div class="block-image-polygon" style="margin: 0 auto 0 0">
+                                </div>
+                                <img class="avatar" src="{{ stats.img }}" style="; box-shadow: 0 4px 10px 1px #252525; border-radius: 150px; height: 100%;">
+                                <div class="block-image-polygon" style="margin: 0 auto 0 0">
                                 <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}">
                                 <span class="text-image-polygon text-polygon-1">Wins</span>
                                 <span class="text-image-polygon text-polygon-2">{{ stats.wins }}</span>
@@ -50,7 +50,24 @@
                 </div>
                 <div class="card rect-body">
                     <div style="width: 33%; height: 50%; margin: 0 auto 0 auto; text-align: center">
+                        {% if stats.tag == '0' %}
                         <span class="text-body">{{ first_name }} {{ last_name }}</span>
+                        {% else %}
+                        <span class="text-body">{{ first_name }} {{ last_name }} [{{ stats.tag }}]</span>
+                        {% endif %}
+                        <hr class="hr-body">
+                        <div style="height: 40px">
+                        <img class="img-body" style="width: 58px;" src="{% static 'images/AM-License.png' %}">
+                        <img class="img-body" src="{{ stats.country_flag }}">
+                        <img class="img-body" style="width: 58px;" src="{% static 'images/steam_logo.png' %}">
+                        </div>
+                        <hr class="hr-body">
+                        <span class="text-body">DiscordTag:</span><br>
+                        {% if stats.discord == '0' %}
+                        <span class="text-body">No discord tag</span>
+                        {% else %}
+                        <span class="text-body">{{ stats.discord }}</span>
+                        {% endif %}
                         <hr class="hr-body">
                     </div>
                 </div>

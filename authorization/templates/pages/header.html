@@ -11,7 +11,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0" style="margin-left: auto; margin-right: auto">
+                <ul class="navbar-nav mb-2 mb-md-0" style="margin-left: auto;">
                     <li class="navbar-item li-header">
                         <a class="text-block-head mid-content" aria-current="page" href="#">Championship</a>
                     </li>
@@ -31,7 +31,7 @@
                         <a class="text-block-head mid-content" aria-current="page" href="#">Tools</a>
                     </li>
                 </ul>
-                <div class="d-flex" style="width: 140px; margin-left: 0;">
+                <div class="d-flex" style="width: 140px; margin-left: auto">
                     <div style="margin-left: auto"></div>
                     {% if request.user.is_authenticated %}
                         <span class="username">{{ user }}</span>

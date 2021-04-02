@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 from authorization.models import Stats
 from authorization.serializers import RegisterSerializer, StatsSerializer
-
+import re
 
 def check_anonymous(user):
     if not user.is_anonymous:
@@ -19,9 +19,10 @@ def register_proj(username, request, content, form):
         user = serializer.save()
         user = authenticate(username=form.data['username'], password=form.data['password'])
         login_proj(user, request, content, form)
+        return True
     else:
         messages.add_message(request, messages.ERROR, f'This username is already taken: {username}')
-
+        return False
 
 def login_proj(user, request, content, form):
     if user is not None:
@@ -36,3 +37,19 @@ def login_proj(user, request, content, form):
 def set_stats(user):
     stats = Stats(user=user)
     stats.save()
+
+
+def validate_names(string):
+    for el in string:
+        if not bool(re.match("""[a-zA-Zа-яА-Я]""", el)):
+            return False
+    return True
+
+
+def check_names(form):
+    first_name = form['first_name']
+    last_name = form['last_name']
+    if validate_names(first_name) and validate_names(last_name):
+        return True
+    else:
+        return False
