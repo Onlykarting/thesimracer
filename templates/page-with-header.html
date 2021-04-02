@@ -1,0 +1,13 @@
+{% extends 'base-bootstrap.html' %}
+{% load static %}
+{% block styles %}
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    {% include 'header.html' %}
+    {% block content %}
+
+    {% endblock %}
+{% endblock %}

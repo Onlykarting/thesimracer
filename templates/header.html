@@ -1,0 +1,64 @@
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top foo-header">
+        <div class="container-fluid">
+            <a class="navbar-item text-block-head" href="http://127.0.0.1:8000/">
+                <span class="text-block-head" style="color: #f9b330">TheSim</span><span class="text-block-head">Racer</span>
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation" id="NavBarToggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0" style="margin-left: auto; margin-right: auto">
+                    <li class="navbar-item li-header">
+                        <a class="text-block-head mid-content" aria-current="page" href="#">Championship</a>
+                    </li>
+                    <li class="navbar-item li-header">
+                        <a class="text-block-head mid-content" aria-current="page" href="/events">Events</a>
+                    </li>
+                    <li class="navbar-item li-header">
+                        <a class="text-block-head mid-content" aria-current="page" href="#">Results</a>
+                    </li>
+                    <li class="navbar-item li-header">
+                        <a class="text-block-head mid-content" aria-current="page" href="#">Reports</a>
+                    </li>
+                    <li class="navbar-item li-header">
+                        <a class="text-block-head mid-content" aria-current="page" href="#">Stats</a>
+                    </li>
+                    <li class="navbar-item li-header">
+                        <a class="text-block-head mid-content" aria-current="page" href="#">Tools</a>
+                    </li>
+                </ul>
+                <div class="d-flex" style="width: 140px; margin-left: 0;">
+                    <div style="margin-left: auto"></div>
+                    {% if request.user.is_authenticated %}
+                        <span class="username">{{ user }}</span>
+                        <form method="POST" class="d-flex">
+                            {% csrf_token %}
+                            <input type="submit" name="logout" value="Logout" class="logout-but">
+                        </form>
+                    {% else %}
+                        {# {% load widget_tweaks %} #}
+                        <div class="btn-group dropstart" id="login-btn-group" data-toggle="collapse">
+                            <button type="button" id="login_btn" class="btn dropdown-toggle login-btn"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Login
+                            </button>
+                            <ul class="dropdown-menu login-list-elements dropdown-menu-right">
+                                <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li>
+                                <li>
+                                    <form method="POST" action="http://127.0.0.1:8000/login/">
+                                        {% csrf_token %}
+                                        <input type="submit" name="register" value="Register" class="dropdown-item">
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

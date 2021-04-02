@@ -1,0 +1,13 @@
+{% extends 'page-with-header.html' %}
+{% load static %}
+{% block title %} Not found {% endblock %}
+{% block styles %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/404.css' %}">
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+        <img src="{% static "images/404-error.svg" %}" alt="">
+        <h2>Not found</h2>
+</div>
+{% endblock %}
