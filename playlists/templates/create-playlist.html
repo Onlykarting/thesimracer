@@ -1,0 +1,91 @@
+{% extends 'page-with-header.html' %}
+{% load static %}
+{% block styles %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'styles/create-playlist-main.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="container" style="margin-top: 57px;">
+    <div class="row">
+      <form action="create" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" id="thumbnail-input" name="thumbnail" onchange="loadImage(event)" style="display: none;">
+        <div class="playlist-thumbnail" id="thumbnail" style="">
+          <input class="playlist-name col" placeholder="Название..." type=text name="name">
+          <label for="thumbnail-input" class="playlist__add-thumbnail">
+            <img src="{% static 'images/photo-camera.svg' %}" alt="">
+          </label>
+        </div>
+        <div class="playlist-information">
+          <div class="information-field">
+            <label for="description" class="field-description block-description">Описание</label>
+            <textarea name="description" id="description" class="form-control" placeholder="Описание..."></textarea>
+          </div>
+          <div class="row">
+            <div class="information-field form-group col-lg-4">
+              <label for="pilot-count" class="field-description">Количество пилотов в команде</label>
+              <input type="number" class="form-control" id="pilot-count" name="pilot-count" min="1" max="3" value="1">
+            </div>
+            <div class="information-field col-lg-4">
+              <label for="pilot-class" class="field-description">Класс пилотов</label>
+              <select class="form-control" id="pilot-class" name="pilot-class">
+                <option value="AM">AM</option>
+                <option value="SILVER">Silver</option>
+                <option value="PRO-AM">PRO-AM</option>
+                <option value="PRO">PRO</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="information-field col-lg-4">
+              <label for="car-class" class="field-description">Класс автомобилей</label>
+              <select class="form-control" id="car-class" name="car-class">
+                <option value="GT3">GT3</option>
+                <option value="GT4">GT4</option>
+                <option value="Multi">Multi</option>
+              </select>
+            </div>
+            <div class="information-field col-lg-4">
+              <label for="grid" class="field-description">Сетка</label>
+              <select class="form-control" id="grid" name="grid">
+                <option value="Main">Основная</option>
+                <option value="Reversed">Обратная</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="information-field col-lg-4">
+              <label for="mandatory-pit-stop-count" class="field-description">Количество обязательных пит-стопов</label>
+              <input type="number" class="form-control" id="mandatory-pit-stop-count" min="0" max="100" value="1" name="mandatory-pit-stop-count">
+            </div>
+            <div class="information-field col-lg-4">
+              <label for="qualify-type" class="field-description">Тип квалификации</label>
+              <select class="form-control" id="qualify-type" name="qualify-type">
+                <option value="Fastest">Самый быстрый</option>
+                <option value="Average">Средний</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="information-field justify-content-end" style="display: flex; margin-bottom: 0;">
+              <input type="submit" class="submit-input" value="Сохранить">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+{% block bottom-scripts %}
+  <script>
+      function loadImage(event) {
+          let image = $("#thumbnail");
+          console.log(image);
+          let url = URL.createObjectURL(event.target.files[0]);
+          console.log(url);
+          image.css({
+              backgroundImage: "url(" + url + ")"
+          });
+      }
+  </script>
+{% endblock %}
