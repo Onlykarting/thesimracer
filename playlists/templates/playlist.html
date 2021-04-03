@@ -59,6 +59,14 @@
           {% endif %}
         </p>
       </div>
+      <div class="col-12 content">
+        <h2 class="section-title">Ивенты чемпионата</h2>
+        <div class="events">
+          {% for event in playlist_events %}
+            {{ event.name }}
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
