@@ -1,0 +1,13 @@
+{% extends 'page-with-header.html' %}
+{% load static %}
+{% block title %} Not found {% endblock %}
+{% block styles %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/404.css' %}">
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+        <img src="{% static "images/403-error.svg" %}" alt="">
+        <h2>Permission denied</h2>
+</div>
+{% endblock %}

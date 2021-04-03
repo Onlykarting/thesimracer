@@ -37,7 +37,7 @@
     margin: 0 -20px 0 -20px !important;
 }
 
-.join-btn-text{
+.join-btn-text, .info-btn-text{
     text-decoration: none;
     font-family: Phantom cyr-lat;
     font-style: normal;
@@ -80,4 +80,21 @@
 .text-secondary{
     color: rgba(37, 37, 37, 0.5) !important;
     font-size: 20px;
+}
+
+.card-header-text{
+    text-decoration: none;
+    font-family: Phantom cyr-lat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 24px;
+    color: rgba(37, 37, 37, 0.5);
+    letter-spacing: 0.1em;
+    margin: 10px 0 10px 0;
+}
+
+.title-hr{
+    margin: 2px auto 10px auto !important;
+    width: 25%;
 }

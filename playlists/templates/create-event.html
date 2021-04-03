@@ -1,0 +1,53 @@
+{% extends 'page-with-header.html' %}
+{% load static %}
+{% block styles %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'styles/create-playlist-main.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/create-event-main.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="container" style="margin-top: 57px;">
+    <div class="row">
+      <form action="create" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" id="thumbnail-input" name="thumbnail" onchange="loadImage(event)" style="display: none;">
+        <div class="playlist-thumbnail" id="thumbnail" style="">
+          <input class="playlist-name col" placeholder="Название..." type=text name="name">
+        </div>
+        <div class="playlist-information">
+          <div class="information-field">
+            <label for="description" class="field-description block-description">Описание</label>
+            <textarea name="description" id="description" class="form-control" placeholder="Описание..."></textarea>
+          </div>
+          <div class="row settings-section">
+            <h2 class="settings-section__title">Основные игровые параметры</h2>
+            <div class="row">
+              <div class="information-field col-lg-3">
+                <label for="max-car-count">Трек</label>
+                <select name="track-name" id="track-name"
+                        class="form-control">
+                  {% for track in tracks %}
+                    <option value="{{ track.id }}">{{ track.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="information-field col-lg-3">
+                <label for="max-car-count">Максимальное количество машин</label>
+                <input type="number" name="max-car-count" min="1" max="30" class="form-control">
+              </div>
+              <div class="information-field col-lg-3">
+                <label for="max-car-count">Максимальное количество машин</label>
+                <input type="number" name="max-car-count" min="1" max="30" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="information-field justify-content-end" style="display: flex; margin-bottom: 0;">
+              <input type="submit" class="submit-input" value="Сохранить">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

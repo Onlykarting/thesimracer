@@ -21,6 +21,16 @@ def get_events(request):
     return render(request, 'events.html', context)
 
 
+def indev(request):
+    context = {}
+    return render(request, 'in-development.html', context)
+
+
+def get_results(request):
+    context = {}
+    return render(request, 'results.html', context)
+
+
 def event(request, event_id: int):
     event_ = get_event_if_available(request.user, event_id)
     if event_ is None:

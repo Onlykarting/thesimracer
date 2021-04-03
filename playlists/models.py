@@ -1,6 +1,6 @@
 from acc_server.models import AccEvent
 from django.db import models
-from django.db.models import CharField, BooleanField, TextField, DateTimeField, ForeignKey, OneToOneField, ImageField, IntegerField
+from django.db.models import CharField, BooleanField, TextField, DateTimeField, ForeignKey, OneToOneField, ImageField, IntegerField, ManyToManyField
 from django.contrib.auth.models import User
 
 
@@ -50,3 +50,4 @@ class Event(models.Model):
     starts_at = DateTimeField()
     registration_starts_at = DateTimeField()
     registration_ends_at = DateTimeField()
+    registered_users = ManyToManyField(User)

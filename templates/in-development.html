@@ -1,0 +1,20 @@
+{% extends 'base-bootstrap.html' %}
+{% load static %}
+{% block styles %}
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/in-dev.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+        <div class="text-center" style="padding-top: 22%">
+            <span class="in-dev">In development...</span>
+        </div>
+    </main>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+{% endblock %}
