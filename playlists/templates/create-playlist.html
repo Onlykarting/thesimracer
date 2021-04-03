@@ -4,6 +4,9 @@
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'styles/create-playlist-main.css' %}">
 {% endblock %}
+{% block title %}
+    Playlist create
+{% endblock %}
 {% block content %}
   <div class="container" style="margin-top: 57px;">
     <div class="row">
@@ -11,23 +14,23 @@
         {% csrf_token %}
         <input type="file" id="thumbnail-input" name="thumbnail" onchange="loadImage(event)" style="display: none;">
         <div class="playlist-thumbnail" id="thumbnail" style="">
-          <input class="playlist-name col" placeholder="Название..." type=text name="name">
+          <input class="playlist-name col" placeholder="Name..." type=text name="name">
           <label for="thumbnail-input" class="playlist__add-thumbnail">
             <img src="{% static 'images/photo-camera.svg' %}" alt="">
           </label>
         </div>
         <div class="playlist-information">
           <div class="information-field">
-            <label for="description" class="field-description block-description">Описание</label>
-            <textarea name="description" id="description" class="form-control" placeholder="Описание..."></textarea>
+            <label for="description" class="field-description block-description">Description</label>
+            <textarea name="description" id="description" class="form-control" placeholder="Description..."></textarea>
           </div>
           <div class="row">
             <div class="information-field form-group col-lg-4">
-              <label for="pilot-count" class="field-description">Количество пилотов в команде</label>
+              <label for="pilot-count" class="field-description">Count of pilots in command</label>
               <input type="number" class="form-control" id="pilot-count" name="pilot-count" min="1" max="3" value="1">
             </div>
             <div class="information-field col-lg-4">
-              <label for="pilot-class" class="field-description">Класс пилотов</label>
+              <label for="pilot-class" class="field-description">Class of pilots</label>
               <select class="form-control" id="pilot-class" name="pilot-class">
                 <option value="AM">AM</option>
                 <option value="SILVER">Silver</option>
@@ -38,37 +41,39 @@
           </div>
           <div class="row">
             <div class="information-field col-lg-4">
-              <label for="car-class" class="field-description">Класс автомобилей</label>
-              <select class="form-control" id="car-class" name="car-class">
+              <label for="car-group" class="field-description">Car Group</label>
+              <select class="form-control" id="car-group" name="car-class">
+                <option value="ALL">ALL</option>
                 <option value="GT3">GT3</option>
                 <option value="GT4">GT4</option>
-                <option value="Multi">Multi</option>
+                <option value="CUP">CUP</option>
+                <option value="CUP">ST</option>
               </select>
             </div>
             <div class="information-field col-lg-4">
-              <label for="grid" class="field-description">Сетка</label>
+              <label for="grid" class="field-description">Grid</label>
               <select class="form-control" id="grid" name="grid">
-                <option value="Main">Основная</option>
-                <option value="Reversed">Обратная</option>
+                <option value="Main">Main</option>
+                <option value="Reversed">Reversed</option>
               </select>
             </div>
           </div>
           <div class="row">
             <div class="information-field col-lg-4">
-              <label for="mandatory-pit-stop-count" class="field-description">Количество обязательных пит-стопов</label>
-              <input type="number" class="form-control" id="mandatory-pit-stop-count" min="0" max="100" value="1" name="mandatory-pit-stop-count">
+              <label for="mandatory-pit-stop-count" class="field-description">Mandatory pit-stop count</label>
+              <input type="number" class="form-control" id="mandatory-pit-stop-count" min="0" max="50" value="1" name="mandatory-pit-stop-count">
             </div>
             <div class="information-field col-lg-4">
-              <label for="qualify-type" class="field-description">Тип квалификации</label>
+              <label for="qualify-type" class="field-description">Type of quality</label>
               <select class="form-control" id="qualify-type" name="qualify-type">
-                <option value="Fastest">Самый быстрый</option>
-                <option value="Average">Средний</option>
+                <option value="Fastest">Fastest</option>
+                <option value="Average">Average</option>
               </select>
             </div>
           </div>
           <div class="row">
             <div class="information-field justify-content-end" style="display: flex; margin-bottom: 0;">
-              <input type="submit" class="submit-input" value="Сохранить">
+              <input type="submit" class="submit-input" value="Save">
             </div>
           </div>
         </div>
