@@ -1,12 +1,13 @@
 {% extends 'base-bootstrap.html' %}
 {% load static %}
-    {% block title %}
-        Events
-    {% endblock %}
 {% block styles %}
     <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/results.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block title %}
+    Results
 {% endblock %}
 {% block body %}
     {% block header %}
@@ -15,7 +16,7 @@
     <main>
     <div class="card main-card">
         <div class="row text-center">
-            <span class="card-header-text">Upcoming Events</span>
+            <span class="card-header-text">Results</span>
         </div>
         <hr class="title-hr">
         <div class="card-body-2 body-card-placement">
@@ -59,7 +60,7 @@
                         <div class="row text-center more-btn-padding">
                             <span>
                                 <button type="button"
-                                        class="btn join-btn join-btn-text">Join
+                                        class="btn info-btn info-btn-text">Info
                                 </button>
                             </span>
                         </div>
@@ -104,7 +105,7 @@
                         <div class="row text-center more-btn-padding">
                             <span>
                                 <button type="button"
-                                        class="btn join-btn join-btn-text">Join
+                                        class="btn info-btn info-btn-text">Info
                                 </button>
                             </span>
                         </div>
@@ -149,7 +150,7 @@
                         <div class="row text-center more-btn-padding">
                             <span>
                                 <button type="button"
-                                        class="btn join-btn join-btn-text">Join
+                                        class="btn info-btn info-btn-text">Info
                                 </button>
                             </span>
                         </div>
@@ -196,7 +197,7 @@
                         <div class="row text-center more-btn-padding">
                             <span>
                                 <button type="button"
-                                        class="btn join-btn join-btn-text">Join
+                                        class="btn info-btn info-btn-text">Info
                                 </button>
                             </span>
                         </div>
@@ -241,7 +242,7 @@
                         <div class="row text-center more-btn-padding">
                             <span>
                                 <button type="button"
-                                        class="btn join-btn join-btn-text">Join
+                                        class="btn info-btn info-btn-text">Info
                                 </button>
                             </span>
                         </div>
@@ -286,7 +287,7 @@
                         <div class="row text-center more-btn-padding">
                             <span>
                                 <button type="button"
-                                        class="btn join-btn join-btn-text">Join
+                                        class="btn info-btn info-btn-text">Info
                                 </button>
                             </span>
                         </div>
