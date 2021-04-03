@@ -1,27 +1,295 @@
 {% extends 'base-bootstrap.html' %}
+{% load static %}
+{% block styles %}
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
 {% block body %}
-    <table>
-        <thead>
-            <tr>
-                <th>№</th>
-                <th>Название</th>
-                <th>Карта</th>
-                <th>Дата проведения</th>
-                <th>Сроки регистрации</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for event in events %}
-                <tr>
-                    <td>{{ forloop.counter0 }}</td>
-                    <td>
-                        <a href="/events/{{ event.id }}">{{ event.name }}</a>
-                    </td>
-                    <td>{{ event.game_settings.event_settings.track }}</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+    <div class="card main-card">
+        <div class="card-body-2 body-card-placement">
+            <div class="row row-padding">
+                <div class="col-lg-4 col-md-4 map-card" style="min-width: 200px">
+                    <div class="card" style="background: #E8E8E8;">
+                        <div class="row row-img-padding">
+                            <img class="img-race" src="{% static 'images/imola.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <span class="bold text-center map-card-title">Sprint Cup, Round 2</span>
+                        </div>
+                        <hr class="card-hr">
+                        <div class="row">
+                            <div class="col-6 text-center text-secondary">
+                                <span>Track</span>
+                            </div>
+                            <div class="col-6 text-center bold">
+                                <span>Imola</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-center text-secondary">
+                                <span>Date</span>
+                            </div>
+                            <div class="col-6 text-center bold">
+                                <span>28.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-center text-secondary">
+                                <span>Time</span>
+                            </div>
+                            <div class="col-6 text-center bold">
+                                <span>18:30(+3)</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row text-center more-btn-padding">
+                            <span>
+                                <button type="button"
+                                        class="btn join-btn join-btn-text">Join
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 map-card" style="min-width: 200px">
+                    <div class="card" style="background: #E8E8E8;">
+                        <div class="row row-img-padding">
+                            <img class="img-race" src="{% static 'images/Kyalami.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <span class="bold text-center map-card-title">Old school, Round 1</span>
+                        </div>
+                        <hr class="card-hr">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Track</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>Kyalami</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Date</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>29.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Time</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>20:00(+3)</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row text-center more-btn-padding">
+                            <span>
+                                <button type="button"
+                                        class="btn join-btn join-btn-text">Join
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 map-card" style="min-width: 200px">
+                    <div class="card" style="background: #E8E8E8;">
+                        <div class="row row-img-padding">
+                            <img class="img-race" src="{% static 'images/Paul-Ricard.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <span class="bold text-center map-card-title">ST Cup, Round 8</span>
+                        </div>
+                        <hr class="card-hr">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Track</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>Paul Ricard</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Date</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>30.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Time</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>23:30(+3)</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row text-center more-btn-padding">
+                            <span>
+                                <button type="button"
+                                        class="btn join-btn join-btn-text">Join
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-padding">
+                <div class="col-lg-4 col-md-4 map-card" style="min-width: 200px">
+                    <div class="card" style="background: #E8E8E8;">
+                        <div class="row row-img-padding">
+                            <img class="img-race" src="{% static 'images/imola.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <span class="bold text-center map-card-title">Sprint Cup, Round 2</span>
+                        </div>
+                        <hr class="card-hr">
+                        <div class="row">
+                            <div class="col-6 text-center text-secondary">
+                                <span>Track</span>
+                            </div>
+                            <div class="col-6 text-center bold">
+                                <span>Imola</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-center text-secondary">
+                                <span>Date</span>
+                            </div>
+                            <div class="col-6 text-center bold">
+                                <span>28.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-center text-secondary">
+                                <span>Time</span>
+                            </div>
+                            <div class="col-6 text-center bold">
+                                <span>18:30(+3)</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row text-center more-btn-padding">
+                            <span>
+                                <button type="button"
+                                        class="btn join-btn join-btn-text">Join
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 map-card" style="min-width: 200px">
+                    <div class="card" style="background: #E8E8E8;">
+                        <div class="row row-img-padding">
+                            <img class="img-race" src="{% static 'images/Kyalami.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <span class="bold text-center map-card-title">Old school, Round 1</span>
+                        </div>
+                        <hr class="card-hr">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Track</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>Kyalami</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Date</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>29.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Time</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>20:00(+3)</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row text-center more-btn-padding">
+                            <span>
+                                <button type="button"
+                                        class="btn join-btn join-btn-text">Join
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 map-card" style="min-width: 200px">
+                    <div class="card" style="background: #E8E8E8;">
+                        <div class="row row-img-padding">
+                            <img class="img-race" src="{% static 'images/Paul-Ricard.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <span class="bold text-center map-card-title">ST Cup, Round 8</span>
+                        </div>
+                        <hr class="card-hr">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Track</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>Paul Ricard</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Date</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>30.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-4 text-center text-secondary">
+                                <span>Time</span>
+                            </div>
+                            <div class="col-8 text-center bold">
+                                <span>23:30(+3)</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row text-center more-btn-padding">
+                            <span>
+                                <button type="button"
+                                        class="btn join-btn join-btn-text">Join
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
 {% endblock %}
