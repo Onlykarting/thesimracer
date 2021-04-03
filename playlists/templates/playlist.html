@@ -9,7 +9,7 @@
   <div class="container" style="margin-top: 57px;">
     <div class="row">
 {#      <div class="playlist-thumbnail" id="thumbnail" style="background: url({{ playlist.thumbnail.url }})">#}
-      <div class="playlist-thumbnail" id="thumbnail">
+      <div class="playlist-thumbnail" id="thumbnail" style="background: url({% static 'images/sprintcuppic.png' %})">
         <span class="playlist-name">{{ playlist.name }}</span>
         <div class="right-items">
           <div class="pilots-class pilot-class-{{ playlist.pilot_qualify }}">
@@ -19,6 +19,36 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-12 content">
+        <div class="col-lg-6 col-md-12">
+          <table class="table">
+            <tr>
+              <td class="event-settings-name">Grid type</td>
+              <td class="event-settings-value">{{ playlist.grid_type }}</td>
+            </tr>
+            <tr>
+              <td class="event-settings-name">Qualify type</td>
+              <td class="event-settings-value">{{ playlist.qualify_type }}</td>
+            </tr>
+            <tr>
+              <td class="event-settings-name">Car Group</td>
+              <td class="event-settings-value">{{ playlist.car_class }}</td>
+            </tr>
+            <tr>
+              <td class="event-settings-name">Tyre sets count</td>
+              <td class="event-settings-value">{{ playlist.tyre_sets_count }}</td>
+            </tr>
+            <tr>
+              <td class="event-settings-name">Pilot count</td>
+              <td class="event-settings-value">{{ playlist.pilot_count }}</td>
+            </tr>
+            <tr>
+              <td class="event-settings-name">Mandatory pit stop count</td>
+              <td class="event-settings-value">{{ playlist.mandatory_pit_stop_count }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
       <div class="col-12 content">
         <h2 class="section-title">Description</h2>
         <p class="standard-text">
