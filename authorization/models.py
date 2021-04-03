@@ -14,11 +14,3 @@ class Stats(models.Model):
     discord = models.CharField(default=0, max_length=20)
     tag = models.CharField(default=0, max_length=3)
     country_flag = models.CharField(default=0, max_length=40)
-
-
-class Event(models.Model):
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    name = models.CharField(default='0', max_length=40)
-    track = models.CharField(default='0', max_length=20)
-    date = models.DateField(null=True, blank=True, default=datetime.now())
-    time = models.DateField(null=True, blank=True, default=datetime.now())
