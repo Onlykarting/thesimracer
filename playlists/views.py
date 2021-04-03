@@ -1,7 +1,8 @@
 from .services import get_recent_events, get_event_if_available, get_playlist_if_available
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.views.defaults import page_not_found, bad_request
+from django.views.decorators.csrf import csrf_protect
+from django.views.defaults import page_not_found, bad_request, permission_denied
 from .forms import PlaylistCreationForm
 
 
@@ -38,6 +39,38 @@ def get_playlist(request, playlist_id: int):
         return render(request, 'playlist.html', {
             'playlist': playlist
         })
+    else:
+        return page_not_found(request, '')
+
+
+@login_required(login_url='/login')
+def create_event(request):
+    if request.method == 'GET':
+        return render(request, 'create-event.html', {})
+
+
+@login_required(login_url='/login')
+def register_on_event(request, event_id: int):
+    event = get_event_if_available(request.user, event_id)
+    if event:
+        if not event.registered_users.filter(username=request.user.username).exists():
+            event.registered_users.add(request.user)
+            return redirect(f'/event/{event_id}')
+        else:
+            return permission_denied(request, '')
+    else:
+        return page_not_found(request, '')
+
+
+@login_required(login_url='/login')
+def unregister_on_event(request, event_id: int):
+    event = get_event_if_available(request.user, event_id)
+    if event:
+        if event.registered_users.filter(username=request.user.username).exists():
+            event.registered_users.remove(request.user)
+            return redirect(f'/event/{event_id}')
+        else:
+            return permission_denied(request, '')
     else:
         return page_not_found(request, '')
 
