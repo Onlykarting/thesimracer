@@ -1,53 +1,257 @@
 {% extends 'page-with-header.html' %}
 {% load static %}
 {% block styles %}
-  {{ block.super }}
-  <link rel="stylesheet" href="{% static 'styles/create-playlist-main.css' %}">
-  <link rel="stylesheet" href="{% static 'styles/create-event-main.css' %}">
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/create-playlist-main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/create-event-main.css' %}">
 {% endblock %}
+{% block title %}
+    Event create
+{% endblock %}
+
 {% block content %}
-  <div class="container" style="margin-top: 57px;">
-    <div class="row">
-      <form action="create" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" id="thumbnail-input" name="thumbnail" onchange="loadImage(event)" style="display: none;">
-        <div class="playlist-thumbnail" id="thumbnail" style="">
-          <input class="playlist-name col" placeholder="Название..." type=text name="name">
+    <div class="container" style="margin-top: 57px;">
+        <div class="row">
+            <form action="create" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" id="thumbnail-input" name="thumbnail" onchange="loadImage(event)"
+                       style="display: none;">
+                <div class="playlist-thumbnail" id="thumbnail" style="">
+                    <input class="playlist-name col" placeholder="Name..." type=text name="name">
+                </div>
+                <div class="playlist-information">
+                    <div class="information-field">
+                        <label for="description" class="field-description block-description">Description</label>
+                        <textarea name="description" id="description" class="form-control"
+                                  placeholder="Description..."></textarea>
+                    </div>
+                    <div class="row settings-section">
+                        <h2 class="settings-section__title">Main game params</h2>
+                        <div class="row">
+                            <div class="information-field col-lg-3">
+                                <label for="max-car-count">Track</label>
+                                <select name="track-name" id="track-name"
+                                        class="form-control">
+                                    {% for track in tracks %}
+                                        <option value="{{ track.id }}">{{ track.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="max-car-count">Max car count</label>
+                                <input type="number" name="max-car-count" min="1" max="30" class="form-control">
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="event-type">Event type</label>
+                                <select class="form-control" id="event-type" name="event-type">
+                                    <option value="Single">Single</option>
+                                    <option value="Command">Reversed</option>
+                                </select>
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="car-group">Car Group</label>
+                                <select class="form-control" id="car-group" name="car-group">
+                                    <option value="ALL">ALL</option>
+                                    <option value="GT3">GT3</option>
+                                    <option value="GT4">GT4</option>
+                                    <option value="CUP">CUP</option>
+                                    <option value="CUP">ST</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="information-field col-lg-3">
+                                <label for="car-group">License</label>
+                                <select class="form-control" id="license" name="license">
+                                    <option value="AM">AM</option>
+                                    <option value="Silver">Silver</option>
+                                    <option value="PRO-AM">PRO-AM</option>
+                                    <option value="PRO">PRO</option>
+                                </select>
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="pilot-count">Count of pilots in command</label>
+                                <input type="number" class="form-control" id="pilot-count" min="1" max="8" value="1"
+                                       name="pilot-count">
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="tyre-sets">Tyre sets</label>
+                                <input type="number" class="form-control" id="tyre-sets" min="1" max="50" value="1"
+                                       name="tyre-sets">
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="mandatory-pit-stop-count" class="field-description">Mandatory pit-stop
+                                    count</label>
+                                <input type="number" class="form-control" id="mandatory-pit-stop-count" min="0" max="50"
+                                       value="1" name="mandatory-pit-stop-count">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="information-field col-lg-3">
+                              <label for="qualify-type" class="field-description">Type of quality</label>
+                              <select class="form-control" id="qualify-type" name="qualify-type">
+                                <option value="Fastest">Fastest</option>
+                                <option value="Average">Average</option>
+                              </select>
+                            </div>
+                            <div class="information-field col-lg-3">
+                              <label for="grid" class="field-description">Grid</label>
+                              <select class="form-control" id="grid" name="grid">
+                                <option value="Main">Main</option>
+                                <option value="Reversed">Reversed</option>
+                              </select>
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="penalty-system">Penalty system</label>
+                                <select class="form-control" id="penalty-system" name="penalty-system">
+                                    <option value="Off">Off</option>
+                                    <option value="On">On</option>
+                                </select>
+                            </div>
+                            <div class="information-field col-lg-3">
+                                <label for="event-date" class="field-description">Event date</label>
+                                <input type="date" class="form-control" id="event-date" min="" name="event-date">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="information-field col-lg-3">
+                                <label for="event-time" class="field-description">Event time</label>
+                                <input type="time" class="form-control" id="event-time" min="" name="event-time">
+                            </div>
+                        </div>
+                            <div class="card" style="background: #E8E8E8;">
+                                <div class="row">
+                                    <span class="text-secondary text-center">Race weekend</span>
+                                </div>
+                                <hr class="hr-card">
+                                <table>
+                                    <tr class="text-secondary">
+                                        <td class="td-day"></td>
+                                        <td>Type</td>
+                                        <td>Day</td>
+                                        <td>Start time</td>
+                                        <td>Duration</td>
+                                        <td>Weather</td>
+                                    </tr>
+                                    <tr class="text-secondary">
+                                        <td class="td-day">1.</td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <select class="form-control" id="type[1]" name="type[1]">
+                                                    <option value="Practice">Practice</option>
+                                                    <option value="Qualy">Qualy</option>
+                                                    <option value="Race">Race</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="number" class="form-control" id="day[1]" min="1" max="3" value="1" name="day[1]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="time" class="form-control" id="time[1]" min="" name="time[1]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="time" class="form-control" id="duration[1]" min="00:01" name="duration[1]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <select class="form-control" id="type[1]" name="type[1]">
+                                                    <option value="Random">Random</option>
+                                                    <option value="Clear">Clear</option>
+                                                    <option value="Wet">Wet</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="text-secondary">
+                                        <td class="td-day">2.</td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <select class="form-control" id="type[2]" name="type[2]">
+                                                    <option value="Practice">Practice</option>
+                                                    <option value="Qualy">Qualy</option>
+                                                    <option value="Race">Race</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="number" class="form-control" id="day[2]" min="1" max="3" value="1" name="day[2]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="time" class="form-control" id="time[2]" min="" name="time[2]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="time" class="form-control" id="duration[2]" min="00:01" name="duration[2]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <select class="form-control" id="type[2]" name="type[2]">
+                                                    <option value="Random">Random</option>
+                                                    <option value="Clear">Clear</option>
+                                                    <option value="Wet">Wet</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="text-secondary">
+                                        <td class="td-day">3.</td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <select class="form-control" id="type[3]" name="type[3]">
+                                                    <option value="Practice">Practice</option>
+                                                    <option value="Qualy">Qualy</option>
+                                                    <option value="Race">Race</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="number" class="form-control" id="day[3]" min="1" max="3" value="1" name="day[3]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="time" class="form-control" id="time[3]" min="" name="time[3]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <input type="time" class="form-control" id="duration[3]" min="00:01" name="duration[3]">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="information-field margin-table-fields">
+                                                <select class="form-control" id="type[3]" name="type[3]">
+                                                    <option value="Random">Random</option>
+                                                    <option value="Clear">Clear</option>
+                                                    <option value="Wet">Wet</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                    <div class="row margin-upper">
+                        <div class="information-field justify-content-end" style="display: flex; margin-bottom: 0;">
+                            <input type="submit" class="submit-input" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="playlist-information">
-          <div class="information-field">
-            <label for="description" class="field-description block-description">Описание</label>
-            <textarea name="description" id="description" class="form-control" placeholder="Описание..."></textarea>
-          </div>
-          <div class="row settings-section">
-            <h2 class="settings-section__title">Основные игровые параметры</h2>
-            <div class="row">
-              <div class="information-field col-lg-3">
-                <label for="max-car-count">Трек</label>
-                <select name="track-name" id="track-name"
-                        class="form-control">
-                  {% for track in tracks %}
-                    <option value="{{ track.id }}">{{ track.name }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-              <div class="information-field col-lg-3">
-                <label for="max-car-count">Максимальное количество машин</label>
-                <input type="number" name="max-car-count" min="1" max="30" class="form-control">
-              </div>
-              <div class="information-field col-lg-3">
-                <label for="max-car-count">Максимальное количество машин</label>
-                <input type="number" name="max-car-count" min="1" max="30" class="form-control">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="information-field justify-content-end" style="display: flex; margin-bottom: 0;">
-              <input type="submit" class="submit-input" value="Сохранить">
-            </div>
-          </div>
-        </div>
-      </form>
     </div>
-  </div>
 {% endblock %}
+
