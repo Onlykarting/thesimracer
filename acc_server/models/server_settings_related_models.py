@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import ForeignKey, IntegerField, CharField, BooleanField, FloatField, TextField, DateTimeField
+from django.db.models import ForeignKey, IntegerField, CharField, BooleanField, FloatField, TextField, DateTimeField, OneToOneField
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models import signals
@@ -94,11 +94,11 @@ class ServerConfig(models.Model):
 
 class AccEvent(models.Model):
 
-    server_settings = ForeignKey(ServerSettings, models.deletion.RESTRICT, null=True)
-    server_config = ForeignKey(ServerConfig, models.deletion.RESTRICT, null=True)
-    assist_rules = ForeignKey(AssistRules, models.deletion.RESTRICT, null=True)
-    event_settings = ForeignKey(EventSettings, models.deletion.RESTRICT, null=True)
-    event_rules = ForeignKey(EventRules, models.deletion.RESTRICT, null=True)
+    server_settings = OneToOneField(ServerSettings, models.deletion.RESTRICT, null=True)
+    server_config = OneToOneField(ServerConfig, models.deletion.RESTRICT, null=True)
+    assist_rules = OneToOneField(AssistRules, models.deletion.RESTRICT, null=True)
+    event_settings = OneToOneField(EventSettings, models.deletion.RESTRICT, null=True)
+    event_rules = OneToOneField(EventRules, models.deletion.RESTRICT, null=True)
 
 
 class ServerWorkerSettings(models.Model):
