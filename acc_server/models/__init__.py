@@ -1,2 +1,2 @@
 from .server_settings_related_models import ServerSettings, EventRules, EventSettings, AssistRules, Session, AccEvent, \
-    Track, ServerConfig, ServerWorkerSettings
+    Track, ServerConfig

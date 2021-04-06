@@ -4,7 +4,7 @@ import subprocess
 from threading import Thread
 from pathlib import Path
 from typing import Optional, Callable, List
-from acc_server.models import ServerWorkerSettings
+from acc_server.models import AccEvent
 from thesimracer.settings import ACC_SERVER_CONFIG
 from .dumpers import ServerConfigDumper, ServerSettingsDumper, AssistRulesDumper, \
     EventSettingsDumper, EventRulesDumper
@@ -12,9 +12,9 @@ from .dumpers import ServerConfigDumper, ServerSettingsDumper, AssistRulesDumper
 
 class ServerWorker(Thread):
 
-    def __init__(self, settings: ServerWorkerSettings):
+    def __init__(self, event: AccEvent):
         super(ServerWorker, self).__init__()
-        self.settings = settings
+        self.event = event
         self.dumpers = [
             EventSettingsDumper(self),
             EventRulesDumper(self),
@@ -28,7 +28,7 @@ class ServerWorker(Thread):
     def deploy_path(self):
         root_dir = Path(ACC_SERVER_CONFIG["ROOT_DIR"]).absolute()
         template = ACC_SERVER_CONFIG["SERVER_INSTANCE_NAME_TEMPLATE"]
-        dir_name = template(id=self.settings.id)
+        dir_name = template(id=self.event.id)
         return root_dir / dir_name
 
     @property
@@ -65,8 +65,6 @@ class ServerWorker(Thread):
 
     def terminate(self):
         self.process.terminate()
-        self.settings.status = self.settings.KILLED
-        self.settings.save()
 
     def __del__(self):
         self.terminate()

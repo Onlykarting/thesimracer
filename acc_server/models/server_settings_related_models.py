@@ -101,27 +101,6 @@ class AccEvent(models.Model):
     event_rules = OneToOneField(EventRules, models.deletion.RESTRICT, null=True)
 
 
-class ServerWorkerSettings(models.Model):
-
-    KILLED = "Killed"
-    TERMINATED = "Terminated"
-    RUNNING = "Running"
-    PLANNED = "Planned"
-    ZOMBIE = "Zombie"
-    STATUS_CHOICES = (
-        (KILLED, 'Killed'),
-        (TERMINATED, 'Terminated'),
-        (RUNNING, 'Running'),
-        (PLANNED, 'Planned'),
-        (ZOMBIE, 'Zombie')
-    )
-
-    pid = IntegerField(null=True)
-    event = OneToOneField(AccEvent, on_delete=models.deletion.CASCADE)
-    status = CharField(max_length=30, choices=STATUS_CHOICES, default=PLANNED)
-    # TODO: Добавить ссылку на лидерборд
-
-
 @receiver(signals.pre_save, sender=AccEvent)
 def create_event_related_settings(sender, instance: AccEvent, **kwargs):
     instance.event_rules = EventRules.objects.create()

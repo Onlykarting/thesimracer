@@ -1,7 +1,7 @@
 from .server_worker_proxy import ServerWorkerProxy
 from .server_worker import ServerWorker
 from typing import Dict, Any
-from acc_server.models import ServerWorkerSettings
+from acc_server.models import AccEvent
 
 
 class ServerWorkerManager:
@@ -23,10 +23,10 @@ class ServerWorkerManager:
     def __getitem__(self, item):
         return ServerWorkerProxy(self.__workers[item], self)
 
-    def create_worker(self, worker_settings: ServerWorkerSettings) -> ServerWorkerProxy:
-        if not self.__workers.get(worker_settings.id):
-            self.__workers[worker_settings.id] = ServerWorker(worker_settings)
-        return ServerWorkerProxy(worker_settings.id, self)
+    def create_worker(self, event: AccEvent) -> ServerWorkerProxy:
+        if not self.__workers.get(event.id):
+            self.__workers[event.id] = ServerWorker(event)
+        return ServerWorkerProxy(event.id, self)
 
     def terminate_worker(self, worker_id):
         self.__workers[worker_id].terminate()
