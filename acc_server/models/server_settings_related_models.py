@@ -117,7 +117,7 @@ class ServerWorkerSettings(models.Model):
     )
 
     pid = IntegerField(null=True)
-    event = ForeignKey(AccEvent, on_delete=models.deletion.CASCADE)
+    event = OneToOneField(AccEvent, on_delete=models.deletion.CASCADE)
     status = CharField(max_length=30, choices=STATUS_CHOICES, default=PLANNED)
     # TODO: Добавить ссылку на лидерборд
 
