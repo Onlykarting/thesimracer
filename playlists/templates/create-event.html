@@ -123,7 +123,7 @@
                             <div class="row">
                                 <span class="text-secondary text-center">Race weekend</span>
                             </div>
-                            <hr class="hr-card">
+                            <hr class="hr-card w-100">
                             <table>
                                 <tr class="text-secondary">
                                     <td class="td-day"></td>
@@ -264,18 +264,32 @@
 
 {% block after-body %}
 <script>
+    var today_1 = String
+    var time = String
     window.onload = function a(){
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
+        time = String(today.getHours()) + ':' + String(today.getMinutes());
 
-        today = yyyy + '-' + mm + '-' + dd;
-        $("input").attr({
-           "min" : today
+        today_1 = yyyy + '-' + mm + '-' + dd;
+        $("#event-date").attr({
+           "min" : today_1
         });
-        alert(today)
     }
+    $("#event-date").on("input", function() {
+
+       if($(this).val() == today_1){
+           $("#event-time").attr({
+               "min" : time
+           });
+       } else {
+           $("#event-time").attr({
+               "min" : '00:00'
+           });
+       }
+    });
 </script>
 {% endblock %}
 

@@ -1,0 +1,64 @@
+.background {
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    background: url(/static/images/Imola_demo.png);
+    height: 450px;
+    background-position: center;
+    border-radius: 30px 30px 0 0;
+}
+
+.btn-main{
+    border-radius: 20px;
+    width: 100%;
+    font-size: 18px;
+}
+
+.white-btn{
+    background: #FFFFFF;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.black-btn{
+    background: rgba(0, 0, 0, 0.63);
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.card-fillers{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background: #E8E8E8;
+}
+
+.text-first-col{
+    margin-left: 10px;
+}
+
+.main-text{
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.63)
+}
+
+.row-custom{
+    margin-left: 25px; margin-right: 25px
+}
+
+.table-header{
+    font-size: 26px;
+    line-height: 24px;
+}
+
+.td-number{
+    width: 10%;
+}
+
+.tr-table{
+    border-bottom: 1px solid rgba(37, 37, 37, 0.5);
+}

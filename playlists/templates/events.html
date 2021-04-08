@@ -1,77 +1,109 @@
 {% extends 'base-bootstrap.html' %}
 {% load static %}
 {% block title %}
-  Events
+    Events
 {% endblock %}
 {% block styles %}
-  <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block body %}
-  {% block header %}
-    {% include 'header.html' %}
-  {% endblock %}
-  <main>
-    <div class="card main-card">
-      <div class="row text-center">
-        <span class="card-header-text">Upcoming Events</span>
-      </div>
-      <div class="card-body-2 body-card-placement">
-        <div class="row row-padding">
-          {% for event in events %}
-            <div class="col-lg-4 col-md-4 map-card" style="min-width: 200px">
-              <div class="card" style="background: #E8E8E8;">
-                <div class="row row-img-padding">
-                  <img class="img-race" src="{% static 'images/imola.jpg' %}" alt="">
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+        <div class="card main-card">
+            <div class="row header-padding">
+                <div class="col-4 vert-center" style="min-width: 200px">
+                    <div class="right-horiz create-new-event-block text-center">
+                        <div class="btn-group right-horiz create-new-event-btn text-center"
+                             id="login-btn-group" data-toggle="collapse">
+                            <button type="button" id="login_btn" class="btn dropdown-toggle mons-text"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Sort
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
+                                <li onclick="location.href = '/eventlist/official';" class="li-new-event"><a
+                                        class="events-dropdown-item mons-text"
+                                        href="#official">Official</a></li>
+                                <li onclick="location.href = '/eventlist/all';" class="li-new-event"><a
+                                        class="events-dropdown-item mons-text"
+                                        href="#all">All</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                  <span class="bold text-center map-card-title">{{ event.name }}</span>
+                <div class="col-4" style="min-width: 200px">
+                    <div class="card-header-text text-center">Upcoming Events</div>
                 </div>
-                <hr class="card-hr">
-                <div class="row">
-                  <div class="col-6 text-left text-secondary">
-                    <span>Track</span>
-                  </div>
-                  <div class="col-6 text-right bold">
-                    <span>{{ event.game_settings.event_settings.track }}</span>
-                  </div>
+                <div class="col-4 vert-center" style="min-width: 200px">
+                    <div class="left-horiz create-new-event-btn">
+                        <div class="create-new-event-block text-center">
+                            <button onclick="location.href = '/event/create';"
+                                    class="btn mons-text btn-create-new">Create new
+                                <div class="plus alt"></div>
+                            </button>
+
+                        </div>
+                    </div>
                 </div>
-                <hr class="card-hr-secondary">
-                <div class="row">
-                  <div class="col-6 text-left text-secondary">
-                    <span>Date</span>
-                  </div>
-                  <div class="col-6 text-right bold">
-                    <span>{{ event.starts_at|date:"D d.m.Y" }}</span>
-                  </div>
-                </div>
-                <hr class="card-hr-secondary">
-                <div class="row">
-                  <div class="col-6 text-left text-secondary">
-                    <span>Time</span>
-                  </div>
-                  <div class="col-6 text-right bold">
-                    <span>{{ event.starts_at|time:"H:i" }}</span>
-                  </div>
-                </div>
-                <hr class="card-hr-secondary">
-                <div class="row text-center more-btn-padding">
+
+            </div>
+            <div class="card-body-2 body-card-placement">
+                <div class="row row-padding">
+                    {% for event in events %}
+                        <div class="col-lg-4 col-md-4 map-card" style="min-width: 200px">
+                            <div class="card" style="background: #E8E8E8;">
+                                <div class="row row-img-padding">
+                                    <img class="img-race" src="{% static 'images/imola.jpg' %}" alt="">
+                                </div>
+                                <div class="row">
+                                    <span class="bold text-center map-card-title">{{ event.name }}</span>
+                                </div>
+                                <hr class="card-hr">
+                                <div class="row">
+                                    <div class="col-6 text-left text-secondary">
+                                        <span>Track</span>
+                                    </div>
+                                    <div class="col-6 text-right bold">
+                                        <span>{{ event.game_settings.event_settings.track.name }}</span>
+                                    </div>
+                                </div>
+                                <hr class="card-hr-secondary">
+                                <div class="row">
+                                    <div class="col-6 text-left text-secondary">
+                                        <span>Date</span>
+                                    </div>
+                                    <div class="col-6 text-right bold">
+                                        <span>{{ event.starts_at|date:"D d.m.Y" }}</span>
+                                    </div>
+                                </div>
+                                <hr class="card-hr-secondary">
+                                <div class="row">
+                                    <div class="col-6 text-left text-secondary">
+                                        <span>Time</span>
+                                    </div>
+                                    <div class="col-6 text-right bold">
+                                        <span>{{ event.starts_at|time:"H:i" }}</span>
+                                    </div>
+                                </div>
+                                <hr class="card-hr-secondary">
+                                <div class="row text-center more-btn-padding">
                             <span>
                                 <a type="button"
-                                        class="btn button-shadow join-btn join-btn-text"
-                                        href="/event/{{ event.pk }}">Join
+                                   class="btn button-shadow join-btn join-btn-text mons-text"
+                                   href="/event/{{ event.pk }}">Join
                                 </a>
                             </span>
-                </div>
-              </div>
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
             </div>
-          {% endfor %}
         </div>
-      </div>
-    </div>
-  </main>
-  {% block footer %}
-    {% include 'footer.html' %}
-  {% endblock %}
+        </div>
+    </main>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
 {% endblock %}
