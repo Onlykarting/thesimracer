@@ -21,7 +21,7 @@ class ServerConfigDumper(BaseConfigDumper):
 
     def __init__(self, context):
         super().__init__(context,
-                         context.settings.event.server_config,
+                         context.event.server_config,
                          ServerConfigSerializer,
                          context.config_path / 'configuration.json')
 
@@ -29,7 +29,7 @@ class ServerConfigDumper(BaseConfigDumper):
 class ServerSettingsDumper(BaseConfigDumper):
     def __init__(self, context):
         super().__init__(context,
-                         context.settings.event.server_settings,
+                         context.event.server_settings,
                          ServerSettingsSerializer,
                          context.config_path / 'settings.json')
 
@@ -37,7 +37,7 @@ class ServerSettingsDumper(BaseConfigDumper):
 class AssistRulesDumper(BaseConfigDumper):
     def __init__(self, context):
         super().__init__(context,
-                         context.settings.event.assist_rules,
+                         context.event.assist_rules,
                          AssistRulesSerializer,
                          context.config_path / 'assistRules.json')
 
@@ -45,7 +45,7 @@ class AssistRulesDumper(BaseConfigDumper):
 class EventSettingsDumper(BaseConfigDumper):
     def __init__(self, context):
         super().__init__(context,
-                         context.settings.event.event_settings,
+                         context.event.event_settings,
                          EventSettingsSerializer,
                          context.config_path / 'event.json')
 
@@ -53,6 +53,6 @@ class EventSettingsDumper(BaseConfigDumper):
 class EventRulesDumper(BaseConfigDumper):
     def __init__(self, context):
         super().__init__(context,
-                         context.settings.event.event_rules,
+                         context.event.event_rules,
                          EventRulesSerializer,
                          context.config_path / 'eventRules.json')

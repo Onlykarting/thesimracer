@@ -66,5 +66,5 @@ class ServerWorker(Thread):
     def terminate(self):
         self.process.terminate()
 
-    def __del__(self):
-        self.terminate()
+    # def __del__(self):
+    #     self.terminate()

@@ -1,3 +1,5 @@
+import time
+from datetime import timedelta, datetime
 from .server_worker_proxy import ServerWorkerProxy
 from .server_worker import ServerWorker
 from typing import Dict, Any
@@ -40,3 +42,11 @@ class ServerWorkerManager:
 
     def init_worker_cwd(self, worker_id):
         self.__workers[worker_id].init_cwd()
+
+    def polling(self, delay: timedelta = timedelta(minutes=1), blocking: bool = True):
+        while True:
+            events_to_be_started = AccEvent.objects.filter(event__starts_at__lte=datetime.utcnow())
+            for event in events_to_be_started:
+                worker = self.create_worker(event)
+                worker.run()
+            time.sleep(delay.total_seconds())
