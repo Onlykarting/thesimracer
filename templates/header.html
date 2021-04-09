@@ -36,7 +36,7 @@
                     <div style="text-align: right; margin-left: auto;"></div>
                     {% if request.user.is_authenticated %}
                         <span class="username">{{ user }}</span>
-                        <form method="POST" class="d-flex">
+                        <form method="POST" action="/login/" class="d-flex">
                             {% csrf_token %}
                             <input type="submit" name="logout" value="Logout" class="logout-but">
                         </form>

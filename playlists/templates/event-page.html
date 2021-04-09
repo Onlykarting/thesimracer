@@ -57,17 +57,19 @@
                                     <span>
                                     <a type="button"
                                        class="btn button-shadow btn-main white-btn join-btn-text mons-text"
-                                       href="/event/{{ event.pk }}">Sessions
+                                       href="/event/{{ event.pk }}/sessions">Sessions
                                     </a>
                                 </span>
                             </div>
                             <div class="col-6 text-secondary">
+                                <form method="post">
                                 <span>
-                                <a type="button"
-                                   class="btn button-shadow btn-main black-btn join-btn-text mons-text"
-                                   href="/event/{{ event.pk }}">Join
-                                </a>
-                            </span>
+                                   <a type="button"
+                                       class="btn button-shadow btn-main black-btn join-btn-text mons-text"
+                                       href="/event/{{ event.pk }}/register">Join
+                                   </a>
+                                </span>
+                                </form>
                             </div>
                         </div>
                         <div class="row">

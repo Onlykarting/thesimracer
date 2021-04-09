@@ -3,12 +3,22 @@
     src: url(/static/fonts/10351.ttf); /* Путь к файлу со шрифтом */
 }
 
+@font-face {
+    font-family: Montserrat-Medium; /* Гарнитура шрифта */
+    src: url(/static/fonts/Montserrat-Medium.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: Montserrat-Regular; /* Гарнитура шрифта */
+    src: url(/static/fonts/Montserrat-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
 .background {
     min-width: 100%;
     min-height: 100%;
     position: relative;
     margin: 7px 7px 7px 0;
-    background: url(/static/images/imola.jpg);
+    background: url(/static/images/heder1.jpg);
     height: 450px;
     background-position: center;
     filter: blur(2px) brightness(0.6);
@@ -18,6 +28,11 @@
     top: 0;
     left: 0;
     width: 100%;
+}
+
+
+.row {
+    margin: 0 0 0 0;
 }
 
 .card-header-text{
@@ -54,12 +69,11 @@
 }
 
 .img-race{
-    height: 120px;
-    width: 90px;
     padding-left: 0;
     padding-right: 0;
-    margin: 4px auto 4px auto;
-    border-radius: 2px;
+    border-radius: 20px;
+    width: 100%;
+    margin: 0 0 4px 0;
 }
 
 .map-card{
@@ -124,6 +138,51 @@
 
 .bold{
     font-weight: 550;
+}
+
+.mons-text {
+    font-family: Montserrat-Medium;
+    font-style: normal;
+}
+
+.card-header-text {
+    text-decoration: none;
+    font-family: Montserrat-Medium;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 24px;
+    color: rgba(37, 37, 37, 0.5);
+    margin: 10px 0 10px 0;
+}
+
+.main-row{
+    margin-bottom: 200px;
+}
+
+.join-btn-text, .info-btn-text {
+    text-decoration: none;
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+}
+
+.card-event{
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px 1px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(37, 37, 37, 0.5);
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .names{

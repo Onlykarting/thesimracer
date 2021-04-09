@@ -29,6 +29,7 @@
     font-family: Arial;
     box-shadow: 1px 1px 30px 1px rgba(0, 0, 0, 0.5);
     border-radius: 40px;
+    border: none;
 }
 
 .img-race {
@@ -37,7 +38,6 @@
     padding-right: 0;
     margin: 0 0 4px 0;
     border-radius: 30px;
-    border: 1px solid rgba(37, 37, 37, 0.5);
 }
 
 .body-card-placement {
@@ -98,6 +98,12 @@ ul.create-new-event-list li {
     color: rgba(37, 37, 37, 0.5);
     width: 100%;
     height: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.events-dropdown-item:hover{
+    color: #1f1a0c;
 }
 
 .plus {

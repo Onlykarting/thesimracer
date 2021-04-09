@@ -64,8 +64,7 @@ def register_on_event(request, event_id: int):
     event = get_event_if_available(request.user, event_id)
     if event:
         if not event.registered_users.filter(username=request.user.username).exists():
-            event.registered_users.add(request.user)
-            return redirect(f'/event/{event_id}')
+            return render(request, 'event-register.html', {})
         else:
             return permission_denied(request, '')
     else:

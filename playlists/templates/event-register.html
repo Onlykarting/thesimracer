@@ -1,0 +1,155 @@
+{% extends 'base-bootstrap.html' %}
+{% load static %}
+{% block title %}
+    Events
+{% endblock %}
+{% block styles %}
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/event-register.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+        <div class="card main-card">
+            <div class="row header-padding">
+                <div class="card-header-text text-center">Joining to</div>
+            </div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="card-header-text text-center map-name col-4 mid-pos">
+                    <span>{{ event.game_settings.event_settings.track.name }}</span><span>123</span>
+                    <hr style="text-align: center; display: inline-block; width: 100%; border: 1px solid rgba(37, 37, 37, 0.5);">
+                </div>
+                <div class="col-4"></div>
+            </div>
+            <form method="post">
+                <div class="row">
+                    <div class="col-4">
+                        <select name="car-class" id="car-class" class="display-none">
+                            <option value="GT3" name="GT3">GT3</option>
+                            <option value="GT4" name="GT4">GT4</option>
+                            <option value="Multi" name="Multi">Multi</option>
+                            <option value="ST" name="ST">ST</option>
+                            <option value="Cup" name="Cup">Cup</option>
+                        </select>
+                        <div class="btn-group right-horiz create-new-event-btn text-center mid-pos" style=""
+                             id="login-btn-group" data-toggle="collapse">
+                            <button type="button" id="select_class" class="btn dropdown-toggle mons-text text-btn"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Select class
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
+                                <li onclick="btn_action('car-class', 0, 'select_class');" class="li-new-event"><a href="#"
+                                                                                                  class="events-dropdown-item mons-text">GT3</a>
+                                </li>
+                                <li onclick="btn_action('car-class', 1, 'select_class');" class="li-new-event"><a href="#"
+                                                                                                  class="events-dropdown-item mons-text">GT4</a>
+                                </li>
+                                <li onclick="btn_action('car-class', 2, 'select_class');" class="li-new-event"><a href="#"
+                                                                                                  class="events-dropdown-item mons-text">Multi</a>
+                                </li>
+                                <li onclick="btn_action('car-class', 3, 'select_class');" class="li-new-event"><a href="#"
+                                                                                                  class="events-dropdown-item mons-text">ST</a>
+                                </li>
+                                <li onclick="btn_action('car-class', 4, 'select_class');" class="li-new-event"><a href="#"
+                                                                                                  class="events-dropdown-item mons-text">Cup</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <select name="car" id="car" class="display-none">
+                            <option value="First" name="First">First</option>
+                            <option value="Second" name="Second">Second</option>
+                        </select>
+                        <div class="btn-group right-horiz create-new-event-btn text-center mid-pos" style=""
+                             id="login-btn-group" data-toggle="collapse">
+                            <button type="button" id="select_car" class="btn dropdown-toggle mons-text text-btn"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Select car
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
+                                <li onclick="btn_action('car', 0, 'select_car');" class="li-new-event"><a href="#"
+                                                                                            class="events-dropdown-item mons-text">First</a>
+                                </li>
+                                <li onclick="btn_action('car', 1, 'select_car');" class="li-new-event"><a href="#"
+                                                                                            class="events-dropdown-item mons-text">Second</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label for="car-number" class="display-none"></label>
+                        <input style="outline: none" min="1" max="{{ cars.count }}" placeholder="Car number"
+                               name="car-number" type="number" id="car-number"
+                               class="btn-group right-horiz create-new-event-btn text-center mid-pos">
+                    </div>
+                </div>
+                <div class="row row-padding-1">
+                    <div class="col-4">
+
+                    </div>
+                    <div class="col-4">
+                        <select name="command" id="command" class="display-none">
+                            <option value="First_team" name="First_team">First team</option>
+                            <option value="Second_team" name="Second_team">Second team</option>
+                            <option value="Create_team" name="Create_team">Create team</option>
+                        </select>
+                        <div class="btn-group right-horiz create-new-event-btn text-center mid-pos" style=""
+                             id="sel-team" data-toggle="collapse">
+                            <button type="button" id="select-team" class="btn dropdown-toggle mons-text text-btn"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Select team
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
+                                <li onclick="btn_action('command', 0, 'select-team');" class="li-new-event"><a href="#"
+                                                                                                class="events-dropdown-item mons-text">First team</a>
+                                </li>
+                                <li onclick="btn_action('command', 1, 'select-team');" class="li-new-event"><a href="#"
+                                                                                                class="events-dropdown-item mons-text">Second team</a>
+                                </li>
+                                <li>
+                                    <input type="text" id="new-team" placeholder="Create team"
+                                           style="outline: none; text-align: center; width: 100%; height: 90%">
+                                    <a type="button" onclick="create_team('command', 2, 'new-team', 'select-team');"
+                                       class="btn button-shadow join-btn join-btn-text mons-text mid-pos"
+                                       style="display: block; background: #eac407"
+                                       href="#">Accept creation
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row row-padding-1">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <input type="submit" class="btn button-shadow join-btn join-btn-text mons-text mid-pos" value="Join" style="display: block; width: 90%">
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </form>
+        </div>
+    </main>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+
+    {% block after-body %}
+        <script>
+            function btn_action(select, id, span) {
+                document.getElementById(span).innerHTML = document.getElementById(select).getElementsByTagName('option')[id].textContent
+                document.getElementById(select).getElementsByTagName('option')[id].selected = 'selected';
+            }
+
+            function create_team(select, id, team, span) {
+                document.getElementById(span).innerHTML = document.querySelector('#' + team).value
+                document.getElementById(select).getElementsByTagName('option')[id].selected = 'selected';
+                document.getElementById(select).getElementsByTagName('option')[id].value = document.querySelector('#' + team).value
+            }
+        </script>
+    {% endblock %}
+{% endblock %}

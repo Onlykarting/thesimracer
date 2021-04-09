@@ -64,6 +64,7 @@ def log_in(request):
                 for field in output_fields:
                     messages.add_message(request, messages.ERROR, f'The {field} field is not correct')
             content['register_form'] = form
+
     elif request.method == 'GET':
         if 'register' in request.GET:
             content['register_page'] = True
@@ -92,7 +93,6 @@ def profile(request):
         else:
             return redirect('/')
     return render(request, 'pages/profile.html', content)
-
 
 def events(request):
     content = dict()
