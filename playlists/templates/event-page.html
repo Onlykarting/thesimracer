@@ -1,0 +1,250 @@
+{% extends 'base-bootstrap.html' %}
+{% load static %}
+{% block title %}
+    Events
+{% endblock %}
+{% block styles %}
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/event-page.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+        <div class="card main-card">
+            <div class="row row-img-padding">
+                <div class="background"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card card-fillers main-text" style="background: #E8E8E8;">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Date</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>28.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Time</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>18:30</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Event type</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>Command</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card card-fillers main-text" style="background: #E8E8E8; padding-top: 10px">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-6 text-secondary">
+                                    <span>
+                                    <a type="button"
+                                       class="btn button-shadow btn-main white-btn join-btn-text mons-text"
+                                       href="/event/{{ event.pk }}">Sessions
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="col-6 text-secondary">
+                                <span>
+                                <a type="button"
+                                   class="btn button-shadow btn-main black-btn join-btn-text mons-text"
+                                   href="/event/{{ event.pk }}">Join
+                                </a>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Race type</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>Championship</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Verifying type</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>Official</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card card-fillers main-text" style="background: #E8E8E8;">
+                        <div class="row">
+                            <div class="col-8 text-secondary">
+                                <span class="text-first-col">Car class</span>
+                            </div>
+                            <div class="col-4 text-right">
+                                <span>28.02.21</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-8 text-secondary">
+                                <span class="text-first-col">License</span>
+                            </div>
+                            <div class="col-4 text-right">
+                                <span>18:30</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-8 text-secondary">
+                                <span class="text-first-col">Pilots in command</span>
+                            </div>
+                            <div class="col-4 text-right">
+                                <span>Command</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                    </div>
+                </div>
+            </div>
+            <div class="row row-custom card-fillers">
+                <div class="col-lg-3">
+                    <div class="main-text" style="background: #E8E8E8; padding-top: 10px">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Tyre sets</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>8</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Mandatory pits</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>1</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="main-text" style="background: #E8E8E8; padding-top: 10px">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Qualify type</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span style="margin-right: 10px">Fastest lap</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Grid</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span style="margin-right: 10px">Main</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="main-text" style="background: #E8E8E8; padding-top: 10px">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Pit window</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>None</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-6 text-secondary">
+                                <span class="text-first-col">Penalty system</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span>On</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                    </div>
+                </div>
+            </div>
+            <div class="row row-custom card-fillers">
+                <span class="text-secondary mons-text">About race</span>
+                <hr class="card-hr-secondary" style="width: 99%">
+                <span class="main-text">
+                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its
+                    layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
+                    'Content here, content here', making it look like readable English. Many desktop publishing packages and web page
+                    editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites
+                    still in their infancy.
+                </span>
+            </div>
+            <div class="row row-custom card-fillers">
+                <div class="row text-center" style="margin-bottom: 10px">
+                    <span class="mons-text text-secondary table-header">Leaderboard</span>
+                </div>
+                <div class="row">
+                    <table class="table-main main-text">
+                        <tr class="text-secondary tr-table">
+                            <td class="text-secondary td-number">#</td>
+                            <td class="text-secondary" style="width: 20%;">Team</td>
+                            <td class="text-secondary" style="width: 20%;">Car</td>
+                            <td class="text-secondary text-center" style="width: 15%;">Car class</td>
+                            <td class="text-secondary text-center" style="width: 15%;">Car number</td>
+                            <td class="text-secondary text-center" style="width: 15%;">Score</td>
+                        </tr>
+                        <tr class="tr-table">
+                            <td class="text-secondary td-number">1.</td>
+                            <td class="text-secondary">TheSimRacer OMST</td>
+                            <td class="text-secondary">Mercedes-Benz GT3 AMG EVO</td>
+                            <td class="text-secondary text-center">GT3</td>
+                            <td class="text-secondary text-center">54</td>
+                            <td class="text-secondary text-center">25</td>
+                        </tr>
+                        <tr class="tr-table">
+                            <td class="text-secondary td-number">1.</td>
+                            <td class="text-secondary">TheSimRacer OMST</td>
+                            <td class="text-secondary">Mercedes-Benz GT3 AMG EVO</td>
+                            <td class="text-secondary text-center">GT3</td>
+                            <td class="text-secondary text-center">54</td>
+                            <td class="text-secondary text-center">25</td>
+                        </tr>
+                        <tr class="tr-table">
+                            <td class="text-secondary td-number">1.</td>
+                            <td class="text-secondary">TheSimRacer OMST</td>
+                            <td class="text-secondary">Mercedes-Benz GT3 AMG EVO</td>
+                            <td class="text-secondary text-center">GT3</td>
+                            <td class="text-secondary text-center">54</td>
+                            <td class="text-secondary text-center">25</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+{% endblock %}

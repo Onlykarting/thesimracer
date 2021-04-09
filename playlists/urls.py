@@ -11,7 +11,7 @@ urlpatterns = [
     path('stats/', indev),
     path('help-us/', indev),
     path('event/<int:event_id>', event),
-    path('event/create', create_event),
+    path('event/create/', create_event),
     path('event/<int:event_id>/register', register_on_event),
     path('event/<int:event_id>/unregister', unregister_on_event),
     path('playlist/create', create_playlist),

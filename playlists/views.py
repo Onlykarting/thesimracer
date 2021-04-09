@@ -25,7 +25,6 @@ def indev(request):
     context = {}
     return render(request, 'in-development.html', context)
 
-
 def get_results(request):
     context = {}
     return render(request, 'results.html', context)
@@ -40,7 +39,7 @@ def event(request, event_id: int):
         "user": request.user,
         "is_authenticated": request.user.is_authenticated,
     }
-    return render(request, 'event.html', context)
+    return render(request, 'event-page.html', context)
 
 
 def get_playlist(request, playlist_id: int):

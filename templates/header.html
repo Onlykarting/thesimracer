@@ -32,8 +32,8 @@
                         <a class="text-block-head mid-content header-link" aria-current="page" href="/tools">Tools</a>
                     </li>
                 </ul>
-                <div class="d-flex" style="width: 140px; margin-left: 0;">
-                    <div style="margin-left: auto"></div>
+                <div class="d-flex" style="min-width: 140px; margin-left: 0;">
+                    <div style="text-align: right; margin-left: auto;"></div>
                     {% if request.user.is_authenticated %}
                         <span class="username">{{ user }}</span>
                         <form method="POST" class="d-flex">
@@ -49,7 +49,7 @@
                             <ul class="dropdown-menu login-list-elements dropdown-menu-right">
                                 <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li>
                                 <li>
-                                    <form method="POST" action="http://127.0.0.1:8000/login/">
+                                    <form method="GET" action="http://127.0.0.1:8000/login/">
                                         {% csrf_token %}
                                         <input type="submit" name="register" value="Register" class="dropdown-item">
                                     </form>
