@@ -51,3 +51,5 @@ class Event(models.Model):
     registration_starts_at = DateTimeField()
     registration_ends_at = DateTimeField()
     registered_users = ManyToManyField(User)
+    is_verified = BooleanField(default=False)
+
