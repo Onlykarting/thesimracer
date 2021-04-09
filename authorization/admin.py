@@ -1,5 +1,5 @@
 from django.contrib import admin
-from acc_server.models import AccEvent, Session, ServerConfig, ServerSettings, ServerWorkerSettings, EventSettings, \
+from acc_server.models import AccEvent, Session, ServerConfig, ServerSettings, EventSettings, \
     EventRules, AssistRules, Track
 
 
@@ -43,7 +43,6 @@ admin.site.register(Session, SessionAdmin)
 admin.site.register(AccEvent, AccEventAdmin)
 admin.site.register(ServerConfig, ServerConfigAdmin)
 admin.site.register(ServerSettings, ServerSettingsAdmin)
-admin.site.register(ServerWorkerSettings, ServerWorkerAdmin)
 admin.site.register(EventSettings, EventSettingsAdmin)
 admin.site.register(EventRules, EventRulesAdmin)
 admin.site.register(AssistRules, AssistRulesAdmin)
