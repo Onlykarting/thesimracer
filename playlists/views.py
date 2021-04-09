@@ -47,7 +47,8 @@ def get_playlist(request, playlist_id: int):
     playlist = get_playlist_if_available(request.user, playlist_id)
     if playlist:
         return render(request, 'playlist.html', {
-            'playlist': playlist
+            'playlist': playlist,
+            'playlist_events': playlist.event_set.all()
         })
     else:
         return page_not_found(request, '')
