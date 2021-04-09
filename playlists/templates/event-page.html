@@ -26,7 +26,7 @@
                                 <span class="text-first-col">Date</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>28.02.21</span>
+                                <span>{{ event.starts_at|date:"D d.m.Y" }}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -35,7 +35,7 @@
                                 <span class="text-first-col">Time</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>18:30</span>
+                                <span>{{ event.starts_at|time:"H:i" }}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -130,7 +130,7 @@
                                 <span class="text-first-col">Tyre sets</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>8</span>
+                                <span>{{ event.game_settings.event_rules.tyre_set_count }}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -139,7 +139,7 @@
                                 <span class="text-first-col">Mandatory pits</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>1</span>
+                                <span>{{ event.game_settings.event_rules.mandatory_pitstop_count }}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -152,7 +152,11 @@
                                 <span class="text-first-col">Qualify type</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span style="margin-right: 10px">Fastest lap</span>
+                                {% if event.game_settings.event_rules.qualify_standing_type == 1 %}
+                                  <span style="margin-right: 10px">Fastest lap</span>
+                                {% else %}
+                                  <span style="margin-right: 10px">Average lap</span>
+                                {% endif %}
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -161,7 +165,7 @@
                                 <span class="text-first-col">Grid</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span style="margin-right: 10px">Main</span>
+                                <span style="margin-right: 10px">А где?</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -183,7 +187,11 @@
                                 <span class="text-first-col">Penalty system</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>On</span>
+                                {% if event.game_settings.event_settings.allow_auto_dq %}
+                                  <span>On</span>
+                                {% else %}
+                                  <span>Off</span>
+                                {% endif %}
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -194,11 +202,7 @@
                 <span class="text-secondary mons-text">About race</span>
                 <hr class="card-hr-secondary" style="width: 99%">
                 <span class="main-text">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its
-                    layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
-                    'Content here, content here', making it look like readable English. Many desktop publishing packages and web page
-                    editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites
-                    still in their infancy.
+                        {{ event.description }}
                 </span>
             </div>
             <div class="row row-custom card-fillers">
