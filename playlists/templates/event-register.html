@@ -30,52 +30,43 @@
             <form method="post">
                 <div class="row">
                     <div class="col-4">
-                        <select name="car-class" id="car-class" class="display-none">
-                            <option value="GT3" name="GT3">GT3</option>
-                            <option value="GT4" name="GT4">GT4</option>
-                            <option value="Multi" name="Multi">Multi</option>
-                            <option value="ST" name="ST">ST</option>
-                            <option value="Cup" name="Cup">Cup</option>
-                        </select>
+                        <input name="car-class" id="car-class" class="display-none">
                         <div class="btn-group right-horiz create-new-event-btn text-center mid-pos" style=""
                              id="login-btn-group" data-toggle="collapse">
                             <button type="button" id="select_class" class="btn dropdown-toggle mons-text text-btn"
                                     data-bs-toggle="dropdown" aria-expanded="false">Select class
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
-                                <li onclick="btn_action('car-class', 0, 'select_class');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('car-class', 'GT3', 'select_class');" class="li-new-event"><a href="#" id="GT3"
                                                                                                   class="events-dropdown-item mons-text">GT3</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 1, 'select_class');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('car-class', 'GT4', 'select_class');" class="li-new-event"><a href="#" id="GT4"
                                                                                                   class="events-dropdown-item mons-text">GT4</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 2, 'select_class');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('car-class', 'Multi', 'select_class');" class="li-new-event"><a href="#" id="Multi"
                                                                                                   class="events-dropdown-item mons-text">Multi</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 3, 'select_class');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('car-class', 'ST', 'select_class');" class="li-new-event"><a href="#" id="ST"
                                                                                                   class="events-dropdown-item mons-text">ST</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 4, 'select_class');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('car-class', 'Cup', 'select_class');" class="li-new-event"><a href="#" id="Cup"
                                                                                                   class="events-dropdown-item mons-text">Cup</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-4">
-                        <select name="car" id="car" class="display-none">
-                            <option value="First" name="First">First</option>
-                            <option value="Second" name="Second">Second</option>
-                        </select>
+                        <input name="car" id="car" class="display-none">
                         <div class="btn-group right-horiz create-new-event-btn text-center mid-pos" style=""
                              id="login-btn-group" data-toggle="collapse">
                             <button type="button" id="select_car" class="btn dropdown-toggle mons-text text-btn"
                                     data-bs-toggle="dropdown" aria-expanded="false">Select car
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
-                                <li onclick="btn_action('car', 0, 'select_car');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('car', 'First', 'select_car');" class="li-new-event"><a id="First" href="#"
                                                                                             class="events-dropdown-item mons-text">First</a>
                                 </li>
-                                <li onclick="btn_action('car', 1, 'select_car');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('car', 'Second', 'select_car');" class="li-new-event"><a id="Second" href="#"
                                                                                             class="events-dropdown-item mons-text">Second</a>
                                 </li>
                             </ul>
@@ -93,27 +84,23 @@
 
                     </div>
                     <div class="col-4">
-                        <select name="command" id="command" class="display-none">
-                            <option value="First_team" name="First_team">First team</option>
-                            <option value="Second_team" name="Second_team">Second team</option>
-                            <option value="Create_team" name="Create_team">Create team</option>
-                        </select>
+                        <input id="command" name="command" class="display-none">
                         <div class="btn-group right-horiz create-new-event-btn text-center mid-pos" style=""
                              id="sel-team" data-toggle="collapse">
                             <button type="button" id="select-team" class="btn dropdown-toggle mons-text text-btn"
                                     data-bs-toggle="dropdown" aria-expanded="false">Select team
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
-                                <li onclick="btn_action('command', 0, 'select-team');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('command', 'First team', 'select-team');" class="li-new-event"><a id="First team" href="#"
                                                                                                 class="events-dropdown-item mons-text">First team</a>
                                 </li>
-                                <li onclick="btn_action('command', 1, 'select-team');" class="li-new-event"><a href="#"
+                                <li onclick="btn_action('command', 'Second team', 'select-team');" class="li-new-event"><a id="Second team" href="#"
                                                                                                 class="events-dropdown-item mons-text">Second team</a>
                                 </li>
                                 <li>
                                     <input type="text" id="new-team" placeholder="Create team"
                                            style="outline: none; text-align: center; width: 100%; height: 90%">
-                                    <a type="button" onclick="create_team('command', 2, 'new-team', 'select-team');"
+                                    <a type="button" onclick="create_team('new-team', 'select-team');"
                                        class="btn button-shadow join-btn join-btn-text mons-text mid-pos"
                                        style="display: block; background: #eac407"
                                        href="#">Accept creation
@@ -140,15 +127,16 @@
 
     {% block after-body %}
         <script>
-            function btn_action(select, id, span) {
-                document.getElementById(span).innerHTML = document.getElementById(select).getElementsByTagName('option')[id].textContent
-                document.getElementById(select).getElementsByTagName('option')[id].selected = 'selected';
+            function btn_action(input, id_sel_elem, span) {
+                alert(document.getElementById(id_sel_elem).innerHTML)
+                document.getElementById(span).innerHTML = document.getElementById(id_sel_elem).innerHTML
+                document.getElementById(input).value = document.getElementById(id_sel_elem).innerHTML
             }
 
-            function create_team(select, id, team, span) {
-                document.getElementById(span).innerHTML = document.querySelector('#' + team).value
-                document.getElementById(select).getElementsByTagName('option')[id].selected = 'selected';
-                document.getElementById(select).getElementsByTagName('option')[id].value = document.querySelector('#' + team).value
+            function create_team(team, span) {
+                alert(document.getElementById(team).value)
+                document.getElementById(span).innerHTML = document.getElementById(team).value
+                document.getElementById('command').value = document.getElementById(team).value
             }
         </script>
     {% endblock %}
