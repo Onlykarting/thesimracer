@@ -81,7 +81,7 @@
 .create-new-event-list {
     transform: translate(14px, 32px) !important;
     padding-top: 2px;
-    padding-bottom: 2px;
+    padding-bottom: 0;
 }
 
 ul.create-new-event-list li {
