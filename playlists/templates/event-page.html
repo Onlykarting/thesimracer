@@ -14,9 +14,12 @@
         {% include 'header.html' %}
     {% endblock %}
     <main>
-        <div class="card main-card">
+        <div class="card container main-card" style="padding: 0">
             <div class="row row-img-padding">
-                <div class="background"></div>
+                <div class="background">
+                  <div class="event-info-thumb left-corner">{{ event.name }}</div>
+                  <div class="event-info-thumb right-corner">{{ event.game_settings.event_settings.track.name }} Imola</div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-3">
