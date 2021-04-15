@@ -37,19 +37,19 @@
                                     data-bs-toggle="dropdown" aria-expanded="false">Select class
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
-                                <li onclick="btn_action('car-class', 'GT3', 'select_class');" class="li-new-event"><a href="#" id="GT3"
+                                <li onclick="btn_action('car-class', 'GT3', 'select_class'); change_list();" class="li-new-event"><a href="#" id="GT3"
                                                                                                   class="events-dropdown-item mons-text">GT3</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 'GT4', 'select_class');" class="li-new-event"><a href="#" id="GT4"
+                                <li onclick="btn_action('car-class', 'GT4', 'select_class'); change_list();" class="li-new-event"><a href="#" id="GT4"
                                                                                                   class="events-dropdown-item mons-text">GT4</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 'Multi', 'select_class');" class="li-new-event"><a href="#" id="Multi"
+                                <li onclick="btn_action('car-class', 'Multi', 'select_class'); change_list();" class="li-new-event"><a href="#" id="Multi"
                                                                                                   class="events-dropdown-item mons-text">Multi</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 'ST', 'select_class');" class="li-new-event"><a href="#" id="ST"
+                                <li onclick="btn_action('car-class', 'ST', 'select_class'); change_list();" class="li-new-event"><a href="#" id="ST"
                                                                                                   class="events-dropdown-item mons-text">ST</a>
                                 </li>
-                                <li onclick="btn_action('car-class', 'Cup', 'select_class');" class="li-new-event"><a href="#" id="Cup"
+                                <li onclick="btn_action('car-class', 'Cup', 'select_class'); change_list();" class="li-new-event"><a href="#" id="Cup"
                                                                                                   class="events-dropdown-item mons-text">Cup</a>
                                 </li>
                             </ul>
@@ -62,116 +62,116 @@
                             <button type="button" id="select_car" class="btn dropdown-toggle mons-text text-btn"
                                     data-bs-toggle="dropdown" aria-expanded="false">Select car
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
-                                <li onclick="btn_action('car', 'Mercedes-AMG', 'select_car');" class="li-new-event"><a id="Mercedes-AMG" href="#GT3"
+                            <ul id="list-of-cars" class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
+                                <li id="GT3" onclick="btn_action('car', 'Mercedes-AMG', 'select_car');" class="li-new-event"><a href="#"id="Mercedes-AMG"
                                                                                             class="events-dropdown-item mons-text">Mercedes-AMG</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Mercedes-AMG 2020', 'select_car');" class="li-new-event"><a id="Mercedes-AMG 2020" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Mercedes-AMG 2020', 'select_car');" class="li-new-event"><a href="#"id="Mercedes-AMG 2020"
                                                                                             class="events-dropdown-item mons-text">Mercedes-AMG 2020</a>
                                 </li>
-                                <li onclick="btn_action('car', 'AMR V12 Vantage', 'select_car');" class="li-new-event"><a id="AMR V12 Vantage" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'AMR V12 Vantage', 'select_car');" class="li-new-event"><a href="#"id="AMR V12 Vantage"
                                                                                             class="events-dropdown-item mons-text">AMR V12 Vantage</a>
                                 </li>
-                                <li onclick="btn_action('car', 'AMR V8 Vantage Evo', 'select_car');" class="li-new-event"><a id="AMR V8 Vantage Evo" href="#GT3"
-                                                                                            class="events-dropdown-item mons-text">AMR V8 Vantage Evo</a>
+                                <li id="GT3" onclick="btn_action('car', 'AMR V8 Vantage(Evo)', 'select_car');" class="li-new-event"><a href="#"id="AMR V8 Vantage(Evo)"
+                                                                                            class="events-dropdown-item mons-text">AMR V8 Vantage(Evo)</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Audi R8 LMS', 'select_car');" class="li-new-event"><a id="Audi R8 LMS" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Audi R8 LMS', 'select_car');" class="li-new-event"><a href="#"id="Audi R8 LMS"
                                                                                             class="events-dropdown-item mons-text">Audi R8 LMS</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Audi R8 LMS Evo', 'select_car');" class="li-new-event"><a id="Audi R8 LMS Evo" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Audi R8 LMS Evo', 'select_car');" class="li-new-event"><a href="#"id="Audi R8 LMS Evo"
                                                                                             class="events-dropdown-item mons-text">Audi R8 LMS Evo</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Bentley Continental', 'select_car');" class="li-new-event"><a id="Bentley Continental" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Bentley Continental', 'select_car');" class="li-new-event"><a href="#"id="Bentley Continental"
                                                                                             class="events-dropdown-item mons-text">Bentley Continental</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Bentley Continental Evo', 'select_car');" class="li-new-event"><a id="Bentley Continental Evo" href="#GT3"
-                                                                                            class="events-dropdown-item mons-text">Bentley Continental Evo</a>
+                                <li id="GT3" onclick="btn_action('car', 'Bentley Continental(Evo)', 'select_car');" class="li-new-event"><a href="#"id="Bentley Continental(Evo)"
+                                                                                            class="events-dropdown-item mons-text">Bentley Continental(Evo)</a>
                                 </li>
-                                <li onclick="btn_action('car', 'BMW M6', 'select_car');" class="li-new-event"><a id="BMW M6" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'BMW M6', 'select_car');" class="li-new-event"><a href="#"id="BMW M6"
                                                                                             class="events-dropdown-item mons-text">BMW M6</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Jaguar', 'select_car');" class="li-new-event"><a id="Jaguar" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Jaguar', 'select_car');" class="li-new-event"><a href="#"id="Jaguar"
                                                                                             class="events-dropdown-item mons-text">Jaguar</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Ferrari 488', 'select_car');" class="li-new-event"><a id="Ferrari 488" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Ferrari 488', 'select_car');" class="li-new-event"><a href="#"id="Ferrari 488"
                                                                                             class="events-dropdown-item mons-text">Ferrari 488</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Ferrari 488 Evo', 'select_car');" class="li-new-event"><a id="Ferrari 488 Evo" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Ferrari 488 Evo', 'select_car');" class="li-new-event"><a href="#"id="Ferrari 488 Evo"
                                                                                             class="events-dropdown-item mons-text">Ferrari 488 Evo</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Honda NSX', 'select_car');" class="li-new-event"><a id="Honda NSX" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Honda NSX', 'select_car');" class="li-new-event"><a href="#" id="Honda NSX"
                                                                                             class="events-dropdown-item mons-text">Honda NSX</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Honda NSX Evo', 'select_car');" class="li-new-event"><a id="Honda NSX Evo" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Honda NSX Evo', 'select_car');" class="li-new-event"><a href="#" id="Honda NSX Evo"
                                                                                             class="events-dropdown-item mons-text">Honda NSX Evo</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Lamborghini Huracan', 'select_car');" class="li-new-event"><a id="Lamborghini Huracan" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Lamborghini Huracan', 'select_car');" class="li-new-event"><a href="#" id="Lamborghini Huracan"
                                                                                             class="events-dropdown-item mons-text">Lamborghini Huracan</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Lamborghini Huracan Evo', 'select_car');" class="li-new-event"><a id="Lamborghini Huracan GT3 Evo" href="#GT3"
-                                                                                            class="events-dropdown-item mons-text">Lamborghini Huracan GT3 Evo</a>
+                                <li id="GT3" onclick="btn_action('car', 'Lamborghini Huracan Evo', 'select_car');" class="li-new-event"><a href="#" id="Lamborghini Huracan Evo"
+                                                                                            class="events-dropdown-item mons-text">Lamborghini Huracan Evo</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Lamborghini Huracan ST', 'select_car');" class="li-new-event"><a id="Lamborghini Huracan ST" href="#ST"
+                                <li id="GT3" onclick="btn_action('car', 'Lamborghini Huracan ST', 'select_car');" class="li-new-event"><a href="#" id="Lamborghini Huracan ST"
                                                                                             class="events-dropdown-item mons-text">Lamborghini Huracan ST</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Lexus RC F', 'select_car');" class="li-new-event"><a id="Lexus RC F" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Lexus RC F', 'select_car');" class="li-new-event"><a href="#" id="Lexus RC F"
                                                                                             class="events-dropdown-item mons-text">Lexus RC F</a>
                                 </li>
-                                <li onclick="btn_action('car', 'McLaren 650s', 'select_car');" class="li-new-event"><a id="McLaren 650s" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'McLaren 650s', 'select_car');" class="li-new-event"><a href="#" id="McLaren 650s"
                                                                                             class="events-dropdown-item mons-text">McLaren 650s</a>
                                 </li>
-                                <li onclick="btn_action('car', 'McLaren 720s', 'select_car');" class="li-new-event"><a id="McLaren 720s" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'McLaren 720s', 'select_car');" class="li-new-event"><a href="#" id="McLaren 720s"
                                                                                             class="events-dropdown-item mons-text">McLaren 720s</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Nissan GT-R Nismo', 'select_car');" class="li-new-event"><a id="Nissan GT-R Nismo GT3" href="#GT3"
-                                                                                            class="events-dropdown-item mons-text">Nissan GT-R Nismo GT3</a>
+                                <li id="GT3" onclick="btn_action('car', 'Nissan GT-R Nismo', 'select_car');" class="li-new-event"><a href="#" id="Nissan GT-R Nismo"
+                                                                                            class="events-dropdown-item mons-text">Nissan GT-R Nismo</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Nissan GT-R Nismo Evo', 'select_car');" class="li-new-event"><a id="Nissan GT-R Nismo Evo" href="#GT3"
-                                                                                            class="events-dropdown-item mons-text">Nissan GT-R Nismo Evo</a>
+                                <li id="GT3" onclick="btn_action('car', 'Nissan GT-R Nismo(Evo)', 'select_car');" class="li-new-event"><a href="#" id="Nissan GT-R Nismo(Evo)"
+                                                                                            class="events-dropdown-item mons-text">Nissan GT-R Nismo(Evo)</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Porsche 991 R', 'select_car');" class="li-new-event"><a id="Porsche 991 R" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Porsche 991 R', 'select_car');" class="li-new-event"><a href="#" id="Porsche 991 R"
                                                                                             class="events-dropdown-item mons-text">Porsche 991 R</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Porsche 991 R Evo', 'select_car');" class="li-new-event"><a id="Porsche 991 R Evo" href="#GT3"
-                                                                                            class="events-dropdown-item mons-text">Porsche 991 R Evo</a>
+                                <li id="GT3" onclick="btn_action('car', 'Porsche 991 R(Evo)', 'select_car');" class="li-new-event"><a href="#" id="Porsche 991 R(Evo)"
+                                                                                            class="events-dropdown-item mons-text">Porsche 991 R(Evo)</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Porsche 991 Cup', 'select_car');" class="li-new-event"><a id="Porsche 991 Cup" href="#Cup"
+                                <li id="GT3" onclick="btn_action('car', 'Porsche 991 Cup', 'select_car');" class="li-new-event"><a href="#" id="Porsche 991 Cup"
                                                                                             class="events-dropdown-item mons-text">Porsche 991 Cup</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Reiter R-EX', 'select_car');" class="li-new-event"><a id="Reiter R-EX" href="#GT3"
+                                <li id="GT3" onclick="btn_action('car', 'Reiter R-EX', 'select_car');" class="li-new-event"><a href="#" id="Reiter R-EX"
                                                                                             class="events-dropdown-item mons-text">Reiter R-EX</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Alpine A110', 'select_car');" class="li-new-event"><a id="Alpine A110" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'Alpine A110', 'select_car');" class="li-new-event"><a href="#" id="Alpine A110"
                                                                                             class="events-dropdown-item mons-text">Alpine A110</a>
                                 </li>
-                                <li onclick="btn_action('car', 'AMR V8 Vantage', 'select_car');" class="li-new-event"><a id="AMR V8 Vantage" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'AMR V8 Vantage', 'select_car');" class="li-new-event"><a href="#" id="AMR V8 Vantage"
                                                                                             class="events-dropdown-item mons-text">AMR V8 Vantage</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Audi R8', 'select_car');" class="li-new-event"><a id="Audi R8" href="#GT4"
-                                                                                            class="events-dropdown-item mons-text">Audi R8</a>
+                                <li id="GT4" onclick="btn_action('car', 'Audi R8 LMS', 'select_car');" class="li-new-event"><a href="#" id="Audi R8 LMS"
+                                                                                            class="events-dropdown-item mons-text">Audi R8 LMS</a>
                                 </li>
-                                <li onclick="btn_action('car', 'BMW M4', 'select_car');" class="li-new-event"><a id="BMW M4" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'BMW M4', 'select_car');" class="li-new-event"><a href="#" id="BMW M4"
                                                                                             class="events-dropdown-item mons-text">BMW M4</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Chevrolet Camaro', 'select_car');" class="li-new-event"><a id="Chevrolet Camaro" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'Chevrolet Camaro', 'select_car');" class="li-new-event"><a href="#" id="Chevrolet Camaro"
                                                                                             class="events-dropdown-item mons-text">Chevrolet Camaro</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Ginetta G55', 'select_car');" class="li-new-event"><a id="Ginetta G55" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'Ginetta G55', 'select_car');" class="li-new-event"><a href="#" id="Ginetta G55"
                                                                                             class="events-dropdown-item mons-text">Ginetta G55</a>
                                 </li>
-                                <li onclick="btn_action('car', 'KTM X-Bow', 'select_car');" class="li-new-event"><a id="KTM X-Bow" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'KTM X-Bow', 'select_car');" class="li-new-event"><a href="#" id="KTM X-Bow"
                                                                                             class="events-dropdown-item mons-text">KTM X-Bow</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Maserati GT MC', 'select_car');" class="li-new-event"><a id="Maserati GT MC" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'Maserati GT MC', 'select_car');" class="li-new-event"><a href="#" id="Maserati GT MC"
                                                                                             class="events-dropdown-item mons-text">Maserati GT MC</a>
                                 </li>
-                                <li onclick="btn_action('car', 'McLaren 570s', 'select_car');" class="li-new-event"><a id="McLaren 570s" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'McLaren 570s', 'select_car');" class="li-new-event"><a href="#" id="McLaren 570s"
                                                                                             class="events-dropdown-item mons-text">McLaren 570s</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Mercedes AMG', 'select_car');" class="li-new-event"><a id="Mercedes AMG" href="#GT4"
-                                                                                            class="events-dropdown-item mons-text">Mercedes AMG</a>
+                                <li id="GT4" onclick="btn_action('car', 'Mercedes-AMG', 'select_car');" class="li-new-event"><a href="#" id="Mercedes-AMG"
+                                                                                            class="events-dropdown-item mons-text">Mercedes-AMG</a>
                                 </li>
-                                <li onclick="btn_action('car', 'Porsche 718 Cayman', 'select_car');" class="li-new-event"><a id="Porsche 718 Cayman" href="#GT4"
+                                <li id="GT4" onclick="btn_action('car', 'Porsche 718 Cayman ', 'select_car');" class="li-new-event"><a href="#" id="Porsche 718 Cayman"
                                                                                             class="events-dropdown-item mons-text">Porsche 718 Cayman</a>
                                 </li>
                             </ul>
@@ -233,15 +233,26 @@
     {% block after-body %}
         <script>
             function btn_action(input, id_sel_elem, span) {
-                alert(document.getElementById(id_sel_elem).innerHTML)
                 document.getElementById(span).innerHTML = document.getElementById(id_sel_elem).innerHTML
                 document.getElementById(input).value = document.getElementById(id_sel_elem).innerHTML
             }
 
             function create_team(team, span) {
-                alert(document.getElementById(team).value)
                 document.getElementById(span).innerHTML = document.getElementById(team).value
                 document.getElementById('command').value = document.getElementById(team).value
+            }
+
+            function change_list(){
+                $('#list-of-cars').each(function () {
+                    var Class = document.getElementById('car-class').value
+                    $("li", this).each(function(i) {
+                        if($(this).attr("id") !== Class){
+                            $(this).css("display", "none")
+                        } else{
+                            $(this).css("display", "block")
+                        }
+                    });
+                });
             }
         </script>
     {% endblock %}
