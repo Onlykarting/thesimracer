@@ -8,6 +8,7 @@
     <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/event-page.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/championship-page.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block body %}
     {% block header %}
@@ -16,35 +17,35 @@
     <main>
         <div class="card main-card">
             <div class="row row-img-padding">
-                <div class="background"></div>
+                <div class="championship-img"></div>
             </div>
             <div class="row">
                 <div class="col-lg-3">
                     <div class="card card-fillers main-text" style="background: #E8E8E8;">
                         <div class="row">
                             <div class="col-6 text-secondary">
-                                <span class="text-first-col">Date</span>
+                                <span class="text-first-col">Verifying type</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>28.02.21</span>
+                                <span>Official</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
                         <div class="row">
                             <div class="col-6 text-secondary">
-                                <span class="text-first-col">Time</span>
-                            </div>
-                            <div class="col-6 text-right">
-                                <span>18:30</span>
-                            </div>
-                        </div>
-                        <hr class="card-hr-secondary">
-                        <div class="row">
-                            <div class="col-6 text-secondary">
-                                <span class="text-first-col">Event type</span>
+                                <span class="text-first-col">Champ type</span>
                             </div>
                             <div class="col-6 text-right">
                                 <span>Command</span>
+                            </div>
+                        </div>
+                        <hr class="card-hr-secondary">
+                        <div class="row">
+                            <div class="col-8 text-secondary">
+                                <span class="text-first-col">Drivers in team</span>
+                            </div>
+                            <div class="col-4 text-right">
+                                <span>3</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -54,66 +55,19 @@
                     <div class="card card-fillers main-text" style="background: #E8E8E8; padding-top: 10px">
                         <div class="row" style="margin-bottom: 10px;">
                             <div class="col-6 text-secondary">
-                                <div class="right-horiz create-new-event-btn text-center mid-pos sessions-btn-div" style="width: 100%;"
-                                     id="login-btn-group" data-toggle="collapse">
-                                    <div class="card card-border" style="border-radius: 20px !important;">
-                                        <div id="headingOne">
-                                            <button id="select_car" class="btn button-shadow btn-main sessions-btn white-btn join-btn-text mons-text main-text" type="button"
-                                                    data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Sessions
-                                            </button>
-                                        </div>
-
-                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#login-btn-group">
-                                          <div class="card-body card-table">
-                                              <table style="width: 90%; margin-left: auto; margin-right: auto">
-                                                  <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="text-secondary">#</td>
-                                                      <td class="text-secondary">Type</td>
-                                                      <td class="text-secondary">Duration</td>
-                                                      <td class="text-secondary">Weather</td>
-                                                  </tr>
-                                                  <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">1</td>
-                                                      <td class="main-text">P</td>
-                                                      <td class="main-text">15 min</td>
-                                                      <td class="main-text">Random</td>
-                                                  </tr>
-                                                  <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">2</td>
-                                                      <td class="main-text">Q</td>
-                                                      <td class="main-text">10 min</td>
-                                                      <td class="main-text">Clear</td>
-                                                  </tr>
-                                                  <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">3</td>
-                                                      <td class="main-text">R</td>
-                                                      <td class="main-text">1 h</td>
-                                                      <td class="main-text">Clear</td>
-                                                  </tr>
-                                                  <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">4</td>
-                                                      <td class="main-text">Q</td>
-                                                      <td class="main-text">10 min</td>
-                                                      <td class="main-text">Wet</td>
-                                                  </tr>
-                                                  <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">5</td>
-                                                      <td class="main-text">R</td>
-                                                      <td class="main-text">1 h</td>
-                                                      <td class="main-text">Wet</td>
-                                                  </tr>
-                                              </table>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <span>
+                                    <a type="button"
+                                       class="btn button-shadow btn-main white-btn join-btn-text mons-text"
+                                       href="{{ event.pk }}/races">Races
+                                    </a>
+                                </span>
                             </div>
                             <div class="col-6 text-secondary">
                                 <form method="post">
                                 <span>
                                    <a type="button"
-                                       class="btn button-shadow btn-main black-btn join-btn-text mons-text"
-                                       href="/event/{{ event.pk }}/register">Join
+                                       class="btn button-shadow btn-main green-btn join-btn-text mons-text"
+                                       href="{{ event.pk }}/register">Join
                                    </a>
                                 </span>
                                 </form>
@@ -161,10 +115,10 @@
                         <hr class="card-hr-secondary">
                         <div class="row">
                             <div class="col-8 text-secondary">
-                                <span class="text-first-col">Pilots in command</span>
+                                <span class="text-first-col">Penalty system</span>
                             </div>
                             <div class="col-4 text-right">
-                                <span>Command</span>
+                                <span>On</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -240,7 +194,7 @@
                 </div>
             </div>
             <div class="row row-custom card-fillers">
-                <span class="text-secondary mons-text">About race</span>
+                <span class="text-secondary mons-text">About championship</span>
                 <hr class="card-hr-secondary" style="width: 99%">
                 <span class="main-text">
                         It is a long established fact that a reader will be distracted by the readable content of a page when looking at its

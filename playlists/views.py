@@ -45,7 +45,7 @@ def event(request, event_id: int):
 def get_playlist(request, playlist_id: int):
     playlist = get_playlist_if_available(request.user, playlist_id)
     if playlist:
-        return render(request, 'playlist.html', {
+        return render(request, 'championship-page.html', {
             'playlist': playlist,
             'playlist_events': playlist.event_set.all()
         })
@@ -85,7 +85,11 @@ def unregister_on_event(request, event_id: int):
 
 
 def get_playlists(request):
-    pass
+    return render(request, 'championships.html', {})
+
+
+def get_playlist_races(request, playlist_id: int):
+    return render(request, 'championship-events.html', {})
 
 
 @login_required(login_url='/login')
