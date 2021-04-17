@@ -23,6 +23,7 @@ class ServerWorker(Thread):
             ServerConfigDumper(self),
         ]
         self.process: Optional[subprocess.Popen] = None
+        self.handlers = []
 
     @property
     def deploy_path(self):
@@ -66,5 +67,7 @@ class ServerWorker(Thread):
     def terminate(self):
         self.process.terminate()
 
-    # def __del__(self):
-    #     self.terminate()
+    def register_event_handler(self, event_type):
+        def decorator(handler):
+            self.handlers.append()
+            return handler
