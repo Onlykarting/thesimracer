@@ -16,7 +16,16 @@
     <main>
         <div class="card main-card">
             <div class="row row-img-padding">
-                <div class="background"></div>
+                <div class="background">
+                    <div class="inner-img-div left-bottom-corn">
+                        <span class="text-img" style="height: 100%; width: 100%">Sprint Cup, Round 2</span>
+                    </div>
+
+                    <div class="inner-img-div right-bottom-corn">
+                        <span class="text-img" style="height: 100%; width: 100%">Imola</span>
+                    </div>
+
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-3">
@@ -296,4 +305,8 @@
     {% block footer %}
         {% include 'footer.html' %}
     {% endblock %}
+{% endblock %}
+
+{% block after-body %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 {% endblock %}

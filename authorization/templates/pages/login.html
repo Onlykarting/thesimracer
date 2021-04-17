@@ -23,6 +23,7 @@
 {% endblock %}
 
 <main>
+    <div class="card main-card">
     {% if register_page %}
         <script>window.onload = function(){choose_tab('pills-register-tab');}</script>
     {% endif %}
@@ -38,7 +39,7 @@
     </ul>
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-        <h4 class="mb-3 headers-login" id="login">Login</h4>
+        <h4 class="mb-3 card-header-text" id="login">Login</h4>
         <hr class="my-4">
           <form method="post"> {% csrf_token %}
         <div class="col-12 mb-3">
@@ -63,11 +64,11 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <button class="w-100 btn btn-lg btn-sub" type="submit">Login</button>
+        <button class="w-100 btn btn-lg btn-sub" type="submit">Submit</button>
     </form>
       </div>
           <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
-            <h4 class="mb-3 headers-login" id="register">Registration</h4>
+            <h4 class="mb-3 card-header-text" id="register">Registration</h4>
             <hr class="my-4">
             <form class="needs-validation" method="post"> {% csrf_token %}
                 <div class="row g-3">
@@ -113,7 +114,7 @@
                             </ul>
                         {% endif %}
 
-                        <button class="w-100 btn btn-lg btn-sub" type="submit">Register</button>
+                        <button class="w-100 btn btn-lg btn-sub" type="submit">Submit</button>
                 </div>
             </form>
       </div>
@@ -126,6 +127,7 @@
             document.location.href = '/'
         </script>
     {% endif %}
+    </div>
 </main>
 
     {% block footer %}

@@ -92,6 +92,14 @@ def get_playlist_races(request, playlist_id: int):
     return render(request, 'championship-events.html', {})
 
 
+def register_on_playlist(request, playlist_id: int):
+    playlist = get_playlist_if_available(request.user, playlist_id)
+    if playlist:
+        return render(request, 'championship-register.html', {})
+    else:
+        return page_not_found(request, '')
+
+
 @login_required(login_url='/login')
 def create_playlist(request):
     if request.method == 'GET':

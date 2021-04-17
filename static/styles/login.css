@@ -3,6 +3,16 @@
     src: url(/static/fonts/10351.ttf); /* Путь к файлу со шрифтом */
 }
 
+@font-face {
+    font-family: Montserrat-Medium; /* Гарнитура шрифта */
+    src: url(/static/fonts/Montserrat-Medium.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: Montserrat-Regular; /* Гарнитура шрифта */
+    src: url(/static/fonts/Montserrat-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
 .page-l{
     text-decoration:none;
     color: #1f1a0c;
@@ -11,6 +21,20 @@
 .page-l:hover{
     text-decoration: underline;
     color: #1f1a0c;
+}
+
+.main-card {
+    border-radius: 10px;
+    border: 2px solid rgba(37, 37, 37, 0.5);
+    margin: 100px auto 100px auto;
+    width: 50%;
+}
+
+.card {
+    font-family: Arial;
+    box-shadow: 1px 1px 30px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 40px;
+    border: none;
 }
 
 .btn-sub:hover{
@@ -51,10 +75,26 @@
 }
 
 .main-block{
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 100px auto 100px auto !important;
     width: 40em;
+}
+
+.row{
+    margin-top: 0;
+}
+
+.card-header-text {
+    text-decoration: none;
+    font-family: Montserrat-Medium;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 24px;
+    color: rgba(37, 37, 37, 0.5);
+}
+
+.inner-img-div{
+
 }
 
 .headers-login{

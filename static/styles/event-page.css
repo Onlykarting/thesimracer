@@ -84,6 +84,43 @@
     padding-bottom: 5px !important;
 }
 
+.text-img{
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #E8E8E8;
+}
+
+.inner-img-div{
+    height: 60px;
+    background: #2F3640;
+    opacity: 0.8;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-right: 30px;
+}
+
+.left-bottom-corn{
+    bottom: 0;
+    left: 0;
+    position:absolute;
+    border-top-right-radius: 30px;
+}
+
+.right-bottom-corn{
+    bottom: 0;
+    right: 0;
+    position:absolute;
+    border-top-left-radius: 30px;
+}
+
 .btn{
     outline: none !important;
     box-shadow: none !important;
