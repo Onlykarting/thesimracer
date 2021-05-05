@@ -10,11 +10,9 @@ class StreamReader:
     class Context:
         line: str
         stream_type: str
-        worker: Any
         encoding: str
 
-    def __init__(self, worker, stream_type, stream, queue, encoding='utf-8'):
-        self.worker = worker
+    def __init__(self, stream_type, stream, queue, encoding='utf-8'):
         self.stream_type = stream_type
         self.stream = stream
         self.encoding = encoding
@@ -23,5 +21,10 @@ class StreamReader:
         self.thread.run()
 
     def __reader(self):
-        for line in self.stream:
-            self.queue.put(self.Context(line, self.stream_type, self.worker, self.encoding))
+        try:
+            for line in self.stream:
+                self.queue.put(self.Context(line.decode('utf-8'),
+                                            self.stream_type,
+                                            self.encoding))
+        except ValueError:
+            return
