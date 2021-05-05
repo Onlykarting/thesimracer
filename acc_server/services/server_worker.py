@@ -1,20 +1,27 @@
 import os
+import queue
 import shutil
 import subprocess
-from threading import Thread
 from pathlib import Path
-from typing import Optional, Callable, List
+from typing import Optional
 from acc_server.models import AccEvent
+from queue import Queue
+from acc_server.services.stream_reader import StreamReader
+from .base_server_worker import BaseServerWorker
+from .base_server_manager import BaseServerManager
+from .server_worker_proxy import ServerWorkerProxy
 from thesimracer.settings import ACC_SERVER_CONFIG
 from .dumpers import ServerConfigDumper, ServerSettingsDumper, AssistRulesDumper, \
     EventSettingsDumper, EventRulesDumper
 
 
-class ServerWorker(Thread):
+class ServerWorker(BaseServerWorker):
 
-    def __init__(self, event: AccEvent):
-        super(ServerWorker, self).__init__()
+    def __init__(self, event: AccEvent, manager: BaseServerManager, worker_id: int):
+        super(BaseServerWorker, self).__init__()
         self.event = event
+        self.worker_id = worker_id
+        self.manager = manager
         self.dumpers = [
             EventSettingsDumper(self),
             EventRulesDumper(self),
@@ -23,7 +30,10 @@ class ServerWorker(Thread):
             ServerConfigDumper(self),
         ]
         self.process: Optional[subprocess.Popen] = None
-        self.handlers = []
+        self.queue = queue.Queue()
+        self.stderr_reader = None
+        self.stdout_reader = None
+        self.stopped = False
 
     @property
     def deploy_path(self):
@@ -60,14 +70,20 @@ class ServerWorker(Thread):
                                         cwd=self.deploy_path,
                                         stdout=subprocess.PIPE,
                                         stderr=subprocess.PIPE)
-        with self.process as process:
-            print("stdout:", self.process.stdout.readline())
-            print("stderr:", self.process.stderr.readline())
+        self.stderr_reader = StreamReader('stderr', self.process.stderr, self.queue)
+        self.stdout_reader = StreamReader('stdout', self.process.stdout, self.queue)
+        while not self.stopped:
+            context = self.queue.get()
+            self.parse_event(context)
+
+    def parse_event(self, context):
+        for creator in self.manager.event_creators:
+            if creator.test(context.line):
+                creator.parse(context.line, {
+                    'worker': ServerWorkerProxy(self.worker_id, self.manager),
+                    'stream': context.stream_type
+                })
 
     def terminate(self):
+        self.stopped = True
         self.process.terminate()
-
-    def register_event_handler(self, event_type):
-        def decorator(handler):
-            self.handlers.append()
-            return handler
