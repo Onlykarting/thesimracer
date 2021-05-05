@@ -9,7 +9,7 @@ class ServerEvent:
     ticks: int = 0
     raw_string: str = ''
     worker: ServerWorkerProxy = None
-    stream: int = -2
+    stream: str = ''
 
 
 @dataclass(frozen=True)
