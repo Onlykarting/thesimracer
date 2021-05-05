@@ -21,9 +21,9 @@ class ServerWorkerManager(BaseServerManager):
         self.__workers: Dict[Any, ServerWorker] = {}
         self.__handlers = []
         self.__event_creators = [
-            EventCreators.EventEnd,
-            EventCreators.SessionComplete,
-            EventCreators.SessionPhaseChanged
+            EventCreators.EventEnd(),
+            EventCreators.SessionComplete(),
+            EventCreators.SessionPhaseChanged()
         ]
 
     def __len__(self):
