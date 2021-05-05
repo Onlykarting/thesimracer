@@ -1,12 +1,14 @@
 import time
 from datetime import timedelta, datetime
+from .base_server_manager import BaseServerManager
 from .server_worker_proxy import ServerWorkerProxy
+from .server_event import EventCreators
 from .server_worker import ServerWorker
 from typing import Dict, Any
 from acc_server.models import AccEvent
 
 
-class ServerWorkerManager:
+class ServerWorkerManager(BaseServerManager):
 
     __instance = None
 
@@ -17,7 +19,12 @@ class ServerWorkerManager:
 
     def __init__(self):
         self.__workers: Dict[Any, ServerWorker] = {}
-        self.callbacks = []
+        self.__handlers = []
+        self.__event_creators = [
+            EventCreators.EventEnd,
+            EventCreators.SessionComplete,
+            EventCreators.SessionPhaseChanged
+        ]
 
     def __len__(self):
         return len(self.__workers)
@@ -27,7 +34,7 @@ class ServerWorkerManager:
 
     def create_worker(self, event: AccEvent) -> ServerWorkerProxy:
         if not self.__workers.get(event.id):
-            self.__workers[event.id] = ServerWorker(event)
+            self.__workers[event.id] = ServerWorker(event, self, event.id)
         return ServerWorkerProxy(event.id, self)
 
     def terminate_worker(self, worker_id):
@@ -50,3 +57,11 @@ class ServerWorkerManager:
                 worker = self.create_worker(event)
                 worker.run()
             time.sleep(delay.total_seconds())
+
+    @property
+    def event_creators(self) -> list:
+        return self.__event_creators
+
+    @property
+    def handlers(self) -> list:
+        return self.__handlers
