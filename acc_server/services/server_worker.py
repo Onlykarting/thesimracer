@@ -79,10 +79,13 @@ class ServerWorker(BaseServerWorker):
     def parse_event(self, context):
         for creator in self.manager.event_creators:
             if creator.test(context.line):
-                creator.parse(context.line, {
-                    'worker': ServerWorkerProxy(self.worker_id, self.manager),
-                    'stream': context.stream_type
-                })
+                return creator.parse(context.line,
+                                     worker=ServerWorkerProxy(self.worker_id, self.manager),
+                                     stream=context.stream_type)
+
+    def process_event(self):
+        for handler in self.manager.handlers:
+            pass
 
     def terminate(self):
         self.stopped = True

@@ -66,32 +66,32 @@ class RegExpEventCreator(BaseEventCreator):
 class EventCreators:
 
     class SessionComplete(RegExpEventCreator):
-        pattern = re.compile(r'(?P<timestamp>\d+):\s+Session completed: (?P<session_type>[a-zA-Z]+)'
+        pattern = re.compile(r'(?P<ticks>\d+):\s+Session completed: (?P<session_type>[a-zA-Z]+)'
                              r'/<session completed> with (?P<car_count>\d+) cars and (?P<connection_count>\d+) connections')
 
         event_data_class = SessionCompleted
 
         type_convert_table = {
-            'timestamp': int,
+            'ticks': int,
             'car_count': int,
             'connection_count': int
         }
 
     class SessionPhaseChanged(RegExpEventCreator):
-        pattern = re.compile(r'(?P<timestamp>\d+):\s+Detected\s+sessionPhase\s+<(?P<this_phase>[\w\d\s]+)>\s+'
+        pattern = re.compile(r'(?P<ticks>\d+):\s+Detected\s+sessionPhase\s+<(?P<this_phase>[\w\d\s]+)>\s+'
                              r'->\s+<(?P<next_phase>[\w\d\s]+)>\s+\((?P<session_type>[a-zA-Z]+)\)')
 
         event_data_class = SessionPhaseChanged
 
         type_convert_table = {
-            'timestamp': int
+            'ticks': int
         }
 
     class EventEnd(RegExpEventCreator):
-        pattern = re.compile(r'(?P<timestamp>\d+):.+Weekend reset,.+')
+        pattern = re.compile(r'(?P<ticks>\d+):.+Weekend reset,.+')
 
         event_data_class = EventEnd
 
         type_convert_table = {
-            'timestamp': int
+            'ticks': int
         }
