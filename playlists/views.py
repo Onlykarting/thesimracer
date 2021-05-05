@@ -22,12 +22,15 @@ def get_events(request):
 
 
 def indev(request):
-    context = {}
-    return render(request, 'in-development.html', context)
+    return render(request, 'in-development.html', {})
+
 
 def get_results(request):
-    context = {}
-    return render(request, 'results.html', context)
+    return render(request, 'results.html', {})
+
+
+def tools(request):
+    return render(request, 'tools.html', {})
 
 
 def event(request, event_id: int):

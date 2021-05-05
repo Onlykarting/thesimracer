@@ -21,6 +21,9 @@
     color: rgba(255, 255, 255, 0.45);
     letter-spacing: 0.01em;
     text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 90%;
 }
 
 .mid-content-foot{
@@ -33,6 +36,22 @@
     margin: auto;
 }
 
-.footer{
-    height: 60px;
+.text-block-foot li{
+    flex-basis: auto;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.footer-collapse{
+    padding-left: 15px;
+    text-align: justify;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-grow: 0;
+}
+
+.mid-a{
+    margin: auto;
+    flex-grow: 0;
 }

@@ -19,6 +19,55 @@
     height: 100%;
 }
 
+.main-card {
+    border-radius: 40px;
+    margin: 100px auto 100px auto;
+	padding: 10px 150px 10px 150px;
+    width: 80%;
+}
+
+.avatar-img{
+	margin: 0 auto 0 auto;
+	border-radius: 20px;
+	width: 200px !important;
+	padding: 0 0 0 0 !important;
+}
+
+.main-card{
+	border-radius: 20px;
+	box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.top-15{
+	margin-top: 15px;
+}
+
+.left-5{
+	margin-left: 5px;
+}
+
+.row-padding-card{
+	margin: 20px 5px 10px 10px;
+}
+
+.big-font{
+	font-size: 34px;
+	line-height: 40px;
+}
+
+.upper-block-text{
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	line-height: 18px;
+	color: rgba(67, 67, 67, 0.5);
+}
+
+.vert-center{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
 .text-image-polygon {
 	position: absolute;
 	font-family: Arial;
@@ -30,6 +79,15 @@
 	text-align: center;
 	color: rgba(37, 37, 37, 0.5);
 	border: #252525;
+}
+
+.middle-text{
+	text-align: center;
+	margin-right: 12px;
+}
+
+.text-soc{
+	padding-left: 10px;
 }
 
 .text-polygon-1{
@@ -133,4 +191,59 @@
 
 .hr-body{
 	margin: 4px 0 4px 0;
+}
+
+.text-al-center{
+	text-align: center !important;
+}
+
+.edit-text{
+	text-decoration: underline;
+	font-size: 18px;
+	margin-top: auto;
+}
+
+.orange-about-me{
+	color: #f9b330;
+}
+
+.header{
+	font-size: 28px;
+}
+
+.custom-hr{
+	width: 99%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.aboout-me-text{
+	color: rgba(0, 0, 0, 0.5);
+}
+.teams-header{
+	font-size: 20px;
+}
+
+.teams{
+	margin-top: 0;
+	color: rgba(0, 0, 0, 0.63);
+	font-size: 16px;
+}
+
+.text-secondary{
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.table-marg{
+	margin: 0 20px 10px 20px;
+}
+
+.table-card {
+    border-radius: 20px;
+	background: #E8E8E8;
+	box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+#hr-myself{
+	margin-top: 20px;
 }

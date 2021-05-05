@@ -2,11 +2,36 @@
 
 <footer>
     <nav class="nav navbar navbar-expand-lg fixed-bottom navbar-light foo-header footer">
-        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+        <div class="container-fluid">
+        <button style="margin-left: auto" class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapseFoot" aria-controls="navbarCollapseFoot" aria-expanded="false"
                     aria-label="Toggle navigation" id="NavBarToggler">
                 <span class="navbar-toggler-icon"></span>
         </button>
+
+        <div class="collapse navbar-collapse footer-collapse" id="navbarCollapseFoot">
+            <ul class="navbar-nav mb-2 mb-md-0 text-block-foot">
+                <li class="navbar-item li-header li-footer li-foot-first">
+                    <a aria-current="page" href="">About us</a>
+                </li>
+                <li class="navbar-item li-header li-footer li-foot-default">
+                    <a aria-current="page" href="/support">Support</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="navbar-item li-header li-footer li-foot-default">
+                    <a class="mid-a" style="margin-left: auto" aria-current="page" href="/profile">Profile</a>
+                </li>
+                {% endif %}
+                <li class="navbar-item li-header li-footer li-foot-default">
+                    <a class="mid-a" aria-current="page" href="https://discord.gg/C59U83SjAq">Discord</a>
+                </li>
+                <li class="navbar-item li-header li-footer li-foot-last">
+                    <a class="mid-a" aria-current="page" href="/help-us">Help us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--
         <div class="collapse navbar-collapse" id="navbarCollapseFoot">
             <div class="row text-block-foot" style="width: 100%">
                 <div class="col mid-content-foot" ><a href="">About us</a></div>
@@ -18,5 +43,6 @@
                 <div class="col mid-content-foot" ><a href="/help-us">Help us</a></div>
             </div>
         </div>
+        !-->
     </nav>
 </footer>
