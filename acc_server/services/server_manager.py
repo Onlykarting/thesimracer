@@ -4,6 +4,7 @@ from .base_server_manager import BaseServerManager
 from .server_worker_proxy import ServerWorkerProxy
 from .server_event import EventCreators
 from .server_worker import ServerWorker
+from .event_handlers import KillServer, LogSessionPhaseChanged
 from typing import Dict, Any
 from acc_server.models import AccEvent
 
@@ -19,7 +20,10 @@ class ServerWorkerManager(BaseServerManager):
 
     def __init__(self):
         self.__workers: Dict[Any, ServerWorker] = {}
-        self.__handlers = []
+        self.__handlers = [
+            LogSessionPhaseChanged(),
+            KillServer()
+        ]
         self.__event_creators = [
             EventCreators.EventEnd(),
             EventCreators.SessionComplete(),
