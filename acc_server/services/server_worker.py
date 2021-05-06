@@ -7,6 +7,7 @@ from typing import Optional
 from acc_server.models import AccEvent
 from queue import Queue
 from acc_server.services.stream_reader import StreamReader
+from .server_event import ServerEvent
 from .base_server_worker import BaseServerWorker
 from .base_server_manager import BaseServerManager
 from .server_worker_proxy import ServerWorkerProxy
@@ -74,7 +75,9 @@ class ServerWorker(BaseServerWorker):
         self.stdout_reader = StreamReader('stdout', self.process.stdout, self.queue)
         while not self.stopped:
             context = self.queue.get()
-            self.parse_event(context)
+            event = self.parse_event(context)
+            if event:
+                self.process_event(event)
 
     def parse_event(self, context):
         for creator in self.manager.event_creators:
@@ -83,9 +86,10 @@ class ServerWorker(BaseServerWorker):
                                      worker=ServerWorkerProxy(self.worker_id, self.manager),
                                      stream=context.stream_type)
 
-    def process_event(self):
+    def process_event(self, event: ServerEvent):
         for handler in self.manager.handlers:
-            pass
+            if handler.execute(event):
+                break
 
     def terminate(self):
         self.stopped = True
