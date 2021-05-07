@@ -14,3 +14,4 @@ class Stats(models.Model):
     discord = models.CharField(default=0, max_length=20)
     tag = models.CharField(default=0, max_length=3)
     country_flag = models.CharField(default=0, max_length=40)
+    steam_id = models.CharField(max_length=65, null=True)
