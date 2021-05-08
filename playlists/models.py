@@ -43,7 +43,7 @@ class Playlist(models.Model):
 
 class Event(models.Model):
 
-    playlist = ForeignKey(Playlist, on_delete=models.deletion.CASCADE)
+    playlist = ForeignKey(Playlist, on_delete=models.deletion.CASCADE, null=True)
     game_settings = OneToOneField(AccEvent, on_delete=models.deletion.CASCADE)
     name = CharField(max_length=255)
     description = TextField()
@@ -53,3 +53,27 @@ class Event(models.Model):
     registered_users = ManyToManyField(User)
     is_verified = BooleanField(default=False)
 
+
+class CarClass:
+
+    name = CharField(max_length=30)
+
+
+class Car:
+
+    name = CharField(max_length=255)
+    class_ = ForeignKey(CarClass, on_delete=models.deletion.RESTRICT)
+
+
+class Team:
+
+    name = CharField(max_length=255)
+    members = ManyToManyField(User)
+
+
+class Registration:
+
+    user = ForeignKey(User, on_delete=models.deletion.CASCADE)
+    team = ForeignKey(Team, on_delete=models.deletion.SET_NULL, null=True)
+    car = ForeignKey(Car, on_delete=models.deletion.CASCADE)
+    preferred_number = IntegerField()
