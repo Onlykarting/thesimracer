@@ -50,29 +50,30 @@ class Event(models.Model):
     starts_at = DateTimeField()
     registration_starts_at = DateTimeField()
     registration_ends_at = DateTimeField()
-    registered_users = ManyToManyField(User)
     is_verified = BooleanField(default=False)
 
 
-class CarClass:
+class CarClass(models.Model):
 
     name = CharField(max_length=30)
 
 
-class Car:
+class Car(models.Model):
 
     name = CharField(max_length=255)
     class_ = ForeignKey(CarClass, on_delete=models.deletion.RESTRICT)
 
 
-class Team:
+class Team(models.Model):
 
     name = CharField(max_length=255)
+    host = ForeignKey(User, on_delete=models.deletion.RESTRICT)
     members = ManyToManyField(User)
 
 
-class Registration:
+class Registration(models.Model):
 
+    event = ForeignKey(Event, on_delete=models.deletion.CASCADE)
     user = ForeignKey(User, on_delete=models.deletion.CASCADE)
     team = ForeignKey(Team, on_delete=models.deletion.SET_NULL, null=True)
     car = ForeignKey(Car, on_delete=models.deletion.CASCADE)
