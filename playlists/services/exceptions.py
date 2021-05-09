@@ -1,0 +1,2 @@
+class UniqueConstraint(Exception):
+    pass
