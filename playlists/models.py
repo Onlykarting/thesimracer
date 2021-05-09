@@ -61,14 +61,14 @@ class CarClass(models.Model):
 class Car(models.Model):
 
     name = CharField(max_length=255)
-    class_ = ForeignKey(CarClass, on_delete=models.deletion.RESTRICT)
+    type = ForeignKey(CarClass, on_delete=models.deletion.RESTRICT)
 
 
 class Team(models.Model):
 
     name = CharField(max_length=255)
-    host = ForeignKey(User, on_delete=models.deletion.RESTRICT)
-    members = ManyToManyField(User)
+    host = ForeignKey(User, on_delete=models.deletion.RESTRICT, related_name='team_host')
+    members = ManyToManyField(User, related_name='team_members')
 
 
 class Registration(models.Model):
