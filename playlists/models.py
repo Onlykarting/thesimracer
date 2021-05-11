@@ -9,22 +9,13 @@ class Playlist(models.Model):
     PILOT_QUALIFY_CHOICES = (
 
         ('AM', 'AM'),
-        ('SILVER', 'SILVER') ,
+        ('SILVER', 'SILVER'),
         ('PRO-AM', 'PRO-AM'),
         ('PRO', 'PRO')
     )
-    GRID_CHOICES = (
-        ('Main', 'Main'),
-        ('Reversed', 'Reversed')
-    )
-    QUALIFY_TYPE_CHOICES = (
-        ('Fastest', 'Fastest'),
-        ('Average', 'Average')
-    )
-    CAR_CLASS_CHOICES = (
-        ('GT3', 'GT3'),
-        ('GT4', 'GT4'),
-        ('Multi', 'Multi')
+    TYPE = (
+        ('Team', 'Team'),
+        ('Solo', 'Solo')
     )
 
     creator = ForeignKey(User, models.deletion.CASCADE)
@@ -33,15 +24,22 @@ class Playlist(models.Model):
     hidden = BooleanField(default=True)
     thumbnail = ImageField(upload_to='thumbs', null=True)
     pilot_qualify = CharField(max_length=255, choices=PILOT_QUALIFY_CHOICES)
-    grid_type = CharField(max_length=255, choices=GRID_CHOICES)
-    qualify_type = CharField(max_length=255, choices=QUALIFY_TYPE_CHOICES)
-    car_class = CharField(max_length=255, choices=CAR_CLASS_CHOICES)
-    tyre_sets_count = IntegerField()
-    pilot_count = IntegerField()
-    mandatory_pit_stop_count = IntegerField()
+    is_verified = BooleanField()
+    type = CharField(max_length=20, choices=TYPE)
+    # grid_type = CharField(max_length=255, choices=GRID_CHOICES)
+    # qualify_type = CharField(max_length=255, choices=QUALIFY_TYPE_CHOICES)
+    # car_class = CharField(max_length=255, choices=CAR_CLASS_CHOICES)
+    # tyre_sets_count = IntegerField()
+    # pilot_count = IntegerField()
+    # mandatory_pit_stop_count = IntegerField()
 
 
 class Event(models.Model):
+
+    TYPES = (
+        ('Sole', 'Sole'),
+        ('Team', 'Team')
+    )
 
     playlist = ForeignKey(Playlist, on_delete=models.deletion.CASCADE, null=True)
     game_settings = OneToOneField(AccEvent, on_delete=models.deletion.CASCADE)
@@ -51,6 +49,7 @@ class Event(models.Model):
     registration_starts_at = DateTimeField()
     registration_ends_at = DateTimeField()
     is_verified = BooleanField(default=False)
+    type = CharField(max_length=20)
 
 
 class CarClass(models.Model):
