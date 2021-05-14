@@ -19,6 +19,7 @@ def afa(user):
             return event
     return None
 
+
 def get_event_if_available(user: User, event_id: int):
     event_list = Event.objects.filter(id=event_id)
     if len(event_list):
@@ -29,6 +30,7 @@ def get_event_if_available(user: User, event_id: int):
         else:
             return event
     return None
+
 
 def get_playlist_if_available(user: User, playlist_id: int):
     playlist_list = Playlist.objects.filter(id=playlist_id)

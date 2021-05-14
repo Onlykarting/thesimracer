@@ -1,0 +1,91 @@
+{% extends 'base-bootstrap.html' %}
+{% load static %}
+{% block title %}
+    Create report
+{% endblock %}
+{% block styles %}
+    <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/report-create.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+    <main>
+        <div class="card main-card">
+            <div class="row g-3 main-block">
+                <div class="row header-padding">
+                    <div class="col-4"></div>
+                    <div class="col-4" style="min-width: 200px">
+                        <div class="card-header-text text-center">Create report</div>
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+            </div>
+            <div class="center-horiz card card-padding"
+                 style="background: #E8E8E8; margin-bottom: 20px; width: 70%; box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);">
+                <form method="post">
+                    <div class="row row-custom">
+                        <div class="col-3 main-text">
+                            <span>Choose race</span>
+                        </div>
+                        <div class="col-9 main-text">
+                            <select class="dada"
+                                    style="outline:none; width: 100%; border: none; -webkit-appearance: none;-moz-appearance: none;appearance: none;"
+                                    required>
+                                <option name="123">
+                                    Zaq
+                                </option>
+                                <option name="4124141">
+                                    gfagagagagaga
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row row-custom">
+                        <div class="col-3 main-text">
+                            <span>Incendent with</span>
+                        </div>
+                        <div class="col-4 main-text">
+                            <input name="inc-with" style="width: 100%" required>
+                        </div>
+                        <div class="col-2 main-text" style="text-align: center">
+                            <span>on lap</span>
+                        </div>
+                        <div class="col-3 main-text">
+                            <input name="lap" id="lap" style="width: 100%" required>
+                        </div>
+                    </div>
+                    <div class="row row-custom">
+                    <span class="main-text">
+                        Description:
+                    </span>
+                    </div>
+                    <div class="row row-custom">
+                        <div class="comment main-text center-horiz">
+                            <textarea name="description" cols="10" rows="10" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" class="btn button-shadow join-btn join-btn-text mons-text"
+                               style="margin-left: auto; width: 20%" value="Create">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
+{% endblock %}
+
+{% block after-body %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+{% endblock %}
+

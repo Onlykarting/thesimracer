@@ -29,6 +29,14 @@ def get_results(request):
     return render(request, 'results.html', {})
 
 
+def create_report(request):
+    return render(request, 'report-create.html', {})
+
+
+def reports(request):
+    return render(request, 'reports.html', {})
+
+
 def tools(request):
     return render(request, 'tools.html', {})
 
@@ -41,6 +49,7 @@ def event(request, event_id: int):
         "event": event_,
         "user": request.user,
         "is_authenticated": request.user.is_authenticated,
+        "event_id": event_id,
     }
     return render(request, 'event-page.html', context)
 
@@ -50,7 +59,8 @@ def get_playlist(request, playlist_id: int):
     if playlist:
         return render(request, 'championship-page.html', {
             'playlist': playlist,
-            'playlist_events': playlist.event_set.all()
+            'playlist_events': playlist.event_set.all(),
+            'playlist_id': playlist_id
         })
     else:
         return page_not_found(request, '')

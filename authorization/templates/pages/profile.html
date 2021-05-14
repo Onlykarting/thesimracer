@@ -22,13 +22,14 @@
 <main>
     <div class="card main-card">
         <div class="row row-padding-card">
-            <div class="col-5">
+            <div class="col-6">
                 <div class="row upper-block-text">
                     <div class="col-5 text-al-center padding-0">
-                        <div class="row"><img class="avatar-img" src="{{ stats.img }}" width="200px" height="200px"></div>
+                        <div class="row"><img class="avatar-img" src="{{ stats.img }}" width="200px" height="200px">
+                        </div>
                         <div class="row"><span class="edit-text">Edit</span></div>
                     </div>
-                    <div class="col-7" style="border-right: 1px solid rgba(0, 0, 0, 0.25); !important;">
+                    <div class="col-7">
                         <div class="row left-5 text-secondary big-font">
                             <span>{{ first_name }}</span>
                         </div>
@@ -37,47 +38,53 @@
                         </div>
 
                         <div class="row left-5 text-secondary top-15">
-                            <div><img height="20px" width="36px" style="border-radius: 5px"
+                            <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
                                       src="{% static 'images/DefaultFlag.bmp' %}"> <span>Russia</span></div>
                         </div>
                         <div class="row left-5 text-secondary top-15">
-                            <div><img height="20px" width="36px" style="border-radius: 5px"
+                            <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
                                       src="{% static 'images/AM-License.png' %}"> <span>License</span></div>
                         </div>
 
                         <div class="row left-5 text-secondary top-15">
-                            <div><img height="20px" width="36px" style="border-radius: 5px"
-                                      src="{% static 'images/steam_logo.png' %}"> <span>Timema_Militisto</span></div>
+                            <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
+                                      src="{% static 'images/steam_logo.png' %}"> <span>Timema_Militisto</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-3" style="border-right: 1px solid rgba(0, 0, 0, 0.25); !important;">
+            <div class="col-3">
                 <div class="upper-block-text">
-                    <div style="height: 68px" class="row left-5 text-secondary big-font middle-text">
-                        <span class="vert-center">BER</span>
+                    <div class="center-block-borders">
+                        <div style="height: 68px" class="row left-5 text-secondary big-font middle-text">
+                            <span class="vert-center">BER</span>
+                        </div>
                     </div>
+                    <div class="center-block-borders">
+                        <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
+                            <div><span>178 Races</span></div>
+                        </div>
+                        <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
+                            <div><span>9 Wins</span></div>
+                        </div>
 
-                    <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                        <div><span>178 Races</span></div>
-                    </div>
-                    <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                        <div><span>9 Wins</span></div>
-                    </div>
-
-                    <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                        <div><span>54 Top 10</span></div>
+                        <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
+                            <div><span>54 Top 10</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <div class="upper-block-text">
                     <div style="height: 68px" class="row left-5 text-secondary big-font middle-text">
                         <span class="vert-center">ID: #1488228</span>
                     </div>
 
                     <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                        <div><img height="20px" width="20px" style="border-radius: 5px" src="{% static 'images/instagram.png' %}"><span class="text-soc">Bersenev.official</span></div>
+                        <div><img height="20px" width="20px" style="border-radius: 5px"
+                                  src="{% static 'images/instagram.png' %}"><span
+                                class="text-soc">Bersenev.official</span></div>
                     </div>
                     <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
                         <div><span>Timema_Militisto</span></div>
@@ -92,7 +99,8 @@
         <div class="row row-padding-card">
             <div class="header"><span>About </span><span class="orange-about-me">myself</span></div>
             <hr class="custom-hr">
-            <div><span class="aboout-me-text">I bla bla bla bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa.</span></div>
+            <div><span class="aboout-me-text">I bla bla bla bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa.</span>
+            </div>
             <hr class="custom-hr" id="hr-myself" style="margin-bottom: 0">
         </div>
         <div class="row row-padding-card">
@@ -102,11 +110,12 @@
         <div class="row row-padding-card teams">
             <div class="col-4 teams-padding">
                 <div class="card table-card">
-                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span></div>
+                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span>
+                    </div>
                     <table class="table-marg">
                         <tr>
-                            <td style="width: 30%"></td>
-                            <td style="width: 70%"></td>
+                            <td style="width: 20%"></td>
+                            <td style="width: 80%"></td>
                         </tr>
                         <tr>
                             <td class="text-secondary">1.</td>
@@ -145,11 +154,12 @@
             </div>
             <div class="col-4 teams-padding">
                 <div class="card table-card">
-                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span></div>
+                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span>
+                    </div>
                     <table class="table-marg">
                         <tr>
-                            <td style="width: 30%"></td>
-                            <td style="width: 70%"></td>
+                            <td style="width: 20%"></td>
+                            <td style="width: 80%"></td>
                         </tr>
                         <tr>
                             <td class="text-secondary">1.</td>
@@ -188,11 +198,12 @@
             </div>
             <div class="col-4 teams-padding">
                 <div class="card table-card">
-                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span></div>
+                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span>
+                    </div>
                     <table class="table-marg">
                         <tr>
-                            <td style="width: 30%"></td>
-                            <td style="width: 70%"></td>
+                            <td style="width: 20%"></td>
+                            <td style="width: 80%"></td>
                         </tr>
                         <tr>
                             <td class="text-secondary">1.</td>
@@ -231,89 +242,6 @@
             </div>
         </div>
     </div>
-    <!--
-    {% if user_check is not None %}
-        <div class="card profile-body">
-            <div class="card-body">
-                <div class="container-fluid">
-                    <div class="flex">
-                        <div class="block" style="width: 40%;">
-                            <div class="block-image-polygon" style="margin: 0 0 0 auto">
-                                <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}"
-                                     style="transform: rotate(180deg)">
-                                <span class="text-image-polygon text-polygon-1">Races</span>
-                                <span class="text-image-polygon text-polygon-2">{{ stats.races }}</span>
-                                <span class="text-image-polygon text-polygon-3-1">BestLaps</span>
-                                <span class="text-image-polygon text-polygon-4">{{ stats.bestlaps }}</span>
-                            </div>
-                            <img class="avatar" src="{{ stats.img }}"
-                                 style="; box-shadow: 0 4px 10px 1px #252525; border-radius: 150px; height: 100%;">
-                            <div class="block-image-polygon" style="margin: 0 auto 0 0">
-                                <img class="image-polygon" src="{% static 'images/Polygon 2.png' %}">
-                                <span class="text-image-polygon text-polygon-1">Wins</span>
-                                <span class="text-image-polygon text-polygon-2">{{ stats.wins }}</span>
-                                <span class="text-image-polygon text-polygon-3-2">Poles</span>
-                                <span class="text-image-polygon text-polygon-4">{{ stats.poles }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="edition" style="width: 40px">
-                    <span class="edition-text">Edit</span>
-                    <hr class="edit-hr">
-                </div>
-                <div class="card rect-body">
-                    <div style="width: 33%; height: 50%; margin: 0 auto 0 auto; text-align: center">
-                        {% if stats.tag == '0' %}
-                            <span class="text-body">{{ first_name }} {{ last_name }}</span>
-                        {% else %}
-                            <span class="text-body">{{ first_name }} {{ last_name }} [{{ stats.tag }}]</span>
-                        {% endif %}
-                        <hr class="hr-body">
-                        <form method="post">
-                            {% csrf_token %}
-                            <div style="height: 40px">
-                                <img class="img-body" style="width: 58px;" src="{% static 'images/AM-License.png' %}">
-                                {% if country_flag != 'https://cdn.ipwhois.io/flags/.svg' %}
-                                    {% if stats.country_flag == '0' %}
-                                    <img class="img-body" src="{{ country_flag }}">
-                                    <input style="display: none" name="country-flag" value="{{ country_flag }}">
-                                    {% else %}
-                                    <img class="img-body" src="{{ stats.country_flag }}">
-                                    {% endif %}
-                                {% else %}
-                                    {% if stats.country_flag == '0' %}
-                                    <img class="img-body" src="{% static 'images/DefaultFlag.bmp' %}">
-                                    <input style="display: none" name="country-flag" value="
-        {% static 'images/DefaultFlag.bmp' %}">
-                                    {% else %}
-                                    <img class="img-body" src="{{ stats.country_flag }}">
-                                    {% endif %}
-                                {% endif %}
-                                <img class="img-body" style="width: 58px;" src="{% static 'images/steam_logo.png' %}">
-                            </div>
-                            {% if stats.country_flag == '0' %}
-                            <input name="submit" class="btn btn-lg btn-sub w-75" type="submit" value="Submit country">
-                            {% endif %}
-                        </form>
-                        <hr class="hr-body">
-                        <span class="text-body">DiscordTag:</span><br>
-                        {% if stats.discord == '0' %}
-                            <span class="text-body">No discord tag</span>
-                        {% else %}
-                            <span class="text-body">{{ stats.discord }}</span>
-                        {% endif %}
-                        <hr class="hr-body">
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% else %}
-        <script>
-            document.location.href = '/'
-        </script>
-    {% endif %}
-    -->
 </main>
 {% block footer %}
     {% include 'footer.html' %}

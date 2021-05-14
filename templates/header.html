@@ -12,7 +12,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0" style="margin-left: auto; margin-right: auto">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 text-ul" style="margin-left: auto; margin-right: auto">
                     <li class="navbar-item li-header">
                         <a class="text-block-head mid-content header-link" aria-current="page" href="/championships">Championships</a>
                     </li>
@@ -32,7 +32,7 @@
                         <a class="text-block-head mid-content header-link" aria-current="page" href="/tools">Tools</a>
                     </li>
                 </ul>
-                <div class="d-flex" style="min-width: 140px; margin-left: 0;">
+                <div class="d-flex log" style="min-width: 140px; margin-left: 0;">
                     <div style="text-align: right; margin-left: auto;"></div>
                     {% if request.user.is_authenticated %}
                         <span class="username">{{ user }}</span>

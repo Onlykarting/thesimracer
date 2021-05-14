@@ -1,0 +1,57 @@
+.main-text{
+    color: rgba(0, 0, 0, 0.63);
+    font-size: 24px;
+}
+
+.card-padding{
+    padding: 20px 40px 20px 30px;
+}
+
+.card{
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 480px) and (max-width: 3200px) {
+	.main-text{
+		font-size: calc(8px + (52 - 8) * ( (100vw - 480px) / ( 3200 - 480) ));
+	}
+
+    .main-text input, select, textarea{
+        font-size: calc(8px + (38 - 8) * ( (100vw - 480px) / ( 3200 - 480) ));
+    }
+}
+
+.display-none{
+    display: none;
+}
+
+.dropdown-toggle::after {
+    border: none;
+}
+
+.row-custom{
+    margin-bottom: 20px;
+}
+
+.dada{
+    text-align-last: center;
+     text-align: center;
+}
+
+.dada option{
+    padding-left: calc(50% - 1em);
+}
+
+.main-text input, select, textarea{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+.comment textarea{
+    width: 100%;
+    height: 300px;
+    text-align: left;
+}
