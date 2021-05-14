@@ -3,6 +3,12 @@ from playlists.models import Event, Playlist
 from json import dumps
 
 
+def get_recent_events(limit: int = 50, offset: int = 0, user: User = None, verified=True):
+    if verified:
+        events = Event.objects.filter(is_verified=True)
+    else:
+        events = Event.objects
+    return events.order_by('starts_at')[offset: offset + limit]
 def get_recent_events(limit: int = 50, offset: int = 0, user: User = None):
     events = Event.objects.order_by('starts_at')[offset: offset + limit]
     return events

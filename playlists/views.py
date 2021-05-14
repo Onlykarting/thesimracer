@@ -6,10 +6,14 @@ from django.views.defaults import page_not_found, bad_request, permission_denied
 from .forms import PlaylistCreationForm
 
 
-def get_events(request):
+def get_events(request, sort='official'):
     limit = request.GET.get('limit', 10)
     offset = request.GET.get('offset', 0)
-    events = get_recent_events(limit, offset, request.user)
+    verified = {
+        'official': True,
+        'all': False
+    }
+    events = get_recent_events(limit, offset, request.user, verified[sort])
     context = {
         'events': events,
         'events_on_page': 10,
@@ -23,6 +27,7 @@ def get_events(request):
 
 def indev(request):
     return render(request, 'in-development.html', {})
+
 
 
 def get_results(request):

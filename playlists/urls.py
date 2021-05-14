@@ -3,6 +3,7 @@ from .views import event, get_events, create_playlist, get_playlist, register_on
 from django.urls import path
 
 urlpatterns = [
+    path('eventlist/<str:sort>', get_events),
     path('eventlist/', get_events),
     path('resultlist/', get_results),
     path('tools/', tools),

@@ -43,11 +43,38 @@ class Playlist(models.Model):
 
 class Event(models.Model):
 
-    playlist = ForeignKey(Playlist, on_delete=models.deletion.CASCADE)
+    playlist = ForeignKey(Playlist, on_delete=models.deletion.CASCADE, null=True)
     game_settings = OneToOneField(AccEvent, on_delete=models.deletion.CASCADE)
     name = CharField(max_length=255)
     description = TextField()
     starts_at = DateTimeField()
     registration_starts_at = DateTimeField()
     registration_ends_at = DateTimeField()
-    registered_users = ManyToManyField(User)
+    is_verified = BooleanField(default=False)
+
+
+class CarClass(models.Model):
+
+    name = CharField(max_length=30)
+
+
+class Car(models.Model):
+
+    name = CharField(max_length=255)
+    type = ForeignKey(CarClass, on_delete=models.deletion.RESTRICT)
+
+
+class Team(models.Model):
+
+    name = CharField(max_length=255)
+    host = ForeignKey(User, on_delete=models.deletion.RESTRICT, related_name='team_host')
+    members = ManyToManyField(User, related_name='team_members')
+
+
+class Registration(models.Model):
+
+    event = ForeignKey(Event, on_delete=models.deletion.CASCADE)
+    user = ForeignKey(User, on_delete=models.deletion.CASCADE)
+    team = ForeignKey(Team, on_delete=models.deletion.SET_NULL, null=True)
+    car = ForeignKey(Car, on_delete=models.deletion.CASCADE)
+    preferred_number = IntegerField()
