@@ -1,4 +1,5 @@
 from .services import get_recent_events, get_event_if_available, get_playlist_if_available, time_to_laps, fuel_calculator
+from .models import Registration, Car, CarClass
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
@@ -88,10 +89,35 @@ def create_event(request):
 
 @login_required(login_url='/login')
 def register_on_event(request, event_id: int):
+    """
+    Для регистрации на ивент в POST запросе принимает три параметра:
+    - car_class - INT, id класса группы из базы
+    - car_number - INT, предпочитаемый норер машины
+    - car_id - INT, id машины из базы
+    :param request:
+    :param event_id:
+    :return:
+    """
     event = get_event_if_available(request.user, event_id)
     if event:
         if not event.registered_users.filter(username=request.user.username).exists():
             return render(request, 'event-register.html', {})
+        if not Registration.objects.filter(event_id=event_id, user_id=request.user.id).exists():
+            if request.method == 'GET':
+                return render(request, 'event-register.html', {
+                    'car_list': Car.objects.all(),
+                    'car_classes': CarClass.objects.all()
+                })
+            elif request.method == 'POST':
+                car_number = int(request.POST.get('car_number'))
+                car_id = int(request.POST.get('car_id'))
+                car_class = int(request.POST.get('car_class'))
+                reg = Registration()
+                reg.user = request.user
+                reg.car_id = car_id
+                reg.preferred_number = car_number
+                reg.save()
+                return redirect(f"/event/{event_id}")
         else:
             return permission_denied(request, '')
     else:
