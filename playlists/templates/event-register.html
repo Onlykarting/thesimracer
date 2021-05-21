@@ -28,6 +28,7 @@
                 <div class="col-4"></div>
             </div>
             <form method="post">
+                {% csrf_token %}
                 <div class="row">
                     <div class="col-4">
                         <input name="car-class" id="car-class" class="display-none">
@@ -183,38 +184,6 @@
                                name="car-number" type="number" id="car-number"
                                class="btn-group right-horiz create-new-event-btn text-center mid-pos">
                     </div>
-                </div>
-                <div class="row row-padding-1">
-                    <div class="col-4">
-
-                    </div>
-                    <div class="col-4">
-                        <input id="command" name="command" class="display-none">
-                        <div class="btn-group right-horiz create-new-event-btn text-center mid-pos" style=""
-                             id="sel-team" data-toggle="collapse">
-                            <button type="button" id="select-team" class="btn dropdown-toggle mons-text text-btn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">Select team
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right create-new-event-list" style="width: 85%;">
-                                <li onclick="btn_action('command', 'First team', 'select-team');" class="li-new-event"><a id="First team" href="#"
-                                                                                                class="events-dropdown-item mons-text">First team</a>
-                                </li>
-                                <li onclick="btn_action('command', 'Second team', 'select-team');" class="li-new-event"><a id="Second team" href="#"
-                                                                                                class="events-dropdown-item mons-text">Second team</a>
-                                </li>
-                                <li>
-                                    <input type="text" id="new-team" placeholder="Create team"
-                                           style="outline: none; text-align: center; width: 100%; height: 90%">
-                                    <a type="button" onclick="create_team('new-team', 'select-team');"
-                                       class="btn button-shadow join-btn join-btn-text mons-text mid-pos"
-                                       style="display: block; background: #eac407"
-                                       href="#">Accept creation
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="row row-padding-1">
                     <div class="col-4"></div>
