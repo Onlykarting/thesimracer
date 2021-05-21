@@ -49,6 +49,7 @@ def tools(request):
         res = fuel_calculator(time_to_laps(get['race-time'], get['lap-time']), get['fuel'])
         context['total_laps'], context['min_fuel'], context['rec_fuel'] = res
     elif 'race-laps' in get:
+        context['laps_tab'] = True
         res = fuel_calculator(get['race-laps'], get['fuel'])
         context['total_laps'], context['min_fuel'], context['rec_fuel'] = res
     return render(request, 'tools.html', context)
