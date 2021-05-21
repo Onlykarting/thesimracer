@@ -9,21 +9,7 @@ def get_recent_events(limit: int = 50, offset: int = 0, user: User = None, verif
     else:
         events = Event.objects
     return events.order_by('starts_at')[offset: offset + limit]
-def get_recent_events(limit: int = 50, offset: int = 0, user: User = None):
-    events = Event.objects.order_by('starts_at')[offset: offset + limit]
-    return events
 
-def afa(user):
-    event__ = [entry for entry in event_list.values()]
-    if len(event__) > 0:
-        event__ = event__[0]
-    if len(event__) != 0:
-        event = event__
-        if user.is_authenticated:
-            return event
-        else:
-            return event
-    return None
 
 
 def get_event_if_available(user: User, event_id: int):
