@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Montserrat-Regular; /* Гарнитура шрифта */
+    src: url(/static/fonts/Montserrat-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
 .profile-body{
     margin: 100px auto 0 auto;
     width: 80% !important;
@@ -255,6 +260,33 @@
 .center-block-borders{
 	border-right: 1px solid rgba(0, 0, 0, 0.25); !important;
 	border-left: 1px solid rgba(0, 0, 0, 0.25); !important;
+}
+
+.button-shadow {
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.25);
+}
+
+.manage-btn{
+    width: 80%;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+	margin-bottom: 10px !important;
+}
+
+.manage-btn-text {
+    text-decoration: none;
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+}
+
+.center-horiz {
+    margin: 0 auto 0 auto;
 }
 
 @media (min-width: 480px) and (max-width: 3200px) {

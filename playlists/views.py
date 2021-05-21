@@ -1,4 +1,4 @@
-from .services import get_recent_events, get_event_if_available, get_playlist_if_available
+from .services import get_recent_events, get_event_if_available, get_playlist_if_available, time_to_laps, fuel_calculator
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
@@ -43,7 +43,15 @@ def reports(request):
 
 
 def tools(request):
-    return render(request, 'tools.html', {})
+    context = {}
+    get = request.GET
+    if 'race-time' in get:
+        res = fuel_calculator(time_to_laps(get['race-time'], get['lap-time']), get['fuel'])
+        context['total_laps'], context['min_fuel'], context['rec_fuel'] = res
+    elif 'race-laps' in get:
+        res = fuel_calculator(get['race-laps'], get['fuel'])
+        context['total_laps'], context['min_fuel'], context['rec_fuel'] = res
+    return render(request, 'tools.html', context)
 
 
 def event(request, event_id: int):

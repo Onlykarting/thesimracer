@@ -7,7 +7,7 @@
     <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'styles/events.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/tools.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block body %}
     {% block header %}
@@ -20,36 +20,247 @@
                     choose_tab('pills-register-tab');
                 }</script>
             {% endif %}
-                <div class="row g-3 main-block">
-                    <div class="row header-padding">
-                        <div class="col-4"></div>
-                        <div class="col-4" style="min-width: 200px">
-                            <div class="card-header-text text-center">Tools</div>
-                        </div>
-                        <div class="col-4"></div>
+            <div class="row g-3 main-block">
+                <div class="row header-padding">
+                    <div class="col-4"></div>
+                    <div class="col-4" style="min-width: 200px">
+                        <div class="card-header-text text-center">Tools</div>
                     </div>
-                    <div class="row card-header-text"> Fuel calculator</div>
+                    <div class="col-4"></div>
+                </div>
+                <div class="row row-custom">
+                    <div class="center-horiz" style="width: 95%">
+                        <span class="text-secondary status mons-text">Fuel calculator</span>
+                        <hr style="margin-top: 0; margin-bottom: 0">
+                    </div>
+                </div>
+                <div class="center-horiz" style="width: 95%">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="pills-login-tab" data-toggle="pill" href="#pills-login"
-                               role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+                            <a class="nav-link active" id="pills-time-tab" data-toggle="pill" href="#pills-time"
+                               role="tab" aria-controls="pills-time" aria-selected="true">Time</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pills-register-tab" data-toggle="pill" href="#pills-register"
-                               role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+                            <a class="nav-link" id="pills-laps-tab" data-toggle="pill" href="#pills-laps"
+                               role="tab" aria-controls="pills-laps" aria-selected="false">Laps</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-login" role="tabpanel"
+                        <div class="tab-pane fade show active" id="pills-time" role="tabpanel"
                              aria-labelledby="pills-login-tab">
-                            zaq
+                            <div class="row" style="margin-bottom: 20px">
+                                <div class="col-5">
+                                    <form method="get">
+                                        <div class="row middle-row">
+                                            <div class="col-5">
+                                                <span class="input-label">Race time</span>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="container">
+                                                    <input class="input text-center" name="race-time" type="number" min="1"
+                                                           placeholder="0" id="mins" required>
+                                                    <span class="mins">min</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row middle-row">
+                                            <div class="col-5">
+                                                <span class="input-label">Lap time</span>
+                                            </div>
+                                            <div class="col-7">
+                                                <input class="input text-center vert-center" name="lap-time" type="time" min="00:01"
+                                                       placeholder="00:01" required>
+                                            </div>
+                                        </div>
+                                        <div class="row middle-row">
+                                            <div class="col-5">
+                                                <span class="input-label">Fuel/lap</span>
+                                            </div>
+                                            <div class="col-7">
+                                                <input class="input text-center vert-center" name="fuel" type="number" step="0.01"
+                                                       min="0.01" placeholder="0" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div>
+                                                <button class="text-center submit" type="submit"
+                                                        style="margin-left: auto; display: block;">Go
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-7">
+                                    <div class="row row-custom-right">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-7">
+                                            <span class="calculated-value">Total laps:</span>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <span class="calculated-value">
+                                                {% if not total_laps %}
+                                                    0
+                                                {% else %}
+                                                    {{ total_laps }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-7">
+                                            <span class="calculated-value">Minimal fuel:</span>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <span class="calculated-value">
+                                                {% if not min_fuel %}
+                                                    0
+                                                {% else %}
+                                                    {{ min_fuel }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-9">
+                                            <hr class="spe-hr">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-7">
+                                            <span class="calculated-value text-bold">Recommended fuel:</span>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <span class="calculated-value text-bold text-right">
+                                                {% if not rec_fuel %}
+                                                    0
+                                                {% else %}
+                                                    {{ rec_fuel }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-register" role="tabpanel"
+                        <div class="tab-pane fade" id="pills-laps" role="tabpanel"
                              aria-labelledby="pills-register-tab">
-                            zaqa
+                            <div class="row" style="margin-bottom: 20px">
+                                <div class="col-5">
+                                    <form method="get">
+                                        <div class="row middle-row">
+                                            <div class="col-5">
+                                                <span class="input-label">Race laps</span>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="container">
+                                                    <input class="input text-center" name="race-laps" type="number" min="1"
+                                                           placeholder="0" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row middle-row">
+                                            <div class="col-5">
+                                                <span class="input-label" >Lap time</span>
+                                            </div>
+                                            <div class="col-7">
+                                                <input class="input text-center vert-center" style="background: #B8B8B8;" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="row middle-row">
+                                            <div class="col-5">
+                                                <span class="input-label">Fuel/lap</span>
+                                            </div>
+                                            <div class="col-7">
+                                                <input class="input text-center vert-center" name="fuel" type="number" step="0.01"
+                                                       min="0.01" placeholder="0" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div>
+                                                <button class="text-center submit" type="submit"
+                                                        style="margin-left: auto; display: block;">Go
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-7">
+                                    <div class="row row-custom-right">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-7">
+                                            <span class="calculated-value">Total laps:</span>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <span class="calculated-value">
+                                                {% if not total_laps %}
+                                                    0
+                                                {% else %}
+                                                    {{ total_laps }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-7">
+                                            <span class="calculated-value">Minimal fuel:</span>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <span class="calculated-value">
+                                                {% if not min_fuel %}
+                                                    0
+                                                {% else %}
+                                                    {{ min_fuel }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-9">
+                                            <hr class="spe-hr">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+
+                                        </div>
+                                        <div class="col-7">
+                                            <span class="calculated-value text-bold">Recommended fuel:</span>
+                                        </div>
+                                        <div class="col-2 text-right">
+                                            <span class="calculated-value text-bold">
+                                                {% if not rec_fuel %}
+                                                    0
+                                                {% else %}
+                                                    {{ rec_fuel }}
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </main>
     {% block footer %}
