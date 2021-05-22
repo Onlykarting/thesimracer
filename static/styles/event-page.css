@@ -53,6 +53,10 @@
     color: rgba(255, 255, 255, 0.45);
 }
 
+.red-btn {
+    background: rgb(157, 73, 73);
+}
+
 .card-fillers{
     padding-top: 10px;
     padding-bottom: 20px;

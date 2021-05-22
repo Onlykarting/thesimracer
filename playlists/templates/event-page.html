@@ -18,11 +18,11 @@
             <div class="row row-img-padding">
                 <div class="background">
                     <div class="inner-img-div left-bottom-corn">
-                        <span class="text-img" style="height: 100%; width: 100%">Sprint Cup, Round 2</span>
+                        <span class="text-img" style="height: 100%; width: 100%">{{ event.name }}</span>
                     </div>
 
                     <div class="inner-img-div right-bottom-corn">
-                        <span class="text-img" style="height: 100%; width: 100%">Imola</span>
+                        <span class="text-img" style="height: 100%; width: 100%">{{ event.name }}</span>
                     </div>
 
                 </div>
@@ -35,7 +35,7 @@
                                 <span class="text-first-col">Date</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>28.02.21</span>
+                                <span>NONE</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -44,7 +44,7 @@
                                 <span class="text-first-col">Time</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>18:30</span>
+                                <span>NONE</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -53,7 +53,7 @@
                                 <span class="text-first-col">Event type</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>Command</span>
+                                <span>Single</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -82,34 +82,34 @@
                                                       <td class="text-secondary">Weather</td>
                                                   </tr>
                                                   <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">1</td>
-                                                      <td class="main-text">P</td>
-                                                      <td class="main-text">15 min</td>
-                                                      <td class="main-text">Random</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
                                                   </tr>
                                                   <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">2</td>
-                                                      <td class="main-text">Q</td>
-                                                      <td class="main-text">10 min</td>
-                                                      <td class="main-text">Clear</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
                                                   </tr>
                                                   <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">3</td>
-                                                      <td class="main-text">R</td>
-                                                      <td class="main-text">1 h</td>
-                                                      <td class="main-text">Clear</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
                                                   </tr>
                                                   <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">4</td>
-                                                      <td class="main-text">Q</td>
-                                                      <td class="main-text">10 min</td>
-                                                      <td class="main-text">Wet</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
                                                   </tr>
                                                   <tr style="border-bottom: 1px solid rgba(37, 37, 37, 0.5);">
-                                                      <td class="main-text">5</td>
-                                                      <td class="main-text">R</td>
-                                                      <td class="main-text">1 h</td>
-                                                      <td class="main-text">Wet</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
+                                                      <td class="main-text">NONE</td>
                                                   </tr>
                                               </table>
                                           </div>
@@ -120,10 +120,17 @@
                             <div class="col-6 text-secondary">
                                 <form method="post">
                                 <span>
+                                   {% if not is_user_registered %}
                                    <a type="button"
-                                       class="btn button-shadow btn-main black-btn join-btn-text mons-text"
+                                       class="btn button-shadow btn-main join-btn join-btn-text mons-text"
                                        href="/event/{{ event.pk }}/register">Join
                                    </a>
+                                   {% else %}
+                                   <a type="button"
+                                       class="btn button-shadow btn-main red-btn join-btn-text mons-text"
+                                       href="/event/{{ event.pk }}/unregister">Withdraw
+                                   </a>
+                                   {% endif %}
                                 </span>
                                 </form>
                             </div>
@@ -252,54 +259,50 @@
                 <span class="text-secondary mons-text">About race</span>
                 <hr class="card-hr-secondary" style="width: 99%">
                 <span class="main-text">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its
-                    layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using
-                    'Content here, content here', making it look like readable English. Many desktop publishing packages and web page
-                    editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites
-                    still in their infancy.
+                        {{ event.description }}
                 </span>
             </div>
-            <div class="row row-custom card-fillers">
-                <div class="row text-center" style="margin-bottom: 10px">
-                    <span class="mons-text text-secondary table-header">Leaderboard</span>
-                </div>
-                <div class="row">
-                    <table class="table-main main-text">
-                        <tr class="text-secondary tr-table">
-                            <td class="text-secondary td-number">#</td>
-                            <td class="text-secondary" style="width: 20%;">Team</td>
-                            <td class="text-secondary" style="width: 20%;">Car</td>
-                            <td class="text-secondary text-center" style="width: 15%;">Car class</td>
-                            <td class="text-secondary text-center" style="width: 15%;">Car number</td>
-                            <td class="text-secondary text-center" style="width: 15%;">Score</td>
-                        </tr>
-                        <tr class="tr-table">
-                            <td class="table-text td-number">1.</td>
-                            <td class="table-text">TheSimRacer OMST</td>
-                            <td class="table-text">Mercedes-Benz AMG EVO</td>
-                            <td class="table-text text-center">GT3</td>
-                            <td class="table-text text-center">54</td>
-                            <td class="table-text text-center">25</td>
-                        </tr>
-                        <tr class="tr-table">
-                            <td class="table-text td-number">2.</td>
-                            <td class="table-text">TheSimRacer OMST</td>
-                            <td class="table-text">Mercedes-Benz AMG EVO</td>
-                            <td class="table-text text-center">GT3</td>
-                            <td class="table-text text-center">54</td>
-                            <td class="table-text text-center">25</td>
-                        </tr>
-                        <tr class="tr-table">
-                            <td class="table-text td-number">3.</td>
-                            <td class="table-text">TheSimRacer OMST</td>
-                            <td class="table-text">Mercedes-Benz AMG EVO</td>
-                            <td class="table-text text-center">GT3</td>
-                            <td class="table-text text-center">54</td>
-                            <td class="table-text text-center">25</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+{#            <div class="row row-custom card-fillers">#}
+{#                <div class="row text-center" style="margin-bottom: 10px">#}
+{#                    <span class="mons-text text-secondary table-header">Leaderboard</span>#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    <table class="table-main main-text">#}
+{#                        <tr class="text-secondary tr-table">#}
+{#                            <td class="text-secondary td-number">#</td>#}
+{#                            <td class="text-secondary" style="width: 20%;">Team</td>#}
+{#                            <td class="text-secondary" style="width: 20%;">Car</td>#}
+{#                            <td class="text-secondary text-center" style="width: 15%;">Car class</td>#}
+{#                            <td class="text-secondary text-center" style="width: 15%;">Car number</td>#}
+{#                            <td class="text-secondary text-center" style="width: 15%;">Score</td>#}
+{#                        </tr>#}
+{#                        <tr class="tr-table">#}
+{#                            <td class="table-text td-number">1.</td>#}
+{#                            <td class="table-text">TheSimRacer OMST</td>#}
+{#                            <td class="table-text">Mercedes-Benz AMG EVO</td>#}
+{#                            <td class="table-text text-center">GT3</td>#}
+{#                            <td class="table-text text-center">54</td>#}
+{#                            <td class="table-text text-center">25</td>#}
+{#                        </tr>#}
+{#                        <tr class="tr-table">#}
+{#                            <td class="table-text td-number">2.</td>#}
+{#                            <td class="table-text">TheSimRacer OMST</td>#}
+{#                            <td class="table-text">Mercedes-Benz AMG EVO</td>#}
+{#                            <td class="table-text text-center">GT3</td>#}
+{#                            <td class="table-text text-center">54</td>#}
+{#                            <td class="table-text text-center">25</td>#}
+{#                        </tr>#}
+{#                        <tr class="tr-table">#}
+{#                            <td class="table-text td-number">3.</td>#}
+{#                            <td class="table-text">TheSimRacer OMST</td>#}
+{#                            <td class="table-text">Mercedes-Benz AMG EVO</td>#}
+{#                            <td class="table-text text-center">GT3</td>#}
+{#                            <td class="table-text text-center">54</td>#}
+{#                            <td class="table-text text-center">25</td>#}
+{#                        </tr>#}
+{#                    </table>#}
+{#                </div>#}
+{#            </div>#}
         </div>
     </main>
     {% block footer %}
