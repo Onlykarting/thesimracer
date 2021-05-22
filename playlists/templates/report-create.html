@@ -51,7 +51,9 @@
                             <span>Incendent with</span>
                         </div>
                         <div class="col-4 main-text">
-                            <input name="inc-with" style="width: 100%" required>
+                            <select name="inc-with" style="width: 100%" required>
+                                <option>Sergey Orlov</option>
+                            </select>
                         </div>
                         <div class="col-2 main-text" style="text-align: center">
                             <span>on lap</span>
@@ -84,8 +86,6 @@
 {% endblock %}
 
 {% block after-body %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-            crossorigin="anonymous"></script>
+    <script src="{% static 'scripts/bootstrap@4.6.0.js' %}"></script>
 {% endblock %}
 

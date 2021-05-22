@@ -1,0 +1,53 @@
+@font-face {
+    font-family: Montserrat-Regular; /* Гарнитура шрифта */
+    src: url(/static/fonts/Montserrat-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
+.background {
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    margin: 7px 7px 7px 0;
+    background: url(/static/images/about_us_picture.png);
+    height: 450px;
+    background-position: center;
+    filter: blur(2px) brightness(0.6);
+}
+
+.main-card {
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+    width: 99%;
+    padding: 15px 20px 15px 20px;
+}
+
+.horiz-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headers{
+    font-family: Montserrat-Regular;
+    font-size: 24px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.text{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.secondary{
+    color: rgba(37, 37, 37, 0.5) !important;
+}
+
+.row > * {
+    padding: 0;
+}
+
+.hr-custom{
+    margin-top: 0;
+}

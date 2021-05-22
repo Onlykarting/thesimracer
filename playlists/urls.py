@@ -1,5 +1,5 @@
 from .views import event, get_events, create_playlist, get_playlist, register_on_event, unregister_on_event, \
-    create_event, get_results, indev, get_playlists, get_playlist_races, register_on_playlist, tools, create_report, reports
+    create_event, get_results, indev, get_playlists, get_playlist_races, register_on_playlist, tools, create_report, reports, about_us
 from django.urls import path
 
 urlpatterns = [
@@ -12,6 +12,7 @@ urlpatterns = [
     path('support/', indev),
     path('stats/', indev),
     path('help-us/', indev),
+    path('about-us/', about_us),
     path('event/<int:event_id>', event),
     path('event/create/', create_event),
     path('event/<int:event_id>/register', register_on_event),
