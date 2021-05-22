@@ -100,8 +100,6 @@ def register_on_event(request, event_id: int):
     """
     event = get_event_if_available(request.user, event_id)
     if event:
-        if not event.registered_users.filter(username=request.user.username).exists():
-            return render(request, 'event-register.html', {})
         if not Registration.objects.filter(event_id=event_id, user_id=request.user.id).exists():
             if request.method == 'GET':
                 return render(request, 'event-register.html', {
@@ -109,13 +107,14 @@ def register_on_event(request, event_id: int):
                     'car_classes': CarClass.objects.all()
                 })
             elif request.method == 'POST':
-                car_number = int(request.POST.get('car_number'))
-                car_id = int(request.POST.get('car_id'))
-                car_class = int(request.POST.get('car_class'))
+                car_number = int(request.POST.get('car_number', 1))
+                car_id = int(request.POST.get('car_id', 1))
+                car_class = int(request.POST.get('car_class', 1))
                 reg = Registration()
                 reg.user = request.user
                 reg.car_id = car_id
                 reg.preferred_number = car_number
+                reg.event_id = event_id
                 reg.save()
                 return redirect(f"/event/{event_id}")
         else:
