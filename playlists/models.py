@@ -43,13 +43,18 @@ class Playlist(models.Model):
 
 class Event(models.Model):
 
-    playlist = ForeignKey(Playlist, on_delete=models.deletion.CASCADE, null=True)
+    LICENSE = (
+        ('Overall', 0),
+        ('ProAm', 1),
+        ('Am', 2),
+        ('Silver', 3),
+        ('National', 4),
+    )
+
     game_settings = OneToOneField(AccEvent, on_delete=models.deletion.CASCADE)
     name = CharField(max_length=255)
     description = TextField()
     starts_at = DateTimeField()
-    registration_starts_at = DateTimeField()
-    registration_ends_at = DateTimeField()
     is_verified = BooleanField(default=False)
 
 

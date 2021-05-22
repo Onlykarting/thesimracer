@@ -1,10 +1,15 @@
-from .services import get_recent_events, get_event_if_available, get_playlist_if_available, time_to_laps, fuel_calculator
+from .services import get_recent_events, get_event_if_available, get_playlist_if_available, \
+    time_to_laps, fuel_calculator
+from .services.events import user_registered_on_event
 from .models import Registration, Car, CarClass
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.views.defaults import page_not_found, bad_request, permission_denied
 from .forms import PlaylistCreationForm
+from django.utils import timezone
+from datetime import datetime
+from playlists.models import Event, AccEvent
 
 
 def get_events(request, sort='official'):
@@ -65,6 +70,7 @@ def event(request, event_id: int):
         "user": request.user,
         "is_authenticated": request.user.is_authenticated,
         "event_id": event_id,
+        "is_user_registered": user_registered_on_event(event_, request.user)
     }
     return render(request, 'event-page.html', context)
 
@@ -85,6 +91,28 @@ def get_playlist(request, playlist_id: int):
 def create_event(request):
     if request.method == 'GET':
         return render(request, 'create-event.html', {})
+    if request.method == 'POST':
+        event_ = Event()
+        event_.playlist = None
+        event_.description = request.POST.get('description')
+        event_.name = request.POST.get('name')
+        start_datetime = f"{request.POST.get('event-date')} - {request.POST.get('event-time')}"
+        event_.starts_at = datetime.strptime(start_datetime, '%Y-%m-%d - %H:%M')
+        event_.game_settings = AccEvent()
+        event_.game_settings.save()
+        # event_.game_settings.event_settings.track
+        event_.game_settings.event_rules.max_drivers_count = int(request.POST.get('pilot-count', 8))
+        event_.game_settings.event_rules.mandatory_pitstop_count = int(request.POST.get('mandatory-pit-stop-count', 0))
+        event_.game_settings.event_rules.tyre_set_count = int(request.POST.get('tyre-sets', 50))
+        event_.game_settings.server_settings.car_group = request.POST.get('car-group')
+        event_.game_settings.event_rules.qualify_standing_type = int(request.POST.get('qualify-type'))
+        event_.game_settings.server_settings.allow_auto_dq = int(request.POST.get('penalty-system', 0))
+        event_.game_settings.server_settings.max_car_slots = int(request.POST.get('max-car-count', 30))
+
+
+
+        event_.save()
+        return redirect(f"/event/{event_.pk}")
 
 
 @login_required(login_url='/login')
@@ -100,7 +128,7 @@ def register_on_event(request, event_id: int):
     """
     event = get_event_if_available(request.user, event_id)
     if event:
-        if not Registration.objects.filter(event_id=event_id, user_id=request.user.id).exists():
+        if not user_registered_on_event(event, request.user):
             if request.method == 'GET':
                 return render(request, 'event-register.html', {
                     'car_list': Car.objects.all(),
@@ -127,9 +155,9 @@ def register_on_event(request, event_id: int):
 def unregister_on_event(request, event_id: int):
     event = get_event_if_available(request.user, event_id)
     if event:
-        if event.registered_users.filter(username=request.user.username).exists():
-            event.registered_users.remove(request.user)
-            return redirect(f'/event/{event_id}')
+        if user_registered_on_event(event, request.user):
+            Registration.objects.get(event_id=event_id, user_id=request.user.id).delete()
+            return redirect(f"/event/{event_id}")
         else:
             return permission_denied(request, '')
     else:
@@ -138,39 +166,3 @@ def unregister_on_event(request, event_id: int):
 
 def get_playlists(request):
     return render(request, 'championships.html', {})
-
-
-def get_playlist_races(request, playlist_id: int):
-    return render(request, 'championship-events.html', {})
-
-
-def register_on_playlist(request, playlist_id: int):
-    playlist = get_playlist_if_available(request.user, playlist_id)
-    if playlist:
-        return render(request, 'championship-register.html', {})
-    else:
-        return page_not_found(request, '')
-
-
-@login_required(login_url='/login')
-def create_playlist(request):
-    if request.method == 'GET':
-        return render(request, 'create-playlist.html', {})
-    elif request.method == 'POST':
-        form_data = {
-            'name': request.POST.get('name', ''),
-            'description': request.POST.get('description', ''),
-            'creator': request.user,
-            'thumbnail': request.FILES.get('thumbnail'),
-            'pilot_qualify': request.POST.get('pilot_qualify', 'AM'),
-            'grid_type': request.POST.get('grid_type', 'Main'),
-            'qualify_type': request.POST.get('qualify_type', 'Average'),
-            'car_class': request.POST.get('car_class', 'Multi'),
-            'tyre_sets_count': request.POST.get('tyre_sets_count', 50),
-            'pilot_count': request.POST.get('pilot_count', 1),
-            'mandatory_pit_stop_count': request.POST.get('mandatory_pit_stop_count', 1)
-        }
-        form = PlaylistCreationForm(form_data)
-        if form.is_valid():
-            instance = form.save()
-    return bad_request(request, '')
