@@ -13,6 +13,13 @@
     src: url(/static/fonts/Montserrat-Regular.ttf); /* Путь к файлу со шрифтом */
 }
 
+@media (min-width: 480px) and (max-width: 3200px) {
+    .bold, .title-value{
+        font-size: calc(8px + (32 - 8) * ( (100vw - 480px) / ( 3200 - 480) )) !important;
+    }
+
+}
+
 .main-card {
     border-radius: 10px;
     border: 2px solid rgba(37, 37, 37, 0.5);
@@ -111,7 +118,6 @@ ul.create-new-event-list li {
     width: 20px;
     height: 20px;
     margin-bottom: -5px;
-
     background: linear-gradient(#fff, #fff),
     linear-gradient(#fff, #fff), #000;
     background-size: 50% 2px, 2px 50%; /*thickness = 2px, length = 50% (25px)*/

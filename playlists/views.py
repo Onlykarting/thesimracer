@@ -30,6 +30,9 @@ def indev(request):
     return render(request, 'in-development.html', {})
 
 
+def about_us(request):
+    return render(request, 'about-us.html', {})
+
 
 def get_results(request):
     return render(request, 'results.html', {})

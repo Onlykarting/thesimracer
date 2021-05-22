@@ -94,6 +94,30 @@ def profile(request):
             return redirect('/')
     return render(request, 'pages/profile.html', content)
 
+
+def profile_edit(request):
+    content = {'user_check': check_anonymous(request.user), 'user': request.user}
+    if request.method == "GET":
+        if request.user.is_authenticated:
+            content.update(profile_load(request))
+        else:
+            return redirect('/')
+    if request.method == "POST":
+        post = request.POST
+        if 'logout' in post:
+            logout(request)
+            return redirect('/')
+        elif 'submit' in post:
+            if 'country-flag' in post:
+                country_flag = post['country-flag']
+                set_stats(request.user, country_flag=country_flag)
+        if request.user.is_authenticated:
+            content.update(profile_load(request))
+        else:
+            return redirect('/')
+    return render(request, 'pages/profile-edit.html', content)
+
+
 def events(request):
     content = dict()
     return render(request, 'pages/events.html', content)

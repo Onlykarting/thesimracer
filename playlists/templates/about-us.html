@@ -1,0 +1,51 @@
+{% extends 'page-with-header.html' %}
+{% load static %}
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'styles/about-us.css' %}">
+{% endblock %}
+{% block title %}
+    About us
+{% endblock %}
+
+{% block content %}
+    <div class="background"></div>
+    <div class="card main-card horiz-center">
+        <div class="headers">
+            <span class="secondary">What is </span> <span style="color: #f9b330">TheSim</span><span class="secondary">Racer?</span>
+        </div>
+        <hr class="hr-custom">
+        <span class="text">
+                The Sim Racer - it is a new portal for virtual racing. Our slogan: “Racing is in our blood”. We specialize in Assetto Corsa Competizione. This project founded by
+        the russian team of third year students of Moscow School of Programming. It was very hard to us, but together we were able to complete this work. The Sim Racer is
+        a place where each casual player or professional simracer can come together to compete in serious sprint leagues, endurance leagues and be chill.
+        </span>
+        <div class="headers">
+            <span class="secondary">Our</span> <span style="color: #f9b330">Policy</span>
+        </div>
+        <hr class="hr-custom">
+        <span class="text">
+                The Sim Racer - it is a new portal for virtual racing. Our slogan: “Racing is in our blood”. We specialize in Assetto Corsa Competizione. This project founded by
+            the russian team of third year students of Moscow School of Programming. It was very hard to us, but together we were able to complete this work. The Sim Racer is
+            a place where each casual player or professional simracer can come together to compete in serious sprint leagues, endurance leagues and be chill.
+        </span>
+        <div class="headers">
+            <span class="secondary">Our</span> <span style="color: #f9b330">Team</span>
+        </div>
+        <hr class="hr-custom">
+        <span class="text">
+                The Sim Racer founded by three students from MSHP in faculty of Computer Science, Higher School of Economics. Our main support - our teacher and belief in
+        success.
+        </span>
+        <div class="text" style="width: 40%">
+            <div class="row">Huge thanks to our development team: </div>
+            <div><span class="bold">Pushin Andrey</span> - MSHP teacher, our mentor</div>
+            <div><span class="bold">Bersenev Anton</span> - Project leader, designer</div>
+            <div><span class="bold">Korolev Kirill</span> - Frontend developer</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block after-body %}
+{% endblock %}
+

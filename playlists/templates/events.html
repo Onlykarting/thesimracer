@@ -62,28 +62,28 @@
                                 </div>
                                 <hr class="card-hr">
                                 <div class="row">
-                                    <div class="col-6 text-left text-secondary">
-                                        <span>Track</span>
+                                    <div class="col-4 text-left text-secondary">
+                                        <span class="title-value">Track</span>
                                     </div>
-                                    <div class="col-6 text-right bold">
+                                    <div class="col-8 text-right bold">
                                         <span>{{ event.game_settings.event_settings.track.name }}</span>
                                     </div>
                                 </div>
                                 <hr class="card-hr-secondary">
                                 <div class="row">
-                                    <div class="col-6 text-left text-secondary">
-                                        <span>Date</span>
+                                    <div class="col-4 text-left text-secondary">
+                                        <span class="title-value">Date</span>
                                     </div>
-                                    <div class="col-6 text-right bold">
-                                        <span>{{ event.starts_at|date:"D d.m.Y" }}</span>
+                                    <div class="col-8 text-right bold">
+                                        <span class="">{{ event.starts_at|date:"D d.m.Y" }}</span>
                                     </div>
                                 </div>
                                 <hr class="card-hr-secondary">
                                 <div class="row">
-                                    <div class="col-6 text-left text-secondary">
-                                        <span>Time</span>
+                                    <div class="col-4 text-left text-secondary">
+                                        <span class="title-value">Time</span>
                                     </div>
-                                    <div class="col-6 text-right bold">
+                                    <div class="col-8 text-right bold">
                                         <span>{{ event.starts_at|time:"H:i" }}</span>
                                     </div>
                                 </div>
