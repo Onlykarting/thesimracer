@@ -2,6 +2,7 @@ from .services import get_recent_events, get_event_if_available, get_playlist_if
     time_to_laps, fuel_calculator
 from .services.events import user_registered_on_event
 from .models import Registration, Car, CarClass
+from acc_server.models import Track
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
@@ -90,7 +91,9 @@ def get_playlist(request, playlist_id: int):
 @login_required(login_url='/login')
 def create_event(request):
     if request.method == 'GET':
-        return render(request, 'create-event.html', {})
+        return render(request, 'create-event.html', {
+            'tracks': Track.objects.all()
+        })
     if request.method == 'POST':
         event_ = Event()
         event_.playlist = None
