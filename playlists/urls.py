@@ -1,5 +1,5 @@
 from .views import event, get_events, get_playlist, register_on_event, unregister_on_event, \
-    create_event, get_results, indev, get_playlists, tools, create_report, reports
+    create_event, get_results, indev, get_playlists, tools, create_report, reports, about_us
 from django.urls import path
 
 urlpatterns = [
