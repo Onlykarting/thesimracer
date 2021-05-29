@@ -139,7 +139,7 @@
                 <div class="header"><span>About </span><span class="orange-about-me">myself</span></div>
                 <hr class="custom-hr">
                 <div class="input">
-                    <textarea name="description" cols="40" rows="10" maxlength="500" placeholder="Description" class="aboout-me-text names" required="" id="id_description"></textarea>
+                    <textarea name="description" cols="40" rows="10" maxlength="500" placeholder="Description" class="aboout-me-text names" required="" id="id_description">{{ stats.description }}</textarea>
                 </div>
                 <hr class="custom-hr" id="hr-myself" style="margin-bottom: 0">
             </div>
@@ -324,7 +324,6 @@
     $('.btn-select').html(langArray[p]);
     $('.btn-select').attr('value', '{{ country.country_name }}');
     document.getElementById('id_country_name').value = '{{ country.country_name }}';
-    document.getElementById('id_description').innerHTML = '{{ stats.description }}';
 
     //change button stuff on click
     $('#a li').click(function () {

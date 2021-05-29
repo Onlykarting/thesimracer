@@ -106,7 +106,7 @@ def create_event(request):
         event_.starts_at = datetime.strptime(start_datetime, '%Y-%m-%d - %H:%M')
         event_.game_settings = AccEvent()
         event_.game_settings.save()
-        # event_.game_settings.event_settings.track
+        event_.game_settings.event_settings.track_id = int(request.POST.get('track-name'))
         event_.game_settings.event_rules.max_drivers_count = int(request.POST.get('pilot-count', 8))
         event_.game_settings.event_rules.mandatory_pitstop_count = int(request.POST.get('mandatory-pit-stop-count', 0))
         event_.game_settings.event_rules.tyre_set_count = int(request.POST.get('tyre-sets', 50))
@@ -114,9 +114,10 @@ def create_event(request):
         event_.game_settings.event_rules.qualify_standing_type = int(request.POST.get('qualify-type'))
         event_.game_settings.server_settings.allow_auto_dq = int(request.POST.get('penalty-system', 0))
         event_.game_settings.server_settings.max_car_slots = int(request.POST.get('max-car-count', 30))
-
-
-
+        event_.game_settings.server_settings.save()
+        event_.game_settings.event_settings.save()
+        event_.game_settings.event_rules.save()
+        event_.game_settings.save()
         event_.save()
         return redirect(f"/event/{event_.pk}")
 
