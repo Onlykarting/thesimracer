@@ -27,7 +27,9 @@
                     <div class="col-5 text-al-center padding-0">
                         <div class="row"><img class="avatar-img" src="{{ stats.img }}" width="200px" height="200px">
                         </div>
+                        {% if owner %}
                         <div class="row"><a href="edit" class="edit-text text-secondary">Edit</a></div>
+                        {% endif %}
                     </div>
                     <div class="col-7">
                         <div class="row left-5 text-secondary big-font">
@@ -39,7 +41,7 @@
 
                         <div class="row left-5 text-secondary top-15">
                             <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
-                                      src="{% static 'images/DefaultFlag.bmp' %}"> <span>Russia</span></div>
+                                      src="{% static country.country_flag %}"> <span>{{ country.country_name }}</span></div>
                         </div>
                         <div class="row left-5 text-secondary top-15">
                             <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
@@ -58,7 +60,7 @@
                 <div class="upper-block-text">
                     <div class="center-block-borders">
                         <div style="height: 68px" class="row left-5 text-secondary big-font middle-text">
-                            <span class="vert-center">BER</span>
+                            <span class="vert-center">{{ stats.tag }}</span>
                         </div>
                     </div>
                     <div class="center-block-borders">
@@ -78,7 +80,7 @@
             <div class="col-3">
                 <div class="upper-block-text">
                     <div style="height: 68px" class="row left-5 text-secondary big-font">
-                        <span class="vert-center">ID: #1488228</span>
+                        <span class="vert-center">ID: #{{ id }}</span>
                     </div>
 
                     <div style="height: 28px" class="row left-5 text-secondary top-15">
@@ -86,7 +88,7 @@
                             <div>
                                 <img height="20px" width="20px"
                                   src="{% static 'images/instagram.png' %}">
-                                <span class="text-soc">Bersenev.official</span>
+                                <span class="text-soc">{{ stats.instagram }}</span>
                             </div>
                         </div>
                     </div>
@@ -95,7 +97,7 @@
                             <div>
                                 <img height="20px" width="20px"
                                   src="{% static 'images/twitch.png' %}">
-                                <span class="text-soc">Timema_Militisto</span>
+                                <span class="text-soc">{{ stats.twitch }}</span>
                             </div>
                         </div>
                     </div>
@@ -105,7 +107,7 @@
                             <div>
                                 <img height="20px" width="20px"
                                   src="{% static 'images/discord.png' %}">
-                                <span class="text-soc">Timema_Militisto</span>
+                                <span class="text-soc">{{ stats.discord }}</span>
                             </div>
                         </div>
                     </div>
@@ -115,7 +117,7 @@
         <div class="row row-padding-card">
             <div class="header"><span>About </span><span class="orange-about-me">myself</span></div>
             <hr class="custom-hr">
-            <div><span class="aboout-me-text">I bla bla bla bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa.</span>
+            <div><span class="aboout-me-text">{{ stats.description }}</span>
             </div>
             <hr class="custom-hr" id="hr-myself" style="margin-bottom: 0">
         </div>

@@ -10,9 +10,9 @@ from django.core.validators import validate_email
 from . import serializers
 # Create your views here.
 
-from authorization.forms import LoggingInForm, RegistrationForm
-from .account_features import check_anonymous, register_proj, login_proj, set_stats, check_names, profile_load
-from .models import Stats
+from authorization.forms import LoggingInForm, RegistrationForm, ProfileDataForm
+from .account_features import check_anonymous, register_proj, login_proj, set_stats, check_names, profile_load, update_stats
+from .models import Stats, Countries
 import requests
 
 
@@ -40,6 +40,7 @@ def log_in(request):
             content['register_page'] = True
             form = RegistrationForm(request.POST)
             if form.is_valid():
+                print(request.POST)
                 if check_names(form.data):
                     username = form.data['username']
                     if register_proj(username, request, content, form):
@@ -76,46 +77,49 @@ def profile(request):
     content = {'user_check': check_anonymous(request.user), 'user': request.user}
     if request.method == "GET":
         if request.user.is_authenticated:
-            content.update(profile_load(request))
+            content.update(profile_load(request, request.user.username))
         else:
             return redirect('/')
-    if request.method == "POST":
-        post = request.POST
-        if 'logout' in post:
-            logout(request)
-            return redirect('/')
-        elif 'submit' in post:
-            if 'country-flag' in post:
-                country_flag = post['country-flag']
-                set_stats(request.user, country_flag=country_flag)
+    return render(request, 'pages/profile.html', content)
+
+
+def profile_by_id(request, profile_id: int):
+    content = {'user_check': check_anonymous(request.user), 'user': request.user}
+    if request.method == "GET":
         if request.user.is_authenticated:
-            content.update(profile_load(request))
+            try:
+                user = User.objects.get(id=profile_id).username
+            except User.DoesNotExist:
+                return redirect('/')
+            content.update(profile_load(request, user))
         else:
             return redirect('/')
     return render(request, 'pages/profile.html', content)
 
 
 def profile_edit(request):
-    content = {'user_check': check_anonymous(request.user), 'user': request.user}
+    content = {'user_check': check_anonymous(request.user), 'user': request.user, 'profile_data_form': ProfileDataForm(), 'countries': Countries.objects.all().order_by('country_name')}
     if request.method == "GET":
         if request.user.is_authenticated:
-            content.update(profile_load(request))
+            content.update(profile_load(request, request.user.username))
         else:
             return redirect('/')
+        return render(request, 'pages/profile-edit.html', content)
     if request.method == "POST":
         post = request.POST
-        if 'logout' in post:
-            logout(request)
-            return redirect('/')
-        elif 'submit' in post:
-            if 'country-flag' in post:
-                country_flag = post['country-flag']
-                set_stats(request.user, country_flag=country_flag)
+        form = ProfileDataForm(request.POST)
         if request.user.is_authenticated:
-            content.update(profile_load(request))
+            if form.is_valid():
+                content['form_valid'] = True
+                print(post)
+                update_stats(request.user, post)
+                content.update(profile_load(request, request.user))
+                return redirect('/profile')
+            else:
+                content['form_valid'] = False
+                return render(request, 'pages/profile-edit.html', content)
         else:
             return redirect('/')
-    return render(request, 'pages/profile-edit.html', content)
 
 
 def events(request):

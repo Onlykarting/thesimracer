@@ -1,3 +1,5 @@
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +11,7 @@
     <link href="{% static 'styles/header.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/footer.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'styles/profile.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'styles/profile-edit.css' %}" rel="stylesheet" type="text/css">
     <title>Profile</title>
     <link href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/sticky-footer-navbar.css"
           rel="stylesheet">
@@ -21,255 +24,337 @@
 {% endblock %}
 <main>
     <div class="card main-card">
-        <div class="row row-padding-card">
-            <div class="col-6">
-                <div class="row upper-block-text">
-                    <div class="col-5 text-al-center padding-0">
-                        <div class="row"><img class="avatar-img" src="{{ stats.img }}" width="200px" height="200px">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row row-padding-card">
+                <div class="col-6">
+                    <div class="row upper-block-text">
+                        <div class="col-5 text-al-center padding-0">
+                            <div class="row"><img class="avatar-img" src="{{ stats.img }}" width="200px" height="200px">
+                            </div>
+                            <button type="submit" class="btn button-shadow confirm-btn manage-btn-text center-horiz">
+                                Confirm
+                            </button>
                         </div>
-                        <div class="row"><a href="edit" class="edit-text text-secondary">Edit</a></div>
+                        <div class="col-7">
+                            <div class="input">
+                                <input type="text" value="{{ first_name }}" name="first_name" placeholder="First name" class="names text-secondary big-font" required="" id="id_first_name">
+                                <input type="text" value="{{ last_name }}" name="last_name" placeholder="Last name" class="names text-secondary big-font" required="" id="id_last_name">
+                            </div>
+                            <div class="row text-secondary">
+                                <div>
+                                    <select class="vodiapicker horiz-center" name="country_name" class="" id="id_country_name">
+                                        {% for country in countries %}
+                                            <option value="{{ country.country_name }}"
+                                                    data-thumbnail="{% static country.country_flag %}">{{ country.country_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="lang-select">
+                                        <button type="button" class="btn-select" value=""></button>
+                                        <div class="b">
+                                        <ul id="a"></ul>
+                                        </div>
+                                        </div>
+                                </span>
+                                </div>
+                            </div>
+                            <div class="row text-secondary" style="margin-top: 55px">
+                                <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
+                                          src="{% static 'images/AM-License.png' %}"> <span>License</span></div>
+                            </div>
+
+                            <div class="row text-secondary top-15">
+                                <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
+                                          src="{% static 'images/steam_logo.png' %}"> <span>Timema_Militisto</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-7">
-                        <div class="row left-5 text-secondary big-font">
-                            <span>{{ first_name }}</span>
+                </div>
+                <div class="col-3">
+                    <div class="upper-block-text">
+                        <div class="center-block-borders">
+                            <div style="height: 68px" class="row left-5 text-secondary big-font middle-text">
+                                <input type="text" value="{{ stats.tag }}" name="tag" maxlength="3" minlength="3" placeholder="XXX" class="vert-center tag input text-secondary big-font" required="" id="id_tag">
+                            </div>
                         </div>
-                        <div class="row left-5 text-secondary big-font">
-                            <span>{{ last_name }}</span>
+                        <div class="center-block-borders">
+                            <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
+                                <div><span>178 Races</span></div>
+                            </div>
+                            <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
+                                <div><span>9 Wins</span></div>
+                            </div>
+
+                            <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
+                                <div><span>54 Top 10</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="upper-block-text">
+                        <div style="height: 68px" class="row left-5 text-secondary big-font">
+                            <span class="vert-center">ID: #{{ id }}</span>
                         </div>
 
-                        <div class="row left-5 text-secondary top-15">
-                            <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
-                                      src="{% static 'images/DefaultFlag.bmp' %}"> <span>Russia</span></div>
+                        <div style="height: 28px" class="row left-5 text-secondary top-15">
+                            <div class="input">
+                                <div class="row">
+                                    <div class="col-2 vert-center">
+                                        <img height="20px" width="20px"
+                                             src="{% static 'images/instagram.png' %}">
+                                    </div>
+                                    <input type="text" value="{{ stats.instagram }}" name="instagram" maxlength="20" placeholder="Instagram" style="width: 80%; padding-left: 0" class="text-soc names text-secondary" required="" id="id_instagram">
+                                </div>
+                            </div>
                         </div>
-                        <div class="row left-5 text-secondary top-15">
-                            <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
-                                      src="{% static 'images/AM-License.png' %}"> <span>License</span></div>
+                        <div style="height: 28px" class="row left-5 text-secondary top-15">
+                            <div class="input">
+                                <div class="row">
+                                    <div class="col-2 vert-center">
+                                        <img height="20px" width="20px"
+                                             src="{% static 'images/twitch.png' %}">
+                                    </div>
+                                    <input type="text" value="{{ stats.twitch }}" name="twitch" maxlength="20" placeholder="Twitch" style="width: 80%; padding-left: 0" class="text-soc names text-secondary" required="" id="id_twitch">
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row left-5 text-secondary top-15">
-                            <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
-                                      src="{% static 'images/steam_logo.png' %}"> <span>Timema_Militisto</span>
+                        <div style="height: 28px" class="row left-5 text-secondary top-15">
+                            <div class="input">
+                                <div class="row">
+                                    <div class="col-2 vert-center">
+                                        <img height="20px" width="20px"
+                                             src="{% static 'images/discord.png' %}">
+                                    </div>
+                                    <input type="text" value="{{ stats.discord }}" name="discord" maxlength="20" placeholder="Discord" style="width: 80%; padding-left: 0" class="text-soc names text-secondary" required="" id="id_discord">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="upper-block-text">
-                    <div class="center-block-borders">
-                        <div style="height: 68px" class="row left-5 text-secondary big-font middle-text">
-                            <span class="vert-center">BER</span>
+            <div class="row row-padding-card">
+                <div class="header"><span>About </span><span class="orange-about-me">myself</span></div>
+                <hr class="custom-hr">
+                <div class="input">
+                    <textarea name="description" cols="40" rows="10" maxlength="500" placeholder="Description" class="aboout-me-text names" required="" id="id_description"></textarea>
+                </div>
+                <hr class="custom-hr" id="hr-myself" style="margin-bottom: 0">
+            </div>
+            <div class="row row-padding-card">
+                <div class="header"><span>Teams</span></div>
+                <hr class="custom-hr">
+            </div>
+            <div class="row row-padding-card teams">
+                <div class="col-4 teams-padding">
+                    <div class="card table-card">
+                        <div class="row text-al-center"><span
+                                class="teams-header text-secondary">TheSimRacer OMST</span>
                         </div>
+                        <table class="table-marg">
+                            <tr>
+                                <td style="width: 20%"></td>
+                                <td style="width: 80%"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">1.</td>
+                                <td>Anton Bersenev (owner)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">2.</td>
+                                <td>Artem Burenin</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">3.</td>
+                                <td>Kirill Korolev</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">4.</td>
+                                <td>Sergey Orlov</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">5.</td>
+                                <td>Ilya Tsepkalo</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">6.</td>
+                                <td>Sebastian Gagen</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">7.</td>
+                                <td>Alexnader Dudarev</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">8.</td>
+                                <td>Dmitry Zhirdralindra</td>
+                            </tr>
+                        </table>
+                        <button onclick="location.href = '/team/1';" type="button"
+                                class="btn button-shadow manage-btn manage-btn-text center-horiz">
+                            Manage
+                        </button>
                     </div>
-                    <div class="center-block-borders">
-                        <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                            <div><span>178 Races</span></div>
+                </div>
+                <div class="col-4 teams-padding">
+                    <div class="card table-card">
+                        <div class="row text-al-center"><span
+                                class="teams-header text-secondary">TheSimRacer OMST</span>
                         </div>
-                        <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                            <div><span>9 Wins</span></div>
+                        <table class="table-marg">
+                            <tr>
+                                <td style="width: 20%"></td>
+                                <td style="width: 80%"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">1.</td>
+                                <td>Anton Bersenev (owner)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">2.</td>
+                                <td>Artem Burenin</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">3.</td>
+                                <td>Kirill Korolev</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">4.</td>
+                                <td>Sergey Orlov</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">5.</td>
+                                <td>Ilya Tsepkalo</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">6.</td>
+                                <td>Sebastian Gagen</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">7.</td>
+                                <td>Alexnader Dudarev</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">8.</td>
+                                <td>Dmitry Zhirdralindra</td>
+                            </tr>
+                        </table>
+                        <button onclick="location.href = '/team/2';" type="button"
+                                class="btn button-shadow manage-btn manage-btn-text center-horiz">
+                            Manage
+                        </button>
+                    </div>
+                </div>
+                <div class="col-4 teams-padding">
+                    <div class="card table-card">
+                        <div class="row text-al-center"><span
+                                class="teams-header text-secondary">TheSimRacer OMST</span>
                         </div>
-
-                        <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                            <div><span>54 Top 10</span></div>
-                        </div>
+                        <table class="table-marg">
+                            <tr>
+                                <td style="width: 20%"></td>
+                                <td style="width: 80%"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">1.</td>
+                                <td>Anton Bersenev (owner)</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">2.</td>
+                                <td>Artem Burenin</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">3.</td>
+                                <td>Kirill Korolev</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">4.</td>
+                                <td>Sergey Orlov</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">5.</td>
+                                <td>Ilya Tsepkalo</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">6.</td>
+                                <td>Sebastian Gagen</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">7.</td>
+                                <td>Alexnader Dudarev</td>
+                            </tr>
+                            <tr>
+                                <td class="text-secondary">8.</td>
+                                <td>Dmitry Zhirdralindra</td>
+                            </tr>
+                        </table>
+                        <button onclick="location.href = '/team/3';" type="button"
+                                class="btn button-shadow manage-btn manage-btn-text center-horiz">
+                            Manage
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="upper-block-text">
-                    <div style="height: 68px" class="row left-5 text-secondary big-font">
-                        <span class="vert-center">ID: #1488228</span>
-                    </div>
-
-                    <div style="height: 28px" class="row left-5 text-secondary top-15">
-                        <div>
-                            <div>
-                                <img height="20px" width="20px"
-                                  src="{% static 'images/instagram.png' %}">
-                                <span class="text-soc">Bersenev.official</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="height: 28px" class="row left-5 text-secondary top-15">
-                        <div>
-                            <div>
-                                <img height="20px" width="20px"
-                                  src="{% static 'images/twitch.png' %}">
-                                <span class="text-soc">Timema_Militisto</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="height: 28px" class="row left-5 text-secondary top-15">
-                        <div>
-                            <div>
-                                <img height="20px" width="20px"
-                                  src="{% static 'images/discord.png' %}">
-                                <span class="text-soc">Timema_Militisto</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row row-padding-card">
-            <div class="header"><span>About </span><span class="orange-about-me">myself</span></div>
-            <hr class="custom-hr">
-            <div><span class="aboout-me-text">I bla bla bla bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa bla aspda adfm apes s slds aslslslda sdoewm sapcmwamsld as q sflaa.</span>
-            </div>
-            <hr class="custom-hr" id="hr-myself" style="margin-bottom: 0">
-        </div>
-        <div class="row row-padding-card">
-            <div class="header"><span>Teams</span></div>
-            <hr class="custom-hr">
-        </div>
-        <div class="row row-padding-card teams">
-            <div class="col-4 teams-padding">
-                <div class="card table-card">
-                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span>
-                    </div>
-                    <table class="table-marg">
-                        <tr>
-                            <td style="width: 20%"></td>
-                            <td style="width: 80%"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">1.</td>
-                            <td>Anton Bersenev (owner)</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">2.</td>
-                            <td>Artem Burenin</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">3.</td>
-                            <td>Kirill Korolev</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">4.</td>
-                            <td>Sergey Orlov</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">5.</td>
-                            <td>Ilya Tsepkalo</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">6.</td>
-                            <td>Sebastian Gagen</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">7.</td>
-                            <td>Alexnader Dudarev</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">8.</td>
-                            <td>Dmitry Zhirdralindra</td>
-                        </tr>
-                    </table>
-                    <button onclick="location.href = '/team/1';" type="button" class="btn button-shadow manage-btn manage-btn-text center-horiz">
-                        Manage
-                    </button>
-                </div>
-            </div>
-            <div class="col-4 teams-padding">
-                <div class="card table-card">
-                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span>
-                    </div>
-                    <table class="table-marg">
-                        <tr>
-                            <td style="width: 20%"></td>
-                            <td style="width: 80%"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">1.</td>
-                            <td>Anton Bersenev (owner)</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">2.</td>
-                            <td>Artem Burenin</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">3.</td>
-                            <td>Kirill Korolev</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">4.</td>
-                            <td>Sergey Orlov</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">5.</td>
-                            <td>Ilya Tsepkalo</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">6.</td>
-                            <td>Sebastian Gagen</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">7.</td>
-                            <td>Alexnader Dudarev</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">8.</td>
-                            <td>Dmitry Zhirdralindra</td>
-                        </tr>
-                    </table>
-                    <button onclick="location.href = '/team/2';" type="button" class="btn button-shadow manage-btn manage-btn-text center-horiz">
-                        Manage
-                    </button>
-                </div>
-            </div>
-            <div class="col-4 teams-padding">
-                <div class="card table-card">
-                    <div class="row text-al-center"><span class="teams-header text-secondary">TheSimRacer OMST</span>
-                    </div>
-                    <table class="table-marg">
-                        <tr>
-                            <td style="width: 20%"></td>
-                            <td style="width: 80%"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">1.</td>
-                            <td>Anton Bersenev (owner)</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">2.</td>
-                            <td>Artem Burenin</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">3.</td>
-                            <td>Kirill Korolev</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">4.</td>
-                            <td>Sergey Orlov</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">5.</td>
-                            <td>Ilya Tsepkalo</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">6.</td>
-                            <td>Sebastian Gagen</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">7.</td>
-                            <td>Alexnader Dudarev</td>
-                        </tr>
-                        <tr>
-                            <td class="text-secondary">8.</td>
-                            <td>Dmitry Zhirdralindra</td>
-                        </tr>
-                    </table>
-                    <button onclick="location.href = '/team/3';" type="button" class="btn button-shadow manage-btn manage-btn-text center-horiz">
-                        Manage
-                    </button>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </main>
 {% block footer %}
     {% include 'footer.html' %}
 {% endblock %}
 </body>
+
+<script>
+    var p = 0
+    var langArray = [];
+    $('.vodiapicker option').each(function () {
+        var img = $(this).attr("data-thumbnail");
+        var text = this.innerText;
+        var value = $(this).val();
+        var item = '<li><img src="' + img + '" alt="" value="' + value + '"/><span>' + text + '</span></li>';
+        if (value === '{{ country.country_name }}'){
+            p = langArray.length
+        }
+        langArray.push(item);
+    })
+
+    $('#a').html(langArray);
+
+    //Set the button value to the first el of the array
+    $('.btn-select').html(langArray[p]);
+    $('.btn-select').attr('value', '{{ country.country_name }}');
+    document.getElementById('id_country_name').value = '{{ country.country_name }}';
+    document.getElementById('id_description').innerHTML = '{{ stats.description }}';
+
+    //change button stuff on click
+    $('#a li').click(function () {
+        var img = $(this).find('img').attr("src");
+        var value = $(this).find('img').attr('value');
+        var text = this.innerText;
+        var item = '<li><img src="' + img + '" alt="" /><span>' + text + '</span></li>';
+        $('.btn-select').html(item);
+        $('.btn-select').attr('value', value);
+        document.getElementById('id_country_name').value = value;
+        $(".b").toggle();
+        //console.log(value);
+    });
+
+    $(".btn-select").click(function () {
+        $(".b").toggle();
+    });
+
+    //check local storage for the lang
+    var sessionLang = '{{ country.country_name }}';
+    if (sessionLang) {
+        //find an item with value of sessionLang
+        var langIndex = langArray.indexOf(sessionLang);
+        $('.btn-select').html(langArray[langIndex]);
+        $('.btn-select').attr('value', sessionLang);
+    } else {
+        var langIndex = langArray.indexOf('ch');
+        console.log(langIndex);
+        $('.btn-select').html(langArray[langIndex]);
+        //$('.btn-select').attr('value', 'en');
+    }
+</script>
 </html>

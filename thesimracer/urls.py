@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.log_in),
     path('profile/', views.profile),
+    path('profile/<int:profile_id>', views.profile_by_id),
     path('profile/edit', views.profile_edit),
     path('', views.index),
     path('', include('playlists.urls'))
