@@ -111,7 +111,6 @@ def profile_edit(request):
         if request.user.is_authenticated:
             if form.is_valid():
                 content['form_valid'] = True
-                print(post)
                 update_stats(request.user, post)
                 content.update(profile_load(request, request.user))
                 return redirect('/profile')
