@@ -30,6 +30,12 @@
     width: 100%;
 }
 
+.racing-is{
+    text-align: center;
+    margin-top: 225px;
+    margin-bottom: 225px;
+    font-size: 50px;
+}
 
 .row {
     margin: 0 0 0 0;
@@ -69,7 +75,7 @@
 .join-btn{
     width: 125px;
     height: 35px;
-    background: rgba(17, 148, 14, 0.65);
+    background: rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
 }
