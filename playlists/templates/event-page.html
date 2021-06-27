@@ -35,7 +35,7 @@
                                 <span class="text-first-col">Date</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>NONE</span>
+                                <span>{{ event.starts_at|date:"D d.m.Y" }}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -44,7 +44,7 @@
                                 <span class="text-first-col">Time</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>NONE</span>
+                                <span>{{ event.starts_at|time:"H:i" }}(+3 UTC)</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -53,7 +53,7 @@
                                 <span class="text-first-col">Event type</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>Single</span>
+                                <span>{{event.event_type}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -140,7 +140,7 @@
                                 <span class="text-first-col">Race type</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>Championship</span>
+                                <span>{{event.race_type}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -162,7 +162,7 @@
                                 <span class="text-first-col">Car class</span>
                             </div>
                             <div class="col-4 text-right">
-                                <span>28.02.21</span>
+                                <span>{{event.car_class}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -171,7 +171,7 @@
                                 <span class="text-first-col">License</span>
                             </div>
                             <div class="col-4 text-right">
-                                <span>18:30</span>
+                                <span>{{event.license}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -180,7 +180,7 @@
                                 <span class="text-first-col">Pilots in command</span>
                             </div>
                             <div class="col-4 text-right">
-                                <span>Command</span>
+                                <span>{{event.pilots_in_command}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -195,7 +195,7 @@
                                 <span class="text-first-col">Tyre sets</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>8</span>
+                                <span>{{event.tyre_sets}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -204,7 +204,7 @@
                                 <span class="text-first-col">Mandatory pits</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>1</span>
+                                <span>{{event.mandatory_pits}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -217,7 +217,7 @@
                                 <span class="text-first-col">Qualify type</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span style="margin-right: 10px">Fastest lap</span>
+                                <span style="margin-right: 10px">{{event.quali_type}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -226,7 +226,7 @@
                                 <span class="text-first-col">Grid</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span style="margin-right: 10px">Main</span>
+                                <span style="margin-right: 10px">{{event.grid_type}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -239,7 +239,7 @@
                                 <span class="text-first-col">Pit window</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>None</span>
+                                <span>{{event.pit_window}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">
@@ -248,7 +248,7 @@
                                 <span class="text-first-col">Penalty system</span>
                             </div>
                             <div class="col-6 text-right">
-                                <span>On</span>
+                                <span>{{event.penalty_sys}}</span>
                             </div>
                         </div>
                         <hr class="card-hr-secondary">

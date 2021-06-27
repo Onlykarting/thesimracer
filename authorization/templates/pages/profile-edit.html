@@ -41,24 +41,7 @@
                                 <input type="text" value="{{ first_name }}" name="first_name" placeholder="First name" class="names text-secondary big-font" required="" id="id_first_name">
                                 <input type="text" value="{{ last_name }}" name="last_name" placeholder="Last name" class="names text-secondary big-font" required="" id="id_last_name">
                             </div>
-                            <div class="row text-secondary">
-                                <div>
-                                    <select class="vodiapicker horiz-center" name="country_name" class="" id="id_country_name">
-                                        {% for country in countries %}
-                                            <option value="{{ country.country_name }}"
-                                                    data-thumbnail="{% static country.country_flag %}">{{ country.country_name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <div class="lang-select">
-                                        <button type="button" class="btn-select" value=""></button>
-                                        <div class="b">
-                                        <ul id="a"></ul>
-                                        </div>
-                                        </div>
-                                </span>
-                                </div>
-                            </div>
-                            <div class="row text-secondary" style="margin-top: 55px">
+                            <div class="row text-secondary" style="margin-top: 32px">
                                 <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
                                           src="{% static 'images/AM-License.png' %}"> <span>License</span></div>
                             </div>
@@ -135,14 +118,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row row-padding-card">
-                <div class="header"><span>About </span><span class="orange-about-me">myself</span></div>
-                <hr class="custom-hr">
-                <div class="input">
-                    <textarea name="description" cols="40" rows="10" maxlength="500" placeholder="Description" class="aboout-me-text names" required="" id="id_description"></textarea>
-                </div>
-                <hr class="custom-hr" id="hr-myself" style="margin-bottom: 0">
-            </div>
+
             <div class="row row-padding-card">
                 <div class="header"><span>Teams</span></div>
                 <hr class="custom-hr">
@@ -312,9 +288,6 @@
         var text = this.innerText;
         var value = $(this).val();
         var item = '<li><img src="' + img + '" alt="" value="' + value + '"/><span>' + text + '</span></li>';
-        if (value === '{{ country.country_name }}'){
-            p = langArray.length
-        }
         langArray.push(item);
     })
 
@@ -322,8 +295,6 @@
 
     //Set the button value to the first el of the array
     $('.btn-select').html(langArray[p]);
-    $('.btn-select').attr('value', '{{ country.country_name }}');
-    document.getElementById('id_country_name').value = '{{ country.country_name }}';
     document.getElementById('id_description').innerHTML = '{{ stats.description }}';
 
     //change button stuff on click
@@ -334,7 +305,6 @@
         var item = '<li><img src="' + img + '" alt="" /><span>' + text + '</span></li>';
         $('.btn-select').html(item);
         $('.btn-select').attr('value', value);
-        document.getElementById('id_country_name').value = value;
         $(".b").toggle();
         //console.log(value);
     });
@@ -343,18 +313,6 @@
         $(".b").toggle();
     });
 
-    //check local storage for the lang
-    var sessionLang = '{{ country.country_name }}';
-    if (sessionLang) {
-        //find an item with value of sessionLang
-        var langIndex = langArray.indexOf(sessionLang);
-        $('.btn-select').html(langArray[langIndex]);
-        $('.btn-select').attr('value', sessionLang);
-    } else {
-        var langIndex = langArray.indexOf('ch');
-        console.log(langIndex);
-        $('.btn-select').html(langArray[langIndex]);
-        //$('.btn-select').attr('value', 'en');
-    }
+
 </script>
 </html>

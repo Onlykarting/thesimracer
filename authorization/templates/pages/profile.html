@@ -27,9 +27,7 @@
                     <div class="col-5 text-al-center padding-0">
                         <div class="row"><img class="avatar-img" src="{{ stats.img }}" width="200px" height="200px">
                         </div>
-                        {% if owner %}
-                        <div class="row"><a href="edit" class="edit-text text-secondary">Edit</a></div>
-                        {% endif %}
+
                     </div>
                     <div class="col-7">
                         <div class="row left-5 text-secondary big-font">
@@ -39,10 +37,7 @@
                             <span>{{ last_name }}</span>
                         </div>
 
-                        <div class="row left-5 text-secondary top-15">
-                            <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
-                                      src="{% static country.country_flag %}"> <span>{{ country.country_name }}</span></div>
-                        </div>
+
                         <div class="row left-5 text-secondary top-15">
                             <div><img class="left-logos" height="20px" width="36px" style="border-radius: 5px"
                                       src="{% static 'images/AM-License.png' %}"> <span>License</span></div>
@@ -65,7 +60,7 @@
                     </div>
                     <div class="center-block-borders">
                         <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
-                            <div><span>178 Races</span></div>
+                            <div><span>{{ stats.races}}</span></div>
                         </div>
                         <div style="height: 28px" class="row left-5 text-secondary top-15 middle-text">
                             <div><span>9 Wins</span></div>
@@ -114,13 +109,7 @@
                 </div>
             </div>
         </div>
-        <div class="row row-padding-card">
-            <div class="header"><span>About </span><span class="orange-about-me">myself</span></div>
-            <hr class="custom-hr">
-            <div><span class="aboout-me-text">{{ stats.description }}</span>
-            </div>
-            <hr class="custom-hr" id="hr-myself" style="margin-bottom: 0">
-        </div>
+
         <div class="row row-padding-card">
             <div class="header"><span>Teams</span></div>
             <hr class="custom-hr">

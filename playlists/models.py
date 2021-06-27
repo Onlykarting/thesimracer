@@ -24,7 +24,9 @@ class Playlist(models.Model):
     CAR_CLASS_CHOICES = (
         ('GT3', 'GT3'),
         ('GT4', 'GT4'),
-        ('Multi', 'Multi')
+        ('Multi', 'Multi'),
+        ('Cup', 'Cup'),
+        ('ST', 'ST'),
     )
 
     creator = ForeignKey(User, models.deletion.CASCADE)
@@ -50,11 +52,49 @@ class Event(models.Model):
         ('Silver', 3),
         ('National', 4),
     )
-
-    game_settings = OneToOneField(AccEvent, on_delete=models.deletion.CASCADE)
+    EVENT_TYPE = (
+        ('Single', 'Single'),
+        ('Command', 'Command'),
+    )
+    RACE_TYPE = (
+        ('Single race', 'Single race'),
+        ('Championship', 'Championship'),
+    )
+    CAR_CLASS_CHOICES = (
+        ('GT3', 'GT3'),
+        ('GT4', 'GT4'),
+        ('Multi', 'Multi'),
+        ('Cup', 'Cup'),
+        ('ST', 'ST'),
+    )
+    EVENT_LICENSE = (
+        ('All', 'All'),
+        ('Club', 'Club'),
+    )
+    QUALIFY_TYPE = (
+        ('Fastest lap', 'Fastest lap'),
+        ('Average lap', 'Average lap'),
+    )
+    GRID_CHOICES = (
+        ('Main', 'Main'),
+        ('Reversed', 'Reversed')
+    )
     name = CharField(max_length=255)
+    track = CharField(max_length=50)
+    icon = CharField(max_length=100)
     description = TextField()
     starts_at = DateTimeField()
+    event_type = CharField(max_length=15, choices=EVENT_TYPE)
+    race_type = CharField(max_length=15, choices=RACE_TYPE)
+    car_class = CharField(max_length=5, choices=CAR_CLASS_CHOICES)
+    license = CharField(max_length=15, choices=EVENT_LICENSE)
+    pilots_in_command = IntegerField()
+    tyre_sets = IntegerField()
+    mandatory_pits = IntegerField()
+    quali_type = CharField(max_length=30, choices=QUALIFY_TYPE)
+    grid_type = CharField(max_length=15, choices=GRID_CHOICES)
+    pit_window = CharField(max_length=30)
+    penalty_sys = BooleanField(default=True)
     is_verified = BooleanField(default=False)
 
 

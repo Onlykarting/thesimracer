@@ -42,7 +42,7 @@ def login_proj(user, request, content, form):
 def set_stats(user, country_flag=None):
     if country_flag is not None:
         Stats.objects.filter(user=user).delete()
-        stats = Stats(user=user, country_flag=country_flag)
+        stats = Stats(user=user, country_flag=1)
     else:
         stats = Stats(user=user)
     stats.save()
@@ -90,5 +90,4 @@ def profile_load(request, user):
     ip = request.META.get('REMOTE_ADDR')
     response = requests.get('http://ipwhois.app/json/' + ip)
     respose_dict = json.loads(response.content.decode("UTF-8"))
-    country_flag = respose_dict['country_flag']
-    return {'stats': stats, 'first_name': first_name, 'last_name': last_name, 'country_flag': country_flag, 'country': country, 'owner': owner, 'id': id}
+    return {'stats': stats, 'first_name': first_name, 'last_name': last_name, 'country_flag': 1, 'country': country, 'owner': owner, 'id': id}
