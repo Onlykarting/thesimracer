@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.validators import validate_email
+from django.views.defaults import page_not_found
 from . import serializers
 # Create your views here.
 
@@ -90,7 +91,7 @@ def profile_by_id(request, profile_id: int):
             try:
                 user = User.objects.get(id=profile_id).username
             except User.DoesNotExist:
-                return redirect('/')
+                return page_not_found(request, {})
             content.update(profile_load(request, user))
         else:
             return redirect('/')
